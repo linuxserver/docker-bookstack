@@ -30,10 +30,11 @@ The [LinuxServer.io][linuxserverurl] team brings you another image release featu
 
 [![Dockerfile-link](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/Dockerfile-Link-green.png)][dockerfileurl]
 
-BookStack is a free and open source Wiki designed for creating beautiful documentation. Feautring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
+[BookStack](https://www.bookstackapp.com) is a free and open source Wiki designed for creating beautiful documentation. Feautring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
 
 Powered by SQL and including a Markdown editor for those who prefer it, BookStack is geared towards making documentation more of a pleasure than a chore.
 
+For more information on BookStack visit their website and check it out: https://www.bookstackapp.com
 
 ## Usage
 
@@ -106,6 +107,8 @@ Once you have completed these, you can then use the docker run command to create
 Then docker start bookstackapp to start the container. You should then be able to access the container at http://dockerhost:6875
 
 Default username is admin@admin.com with password of **password**
+
+Documentation can be found at https://www.bookstackapp.com/docs/ 
 
 ## Container access and information.
 
