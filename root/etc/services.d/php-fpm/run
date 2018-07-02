@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+export APP_KEY=$(cat /config/BOOKSTACK_APP_KEY.txt)
+exec /usr/sbin/php-fpm7 -F

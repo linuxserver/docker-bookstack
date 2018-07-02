@@ -1,0 +1,48 @@
+#!/usr/bin/with-contenv bash
+
+# create folders
+mkdir -p \
+	/config/storage \
+	/config/uploads
+
+# make symlinks
+[[ ! -L /var/www/html/storage ]] && \
+	ln -sf /config/storage /var/www/html/storage
+[[ ! -L /var/www/html/public/uploads ]] && \
+	ln -sf /config/uploads /var/www/html/public/uploads
+
+for i in "${symlinks[@]}"
+do
+[[ -e "$i" && ! -L "$i" ]] && rm -rf "$i"
+[[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
+done
+
+# Create API key if needed - taken from https://github.com/linuxserver/docker-snipe-it/blob/master/root/etc/cont-init.d/40-config courtesy of thelamer
+if [ ! -f "/config/www" ]
+then
+  echo "Generating BookStack app key for first run"
+  key=$(php /var/www/html/artisan key:generate --show)
+  echo $key > /config/BOOKSTACK_APP_KEY.txt
+  echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
+fi
+
+# set up .env
+
+sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
+
+sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
+
+sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
+
+sed -i "s/DB_USERNAME=database_username/DB_USER=${DB_USER}/g" /var/www/html/.env
+
+sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
+
+# update database - will set up database if fresh, or, migrate existing
+
+php /var/www/html/artisan migrate --force
+
+# set file permissions permissions
+chown -R abc:abc \
+	/config \
+	/var/www/
