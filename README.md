@@ -1,90 +1,124 @@
+
 [linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
+[forumurl]: https://discourse.linuxserver.io
 [ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
-[appurl]: https://github.com/linuxserver/Heimdall
-[hub]: https://hub.docker.com/r/linuxserver/heimdall/
+[appurl]: https://www.bookstackapp.com
+[dockerfileurl]: https://github.com/linuxserver/docker-bookstack/blob/master/Dockerfile
+[hub]: https://hub.docker.com/r/<image-name>/
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png?v=4&s=4000)][linuxserverurl]
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+## Contact information:-
 
-# linuxserver/heimdall
-[![](https://images.microbadger.com/badges/version/linuxserver/heimdall.svg)](https://microbadger.com/images/linuxserver/heimdall "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/heimdall.svg)](https://microbadger.com/images/linuxserver/heimdall "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/heimdall.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/heimdall.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-heimdall)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-heimdall/)
+| Type | Address/Details |
+| :---: | --- |
+| Discord | [Discord](https://discord.gg/YWrKVTn) |
+| Forum | [Linuserver.io forum][forumurl] |
 
-Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.
+&nbsp;
+&nbsp;
 
-Simplicity is the key to Heimdall.
+The [LinuxServer.io][linuxserverurl] team brings you another image release featuring :-
 
-Why not use it as your browser start page? It even has the ability to include a search bar using either Google, Bing or DuckDuckGo.
+ + regular and timely application updates
+ + easy user mappings
+ + custom base image with s6 overlay
+ + weekly base OS updates with common layers across the entire LinuxServer.io ecosystem to minimise space usage, down time and bandwidth
+ + security updates
 
-[![heimdall](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/heimdall-banner.png)][appurl]
+# docker-bookstack
+
+[![Dockerfile-link](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/Dockerfile-Link-green.png)][dockerfileurl]
+
+BookStack is a free and open source Wiki designed for creating beautiful documentation. Feautring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
+
+Powered by SQL and including a Markdown editor for those who prefer it, BookStack is geared towards making documentation more of a pleasure than a chore.
+
 
 ## Usage
 
+This container depends on an SQL server to provide the storage database. If you have one set up already (Docker or otherwise) then continue but if not then deploy a MariaDB container from [this dockerhub page](https://hub.docker.com/r/linuxserver/mariadb/)
 ```
 docker create \
---name=heimdall \
--v <path to data>:/config \
--e PGID=<gid> -e PUID=<uid>  \
--p 80:80 -p 443:443 \
--e TZ=<timezone> \
-linuxserver/heimdall
+  --name=bookstackapp \
+  -v <path to data>:/config \
+  -e PGID=<gid> -e PUID=<uid>  \
+  -e DB_HOST=<yourdbhost> \
+  -e DB_USER=<yourdbuser> \
+  -e DB_PASS=<yourdbuser> \
+  -e DB_DATABASE=bookstackapp
+  -p 6875:80 \
+  docker-bookstack
 ```
+
+It is strongly recommended that this container is used with our LetsEncrypt container so that your BookStack app is served over valid HTTPS.
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side. 
+The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
 For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
 So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
-http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
+http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.
+
+| Parameter | Function |
+| :---: | --- |
+| `-p 6875:80` | will map the container's port 80 to port 6875 on the host |
+| `-v /config` | this will store any uploaded data on the docker host |
+| `-e PGID` | for GroupID, see below for explanation |
+| `-e PUID` | for UserID, see below for explanation |
+| `-e DB_HOST` | for specifying the database host, see below for further explanation |
+| `-e DB_USER ` | for specifying the database user |
+| `-e DB_PASS ` | for specifying the database password |
+| `-e DB_DATABASE ` | for specifying the database to be used |
 
 
-* `-p 80` - The web-services.
-* `-p 443` - The SSL-Based Webservice
-* `-v /config` - Contains your www content and all relevant configuration files.
-* `-e PGID` for GroupID - see below for explanation
-* `-e PUID` for UserID - see below for explanation
-* `-e TZ` - timezone ie. `America/New_York`
+## User / Group Identifiers
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it heimdall /bin/bash`.
+Sometimes when using volumes (`-v` flags) permissions issues can arise between the host OS and the container, we avoid this issue by allowing you to specify the user `PUID` and group `PGID`.
 
-### User / Group Identifiers
+Ensure any volume directories on the host are owned by the same user you specify and it will "just work" &trade;.
 
-Sometimes when using data volumes (`-v` flags) permissions issues can arise between the host OS and the container. We avoid this issue by allowing you to specify the user `PUID` and group `PGID`. Ensure the data volume directory on the host is owned by the same user you specify and it will "just work" ™.
-
-In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as below:
+In this instance `PUID=1001` and `PGID=1001`, to find yours use `id user` as below:
 
 ```
   $ id <dockeruser>
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
 ```
 
-## Setting up the application 
+## Setting up the application
 
-Access the web gui at http://SERVERIP:PORT
+This application is dependent on an SQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container.
 
-## Adding password protection
+Once the MariaDB container is deployed, you can enter the following commands into the shell of the MariaDB container to create the user, password and database that the app will then use. Replace myuser/mypassword with your own data.
 
-This image now supports password protection through htpasswd. Run the following command on your host to generate the htpasswd file `docker exec -it heimdall htpasswd -c /config/nginx/.htpasswd <username>`. Replace <username> with a username of your choice and you will be asked to enter a password. New installs will automatically pick it up and implement password protected access. Existing users updating their image can delete their site config at `/config/nginx/site-confs/default` and restart the container after updating the image. A new site config with htpasswd support will be created in its place.
+**Note** this will allow any user with these credentials to connect to the server, it is not limited to localhost
 
-## Info
+`
+from shell: mysql -u root -p
+CREATE DATABASE bookstackapp;
+GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
+GRANT ALL privileges ON 'bookstackapp'.* TO 'myuser'@localhost;
+FLUSH PRIVILEGES;
+`
 
-* To monitor the logs of the container in realtime `docker logs -f heimdall`.
+Once you have completed these, you can then use the docker run command to create your BookStack container. Make sure you replace things such as <yourdbuser> with the correct data.
 
+Then docker start bookstackapp to start the container. You should then be able to access the container at http://dockerhost:6875
 
-* container version number 
+Default username is admin@admin.com with password of **password**
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' heimdall`
+## Container access and information.
 
-* image version number
+| Function | Command |
+| :--- | :--- |
+| Shell access (live container) | `docker exec -it <container-name> /bin/bash` |
+| Realtime container logs | `docker logs -f <container-name>` |
+| Container version | `docker inspect -f '{{ index .Config.Labels "build_version" }}' <container-name>` |
+| Image version |  `docker inspect -f '{{ index .Config.Labels "build_version" }}' <image-name>` |
+| Dockerfile | [Dockerfile][dockerfileurl] |
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/heimdall`
+## Changelog
 
-## Versions
-
-+ **06.03.18:** Use password protection if htpasswd is set. Existing users can delete their default site config at /config/nginx/site-confs/default and restart the container, a new default site config with htpasswd support will be created in its place
-+ **12.02.18:** Initial Release.
+|  Date | Changes |
+| :---: | --- |
+| 02.07.18 |  Initial Release. |
