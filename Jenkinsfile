@@ -14,7 +14,7 @@ pipeline {
     BUILD_VERSION_ARG = 'BOOKSTACK_RELEASE'
     LS_USER = 'linuxserver'
     LS_REPO = 'docker-bookstack'
-    DOCKERHUB_IMAGE = 'linuxserver/bookstack'
+    DOCKERHUB_IMAGE = 'lspipelive/bookstack'
     DEV_DOCKERHUB_IMAGE = 'lspipetest/bookstack'
     PR_DOCKERHUB_IMAGE = 'lspipepr/bookstack'
     BUILDS_DISCORD = credentials('build_webhook_url')
