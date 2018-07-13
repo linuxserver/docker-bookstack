@@ -24,6 +24,7 @@ apk add --no-cache  \
     php7-mysqlnd \
     php7-tidy \
     php7-simplexml \
+    php7-ctype \
     tar && \
 
 echo "**** configure php-fpm to pass env vars ****" && \
