@@ -28,6 +28,8 @@ fi
 
 # set up .env
 
+sed - i "s/# APP_URL=http://bookstack.dev/APP_URL=${APP_URL}/g" /var/www/html/.env
+
 sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
 
 sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
