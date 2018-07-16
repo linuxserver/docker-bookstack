@@ -35,7 +35,6 @@ pipeline {
     CI_DELAY = '5'
     TEST_MYSQL_HOST = credentials('mysql_test_host')
     TEST_MYSQL_PASSWORD = credentials('mysql_test_password')
-    CI_DOCKERENV = 'DB_HOST=${TEST_MYSQL_HOST}|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=${TEST_MYSQL_PASSWORD}'
     CI_AUTH = 'user:password'
     CI_WEBPATH = ''
   }
@@ -275,7 +274,7 @@ pipeline {
           string(credentialsId: 'spaces-secret', variable: 'DO_SECRET')
         ]) {
           sh '''#! /bin/bash
-                docker pull lsiodev/readme-sync
+                docker pull lsiodev/ci
                 docker run --rm \
                 -v /var/run/docker.sock:/var/run/docker.sock \
                 -e IMAGE=\"${CI_IMAGE}\" \
@@ -287,7 +286,7 @@ pipeline {
                 -e BASE=\"${DIST_IMAGE}\" \
                 -e SECRET_KEY=\"${DO_SECRET}\" \
                 -e ACCESS_KEY=\"${DO_KEY}\" \
-                -e DOCKER_ENV=\"${CI_DOCKERENV}\" \
+                -e DOCKER_ENV=\"DB_HOST=${TEST_MYSQL_HOST}|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=${TEST_MYSQL_PASSWORD}\" \
                 -e WEB_AUTH=\"${CI_AUTH}\" \
                 -e WEB_PATH=\"${CI_WEBPATH}\" \
                 -e DO_REGION="ams3" \
