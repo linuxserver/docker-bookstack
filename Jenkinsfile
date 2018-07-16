@@ -28,14 +28,16 @@ pipeline {
                     php7-tidy \
                     php7-simplexml \
                     tar'
-    MULTIARCH='true'
-    CI='true'
-    CI_PORT='80'
-    CI_SSL='false'
-    CI_DELAY='5'
-    CI_DOCKERENV='DB_HOST=' + credentials('mysql_test_host')  + '|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=' + credentials('mysql_test_password')
-    CI_AUTH='user:password'
-    CI_WEBPATH=''
+    MULTIARCH = 'true'
+    CI = 'true'
+    CI_PORT = '80'
+    CI_SSL = 'false'
+    CI_DELAY = '5'
+    TEST_MYSQL_HOST = credentials('mysql_test_host')
+    TEST_MYSQL_PASSWORD = credentials('mysql_test_password')
+    CI_DOCKERENV = 'DB_HOST=${TEST_MYSQL_HOST}|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=${TEST_MYSQL_PASSWORD}'
+    CI_AUTH = 'user:password'
+    CI_WEBPATH = ''
   }
   stages {
     // Setup all the basic environment variables needed for the build
