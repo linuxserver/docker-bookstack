@@ -30,9 +30,10 @@ pipeline {
                     tar'
     MULTIARCH = 'true'
     CI = 'true'
+    CI_WEB = 'true'
     CI_PORT = '80'
     CI_SSL = 'false'
-    CI_DELAY = '5'
+    CI_DELAY = '10'
     TEST_MYSQL_HOST = credentials('mysql_test_host')
     TEST_MYSQL_PASSWORD = credentials('mysql_test_password')
     CI_AUTH = 'user:password'
@@ -173,6 +174,9 @@ pipeline {
          environment name: 'MULTIARCH', value: 'true'
        }
        steps {
+         sh "wget https://lsio-ci.ams3.digitaloceanspaces.com/qemu-aarch64-static"
+         sh "wget https://lsio-ci.ams3.digitaloceanspaces.com/qemu-arm-static"
+         sh "chmod +x qemu-*"
          sh "docker build --no-cache -f Dockerfile.amd64 -t ${DOCKERHUB_IMAGE}:amd64-${EXT_RELEASE}-ls${LS_TAG_NUMBER} \
          --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${EXT_RELEASE}-pkg-${PACKAGE_TAG}-ls${LS_TAG_NUMBER}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
          sh "docker build --no-cache -f Dockerfile.armhf -t ${DOCKERHUB_IMAGE}:arm32v6-${EXT_RELEASE}-ls${LS_TAG_NUMBER} \
@@ -274,7 +278,7 @@ pipeline {
           string(credentialsId: 'spaces-secret', variable: 'DO_SECRET')
         ]) {
           sh '''#! /bin/bash
-                docker pull lsiodev/ci
+                docker pull lsiodev/ci:latest
                 docker run --rm \
                 -v /var/run/docker.sock:/var/run/docker.sock \
                 -e IMAGE=\"${CI_IMAGE}\" \
@@ -287,6 +291,7 @@ pipeline {
                 -e SECRET_KEY=\"${DO_SECRET}\" \
                 -e ACCESS_KEY=\"${DO_KEY}\" \
                 -e DOCKER_ENV=\"DB_HOST=${TEST_MYSQL_HOST}|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=${TEST_MYSQL_PASSWORD}\" \
+                -e WEB_SCREENSHOT=\"${CI_WEB}\" \
                 -e WEB_AUTH=\"${CI_AUTH}\" \
                 -e WEB_PATH=\"${CI_WEBPATH}\" \
                 -e DO_REGION="ams3" \
