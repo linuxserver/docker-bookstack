@@ -17,11 +17,11 @@ do
 [[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
 done
 
-# Create API key if needed - taken from https://github.com/linuxserver/docker-snipe-it/blob/master/root/etc/cont-init.d/40-config courtesy of thelamer
-if [ ! -f "/config/www" ]
+# Create API key if needed
+if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
 then
   echo "Generating BookStack app key for first run"
-  key=$(php /var/www/html/artisan key:generate --show)
+  key=$(php /var/www/html/artisan key:generate --show | tr -d '//' )
   echo $key > /config/BOOKSTACK_APP_KEY.txt
   echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
 fi
