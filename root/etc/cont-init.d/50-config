@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-# create folders
+# create our folders
 mkdir -p \
 	/config/storage \
 	/config/uploads
@@ -19,30 +19,24 @@ done
 
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
-then
-  echo "Generating BookStack app key for first run"
-  key=$(php /var/www/html/artisan key:generate --show | tr -d '//' )
-  echo $key > /config/BOOKSTACK_APP_KEY.txt
-  echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
+	then
+	echo "Generating BookStack app key for first run"
+	key=$(php /var/www/html/artisan key:generate --show | tr -d '//' )
+	echo $key > /config/BOOKSTACK_APP_KEY.txt
+	echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
 fi
 
 # set up .env
-
 sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
-
 sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
-
 sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
-
 sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
-
 sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
 
 # update database - will set up database if fresh, or, migrate existing
-
 php /var/www/html/artisan migrate --force
 
-# set file permissions permissions
+# set permissions
 chown -R abc:abc \
 	/config \
 	/var/www/
