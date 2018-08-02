@@ -48,6 +48,7 @@ docker create \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbuser> \
   -e DB_DATABASE=bookstackapp
+  -e "APP_URL=https://your.site.com" \
   -p 6875:80 \
   docker-bookstack
 ```
@@ -65,6 +66,7 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | :---: | --- |
 | `-p 6875:80` | will map the container's port 80 to port 6875 on the host |
 | `-v /config` | this will store any uploaded data on the docker host |
+| `-e APPURL` | this will set the app url, see below for explanation |
 | `-e PGID` | for GroupID, see below for explanation |
 | `-e PUID` | for UserID, see below for explanation |
 | `-e DB_HOST` | for specifying the database host, see below for further explanation |
@@ -104,11 +106,13 @@ FLUSH PRIVILEGES;
 
 Once you have completed these, you can then use the docker run command to create your BookStack container. Make sure you replace things such as <yourdbuser> with the correct data.
 
+The appurl must be set to tell the application where it will be served from. If you are using https://books.mysite.io then APP_URL will need to be set to `-e "APP_URL=https://books.mysite.io"`
+
 Then docker start bookstackapp to start the container. You should then be able to access the container at http://dockerhost:6875
 
 Default username is admin@admin.com with password of **password**
 
-Documentation can be found at https://www.bookstackapp.com/docs/ 
+Documentation can be found at https://www.bookstackapp.com/docs/
 
 ## Container access and information.
 
