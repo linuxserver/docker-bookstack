@@ -1,5 +1,7 @@
 pipeline {
-  agent any
+  agent {
+    label 'X86-64-MULTI'
+  }
   // Configuration for the variables used for this specific repo
   environment {
     EXT_GIT_BRANCH = 'master'
@@ -9,8 +11,8 @@ pipeline {
     LS_USER = 'linuxserver'
     LS_REPO = 'docker-bookstack'
     CONTAINER_NAME = 'bookstack'
-    DOCKERHUB_IMAGE = 'lspipelive/bookstack'
-    DEV_DOCKERHUB_IMAGE = 'lspipetest/bookstack'
+    DOCKERHUB_IMAGE = 'linuxserver/bookstack'
+    DEV_DOCKERHUB_IMAGE = 'lsiodev/bookstack'
     PR_DOCKERHUB_IMAGE = 'lspipepr/bookstack'
     BUILDS_DISCORD = credentials('build_webhook_url')
     GITHUB_TOKEN = credentials('498b4638-2d02-4ce5-832d-8a57d01d97ab')
