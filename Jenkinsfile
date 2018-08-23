@@ -163,7 +163,6 @@ pipeline {
     stage("Set ENV PR build"){
       when {
         not {environment name: 'CHANGE_ID', value: ''}
-        environment name: 'MULTIARCH', value: 'false'
       }
       steps {
         script{
