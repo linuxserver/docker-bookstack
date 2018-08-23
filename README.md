@@ -21,7 +21,7 @@ From August 2018 onwards, Linuxserver are in the midst of switching to a new CI 
 TLDR: Multi-arch support is changing from multiple repos to one repo per container image.
 
 # [linuxserver/bookstack](https://github.com/linuxserver/docker-bookstack)
-[![](https://images.microbadger.com/badges/version/linuxserver/bookstack.svg)](https://microbadger.com/images/linuxserverbookstack "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/linuxserver/bookstack.svg)](https://microbadger.com/images/linuxserver/bookstack "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/linuxserver/bookstack.svg)](https://microbadger.com/images/linuxserver/bookstack "Get your own version badge on microbadger.com")
 ![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/bookstack.svg)
 ![Docker Stars](https://img.shields.io/docker/stars/linuxserver/bookstack.svg)
