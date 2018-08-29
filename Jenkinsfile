@@ -123,9 +123,6 @@ pipeline {
     stage("Set ENV live build"){
       when {
         branch "master"
-        expression {
-          env.LS_RELEASE != env.EXT_RELEASE + '-pkg-' + env.PACKAGE_TAG + '-ls' + env.LS_TAG_NUMBER
-        }
         environment name: 'CHANGE_ID', value: ''
       }
       steps {
@@ -406,9 +403,9 @@ pipeline {
                   docker tag lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm32v6-${META_TAG}
                   docker tag lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm64v8-${META_TAG}
                 fi'''
-          sh "docker tag ${IMAGE}:amd64-${META_TAG} ${DOCKERHUB_IMAGE}:amd64-latest"
-          sh "docker tag ${IMAGE}:arm32v6-${META_TAG} ${DOCKERHUB_IMAGE}:arm32v6-latest"
-          sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ${DOCKERHUB_IMAGE}:arm64v8-latest"
+          sh "docker tag ${IMAGE}:amd64-${META_TAG} ${IMAGE}:amd64-latest"
+          sh "docker tag ${IMAGE}:arm32v6-${META_TAG} ${IMAGE}:arm32v6-latest"
+          sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ${IMAGE}:arm64v8-latest"
           sh "docker push ${IMAGE}:amd64-${META_TAG}"
           sh "docker push ${IMAGE}:arm32v6-${META_TAG}"
           sh "docker push ${IMAGE}:arm64v8-${META_TAG}"
