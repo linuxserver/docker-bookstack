@@ -29,6 +29,7 @@ param_env_vars:
   - { env_var: "DB_USER", env_value: "<yourdbuser>", desc: "for specifying the database user" }
   - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password" }
   - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used" }
+  - { env_var: "APPURL", env_value: "your.site.here.xyz", desc: "for specifying the url your application will be accessed on "}
 
 param_usage_include_ports: true
 param_ports:
@@ -57,8 +58,11 @@ app_setup_block: |
 
   Default username is admin@admin.com with password of **password**
 
+  If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APPURL` environment variable is set, or it will not work
+
   Documentation can be found at https://www.bookstackapp.com/docs/
 
 # changelog
 changelogs:
+  - { date: "23.09.28:", desc: "Updates pre-release"}
   - { date: "02.07.18:", desc: "Initial Release." }
