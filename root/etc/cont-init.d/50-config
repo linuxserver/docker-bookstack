@@ -10,12 +10,8 @@ mkdir -p \
 	ln -sf /config/storage /var/www/html/storage
 [[ ! -L /var/www/html/public/uploads ]] && \
 	ln -sf /config/uploads /var/www/html/public/uploads
-
-for i in "${symlinks[@]}"
-do
-[[ -e "$i" && ! -L "$i" ]] && rm -rf "$i"
-[[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
-done
+[[ ! -L /var/www/html/.env ]] && \
+	ln -sf /config/env /var/www/html/.env
 
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
@@ -32,6 +28,7 @@ sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
 sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
 sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
 sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
+sed - i "s/# APP_URL=http://bookstack.dev/APP_URL=${APP_URL}/g" /var/www/html/.env
 
 # update database - will set up database if fresh, or, migrate existing
 php /var/www/html/artisan migrate --force
