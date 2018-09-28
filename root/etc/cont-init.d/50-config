@@ -11,7 +11,13 @@ mkdir -p \
 [[ ! -L /var/www/html/public/uploads ]] && \
 	ln -sf /config/uploads /var/www/html/public/uploads
 [[ ! -L /var/www/html/.env ]] && \
-	ln -sf /config/env /var/www/html/.env
+	ln -sf /config/.env /var/www/html/.env
+
+	for i in "${symlinks[@]}"
+	do
+	[[ -e "$i" && ! -L "$i" ]] && rm -rf "$i"
+	[[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
+	done
 
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
