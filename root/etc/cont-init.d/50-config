@@ -10,6 +10,8 @@ mkdir -p \
 	ln -sf /config/storage /var/www/html/storage
 [[ ! -L /var/www/html/public/uploads ]] && \
 	ln -sf /config/uploads /var/www/html/public/uploads
+[[ ! -e /config/.env ]] && \
+	 cp /defaults/.env /config/.env	
 [[ ! -L /var/www/html/.env ]] && \
 	ln -sf /config/.env /var/www/html/.env
 
