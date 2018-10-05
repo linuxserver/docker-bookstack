@@ -41,7 +41,6 @@ RUN \
  tar xf \
  /tmp/bookstack.tar.gz -C \
 	/var/www/html/ --strip-components=1 && \
- cp /var/www/html/.env.example /defaults/.env && \
  echo "**** install  composer ****" && \
  cd /tmp && \
  curl -sS https://getcomposer.org/installer | php && \
