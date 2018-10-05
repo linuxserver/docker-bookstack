@@ -3,23 +3,31 @@
 # create our folders
 mkdir -p \
 	/config/storage \
-	/config/uploads
+	/config/public/uploads
 
-# make symlinks
-[[ ! -L /var/www/html/storage ]] && \
-	ln -sf /config/storage /var/www/html/storage
-[[ ! -L /var/www/html/public/uploads ]] && \
-	ln -sf /config/uploads /var/www/html/public/uploads
-[[ ! -e /config/.env ]] && \
-	 cp /defaults/.env /config/.env	
-[[ ! -L /var/www/html/.env ]] && \
-	ln -sf /config/.env /var/www/html/.env
+# make folder symlinks
+symlinks=( \
+/var/www/html/storage \
+/var/www/html/public/uploads )
 
-	for i in "${symlinks[@]}"
-	do
-	[[ -e "$i" && ! -L "$i" ]] && rm -rf "$i"
-	[[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
-	done
+for i in "${symlinks[@]}"
+do
+[[ -e "$i" && ! -L "$i" ]] && rm -rf "$i"
+[[ ! -L "$i" ]] && ln -s /config/"$(basename "$i")" "$i"
+done
+
+# check for ADVANCED_MODE to be != 0; copy sample env file to /config and ln to /var/www/html if != 0, if = 0 then copy .example.env to .env and run seds
+if [ "$ADVANCED_MODE" == 1 && ! -f "/config/.env" ];
+	then
+	echo "Advanced Mode"
+	cp /var/www/html/.env.example /config/.env
+	ln -s /config/.env /var/www/html/.env
+elif [ -z "$ADVANCED_MODE" ];
+	echo "Basic Mode"
+	cp /var/www/html/.env.example /var/www/html/.env
+else
+	echo "Finished symlinks"
+fi
 
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
@@ -36,7 +44,7 @@ sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
 sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
 sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
 sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
-sed - i "s/# APP_URL=http://bookstack.dev/APP_URL=${APP_URL}/g" /var/www/html/.env
+#sed -i "s/.*APP_URL=.*/APP_URL=${APP_URL}/g" /var/www/html/.env
 
 # update database - will set up database if fresh, or, migrate existing
 php /var/www/html/artisan migrate --force
