@@ -1,32 +1,43 @@
 #!/usr/bin/with-contenv bash
 
-# create our folders
+# create directory structure
 mkdir -p \
-	/config/storage \
-	/config/public/uploads
+	/config/www/{files,images,uploads,logs}
 
-# make folder symlinks
+# create symlinks
 symlinks=( \
-/var/www/html/storage \
+/var/www/html/storage/logs \
+/var/www/html/storage/uploads/files \
+/var/www/html/storage/uploads/images \
 /var/www/html/public/uploads )
 
 for i in "${symlinks[@]}"
 do
 [[ -e "$i" && ! -L "$i" ]] && rm -rf "$i"
-[[ ! -L "$i" ]] && ln -s /config/"$(basename "$i")" "$i"
+[[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
 done
 
-# check for ADVANCED_MODE to be != 0; copy sample env file to /config and ln to /var/www/html if != 0, if = 0 then copy .example.env to .env and run seds
-if [ "$ADVANCED_MODE" == 1 && ! -f "/config/.env" ];
+# Check for ADVANCED_MODE to be set. If set, copy sample env file to /config and then copy to /var/www/html.env so advanced users can make their own customisations
+#  If not set, runs in basic mode where .example.env is copied to /var/www/html/.env and seds are applied to set documented variables
+if [ "$ADVANCED_MODE" == 1 ];
 	then
-	echo "Advanced Mode"
-	cp /var/www/html/.env.example /config/.env
-	ln -s /config/.env /var/www/html/.env
+	echo "Advanced Mode Enabled - Syncing .env from /config to /var/www/html"
+	[[ ! -f "/config/.env" ]] && \
+		cp /var/www/html/.env.example /config/.env
+	cp /config/.env /var/www/html/.env
 elif [ -z "$ADVANCED_MODE" ];
-	echo "Basic Mode"
+	then
+	echo "Basic Mode Enabled - Using sed to set BookStack variables from Docker environment variables - check the docs"
 	cp /var/www/html/.env.example /var/www/html/.env
+	# set up .env
+	sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
+	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
+	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
+	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
+	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
+	sed -i "s/# APP_URL=.*/APP_URL=${APP_URL}/g" /var/www/html/.env
 else
-	echo "Finished symlinks"
+	echo "Nothing to do with .env - what did you do homer?"
 fi
 
 # Create API key if needed
@@ -37,14 +48,6 @@ if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
 	echo $key > /config/BOOKSTACK_APP_KEY.txt
 	echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
 fi
-
-# set up .env
-sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
-sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
-sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
-sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
-sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
-#sed -i "s/.*APP_URL=.*/APP_URL=${APP_URL}/g" /var/www/html/.env
 
 # update database - will set up database if fresh, or, migrate existing
 php /var/www/html/artisan migrate --force
