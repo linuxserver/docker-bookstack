@@ -7,7 +7,6 @@ mkdir -p \
 
 # create symlinks
 symlinks=( \
-/var/www/html/storage/logs \
 /var/www/html/storage/uploads/files \
 /var/www/html/storage/uploads/images \
 /var/www/html/public/uploads )
