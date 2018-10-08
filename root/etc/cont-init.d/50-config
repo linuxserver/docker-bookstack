@@ -2,8 +2,9 @@
 
 # create directory structure
 mkdir -p \
-	/config/www/{storage,public}
-
+	/config/www/storage/uploads \
+	/config/www/public
+	
 # create symlinks
 symlinks=( \
 /var/www/html/storage/logs \
@@ -36,6 +37,7 @@ elif [ -z "$ADVANCED_MODE" ];
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
 	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
 elif [ "$APP_URL" ]
+	then;
 	echo "App URL Set"
 	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /var/www/html/.env
 else
