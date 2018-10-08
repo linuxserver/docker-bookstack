@@ -1,0 +1,26 @@
+version: '3'
+services:
+  sql:
+    container_name: bookstack_sql
+    image: linuxserver/mariadb
+    volumes:
+      - ./data/sql:/config
+    networks:
+      - net
+    environment:
+      - PUID=setyourID
+      - PGID=setyourGID
+      - MYSQL_ROOT_PASSWORD=SetAPassword
+  bookstack:
+      container_name: bookstack
+      image: linuxserver/bookstack
+      volumes:
+        - ./data/bookstack:/config
+      environment:
+        - ADVANCED_MODE=1
+        - PUID=setyourID
+        - PGID=setyourGID
+      networks:
+        - net
+networks:
+  net:

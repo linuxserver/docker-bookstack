@@ -2,7 +2,7 @@
 
 # create directory structure
 mkdir -p \
-	/config/www/{files,images,uploads,logs}
+	/config/www/{storage,public}
 
 # create symlinks
 symlinks=( \
@@ -21,7 +21,7 @@ done
 #  If not set, runs in basic mode where .example.env is copied to /var/www/html/.env and seds are applied to set documented variables
 if [ "$ADVANCED_MODE" == 1 ];
 	then
-	echo "Advanced Mode Enabled - Syncing .env from /config to /var/www/html"
+	echo "Advanced Mode Enabled - Syncing .env from /config to /var/www/html - if you're doing this you better read the BookStack documentation. Restart container after making changes to .env"
 	[[ ! -f "/config/.env" ]] && \
 		cp /var/www/html/.env.example /config/.env
 	cp /config/.env /var/www/html/.env
@@ -35,7 +35,9 @@ elif [ -z "$ADVANCED_MODE" ];
 	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
 	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
-	sed -i "s/# APP_URL=http://bookstack.dev/APP_URL=${APP_URL}/g" /var/www/html/.env
+elif [ "$APP_URL" ]
+	echo "App URL Set"
+	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /var/www/html/.env
 else
 	echo "Nothing to do with .env - what did you do homer?"
 fi
