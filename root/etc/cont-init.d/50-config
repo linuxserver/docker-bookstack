@@ -2,8 +2,7 @@
 
 # create directory structure
 mkdir -p \
-	/config/www/storage/uploads \
-	/config/www/public
+	/config/www/{uploads,files,images}
 
 # create symlinks
 symlinks=( \
