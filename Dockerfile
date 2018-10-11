@@ -1,4 +1,4 @@
-FROM lsiobase/alpine.nginx:3.7
+FROM lsiobase/alpine.nginx:3.8
 
 # set version label
 ARG BUILD_DATE
@@ -41,7 +41,6 @@ RUN \
  tar xf \
  /tmp/bookstack.tar.gz -C \
 	/var/www/html/ --strip-components=1 && \
- cp /var/www/html/.env.example /var/www/html/.env && \
  echo "**** install  composer ****" && \
  cd /tmp && \
  curl -sS https://getcomposer.org/installer | php && \

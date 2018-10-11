@@ -1,4 +1,4 @@
-FROM lsiobase/alpine.nginx.arm64:3.7
+FROM lsiobase/alpine.nginx.arm64:3.8
 
 # Add qemu to build on x86_64 systems
 COPY qemu-aarch64-static /usr/bin
@@ -44,7 +44,6 @@ RUN \
  tar xf \
  /tmp/bookstack.tar.gz -C \
 	/var/www/html/ --strip-components=1 && \
- cp /var/www/html/.env.example /var/www/html/.env && \
  echo "**** install  composer ****" && \
  cd /tmp && \
  curl -sS https://getcomposer.org/installer | php && \
