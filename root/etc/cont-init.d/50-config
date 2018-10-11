@@ -55,6 +55,7 @@ fi
 if [ "$MAIL_USERNAME" -a -z "$ADVANCED_MODE" ];
 	then
 	echo "Setting up email vars. Check BookStack docs"
+	sed -i "s/MAIL_HOST=null/MAIL_HOST=${MAIL_HOST}/g"
 	sed -i "s/MAIL_PORT=1025/MAIL_PORT=${MAIL_PORT}/g"
 	sed -i "s/MAIL_USERNAME=null/MAIL_USERNAME=${MAIL_USERNAME}/g"
 	sed -i "s/MAIL_PASSWORD=null/MAIL_PASSWORD=${MAIL_PASSWORD}/g"
