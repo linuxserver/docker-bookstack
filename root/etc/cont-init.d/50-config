@@ -47,11 +47,21 @@ if [ ! -z "$APP_URL" -a -z "$ADVANCED_MODE" ];
 	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /var/www/html/.env
 fi
 
-# email=1 set? let's do some more work
-if [ ! -z "$USE_EMAIL" ];
+# set up the application to use memcached
+	sed -i "s/CACHE_DRIVER=file/CACHE_DRIVER=memcached/g"
+	sed -i "s/SESSION_DRIVER=file/SESSION_DRIVER=memcached/g"
+
+# email username set? let's do some more work
+if [ "$MAIL_USERNAME" -a -z "$ADVANCED_MODE" ];
 	then
-	echo "Setting up email vars"
-	sed i "s\"
+	echo "Setting up email vars. Check BookStack docs"
+	sed -i "s/MAIL_PORT=1025/MAIL_PORT=${MAIL_PORT}/g"
+	sed -i "s/MAIL_USERNAME=null/MAIL_USERNAME=${MAIL_USERNAME}/g"
+	sed -i "s/MAIL_PASSWORD=null/MAIL_PASSWORD=${MAIL_PASSWORD}/g"
+	sed -i "s/MAIL_ENCRYPTION=null/MAIL_ENCRYPTION=${MAIL_ENCRYPTION}/g"
+	sed -i "s/MAIL_FROM=null/MAIL_FROM=${MAIL_FROM}/g"
+	sed -i "s/MAIL_FROM_NAME=null/MAIL_FROM_NAME=${MAIL_FROM_NAME}/g"
+fi
 
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]

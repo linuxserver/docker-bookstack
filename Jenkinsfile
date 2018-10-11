@@ -17,11 +17,13 @@ pipeline {
     BUILDS_DISCORD = credentials('build_webhook_url')
     GITHUB_TOKEN = credentials('498b4638-2d02-4ce5-832d-8a57d01d97ab')
     DIST_IMAGE = 'alpine'
-    DIST_TAG = '3.7'
+    DIST_TAG = '3.8'
     DIST_PACKAGES = 'curl \
+                    memcached \
                     php7-openssl \
                     php7-pdo_mysql \
                     php7-mbstring \
+                    php7-memcached \
                     php7-tidy \
                     php7-phar \
                     php7-dom \
