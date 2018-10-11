@@ -16,6 +16,8 @@ do
 [[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
 done
 
+# .env file setup
+
 # Check for ADVANCED_MODE to be set. If set, copy sample env file to /config and then copy to /var/www/html.env so advanced users can make their own customisations
 #  If not set, runs in basic mode where .example.env is copied to /var/www/html/.env and seds are applied to set documented variables
 if [ "$ADVANCED_MODE" == 1 ];
@@ -44,6 +46,12 @@ if [ ! -z "$APP_URL" -a -z "$ADVANCED_MODE" ];
 	echo "App URL Set"
 	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /var/www/html/.env
 fi
+
+# email=1 set? let's do some more work
+if [ ! -z "$USE_EMAIL" ];
+	then
+	echo "Setting up email vars"
+	sed i "s\"
 
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
