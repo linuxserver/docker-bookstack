@@ -62,6 +62,8 @@ docker create \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
+  -e APPURL=your.site.here.xyz \
+  -e ADVANCED_MODE=1 \
   -p 6875:80 \
   -v <path to data>:/config \
   linuxserver/bookstack
@@ -86,6 +88,8 @@ services:
       - DB_USER=<yourdbuser>
       - DB_PASS=<yourdbpass>
       - DB_DATABASE=bookstackapp
+      - APPURL=your.site.here.xyz
+      - ADVANCED_MODE=1
     volumes:
       - <path to data>:/config
     ports:
@@ -107,6 +111,8 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
 | `-e DB_PASS=<yourdbpass>` | for specifying the database password |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
+| `-e APPURL=your.site.here.xyz` | for specifying the url your application will be accessed on  |
+| `-e ADVANCED_MODE=1` | enables advanced mode for direct editing of the .env - scroll down for details on this |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## User / Group Identifiers
@@ -145,7 +151,20 @@ Then docker start bookstackapp to start the container. You should then be able t
 
 Default username is admin@admin.com with password of **password**
 
+If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APPURL` environment variable is set, or it will not work
+
 Documentation can be found at https://www.bookstackapp.com/docs/
+
+### Advanced Mode
+We have implemented a special 'advanced mode' where users who wish to leverage the built in SMTP or LDAP functionality, will have the ability to edit the .env by hand. With `ADVANCED_MODE=1` set when
+the container is created, it will copy the .env.example to /config within the container. You can then edit this file on the host system (make sure you read the BookStack docs) and restart the 
+container when finished. When the container starts, it copies /config/.env to /var/www/html/.env within the container for the web app to use. It will do this every time the container restarts. 
+
+Note, the APP_KEY is still set by PHP environment so you do not need to worrry about this. 
+
+### Composer
+
+Some simple docker-compose files are included for you to get started with. You will still need to manually configure the SQL server, but the compose files will get the stack running for you. 
 
 
 
@@ -160,4 +179,6 @@ Documentation can be found at https://www.bookstackapp.com/docs/
 
 ## Versions
 
+* **08.10.18:** - Advanced mode, symlink changes, sed fixing, docs updated, added some composer files
+* **23.09.28:** - Updates pre-release
 * **02.07.18:** - Initial Release.
