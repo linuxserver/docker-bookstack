@@ -2,17 +2,19 @@
 
 # create directory structure
 mkdir -p \
-	/config/www/{html,uploads,files,images}
+	/config/www/{uploads,files,images}
 
 # check for .env and copy default if needed
-[[ ! -f "/config/.env" ]] && \
-	cp /var/www/html/.env.example /config/www/html/.env
+[[ ! -f "/config/www/.env" ]] && \
+	cp /var/www/html/.env.example /config/www/.env
 
 # create symlinks
 symlinks=( \
 /var/www/html/storage/uploads/files \
 /var/www/html/storage/uploads/images \
-/var/www/html/public/uploads )
+/var/www/html/public/uploads \
+/var/www/html/.env
+)
 
 for i in "${symlinks[@]}"
 do
