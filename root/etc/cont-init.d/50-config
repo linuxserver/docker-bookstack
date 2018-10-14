@@ -2,7 +2,11 @@
 
 # create directory structure
 mkdir -p \
-	/config/www/{uploads,files,images}
+	/config/www/{html,uploads,files,images}
+
+# check for .env and copy default if needed
+[[ ! -f "/config/.env" ]] && \
+	cp /var/www/html/.env.example /config/www/html/.env
 
 # create symlinks
 symlinks=( \
@@ -17,51 +21,19 @@ do
 done
 
 # .env file setup
-
-# Check for ADVANCED_MODE to be set. If set, copy sample env file to /config and then copy to /var/www/html.env so advanced users can make their own customisations
-#  If not set, runs in basic mode where .example.env is copied to /var/www/html/.env and seds are applied to set documented variables
-if [ "$ADVANCED_MODE" == 1 ];
+# check to see if db_user is set, if it is then run seds and if not then leave them
+if [ "${DB_USER}" ];
 	then
-	echo "Advanced Mode Enabled - Syncing .env from /config to /var/www/html - if you're doing this you better read the BookStack documentation. Restart container after making changes to .env"
-	[[ ! -f "/config/.env" ]] && \
-		cp /var/www/html/.env.example /config/.env
-	cp /config/.env /var/www/html/.env
-elif [ -z "$ADVANCED_MODE" ];
-	then
-	echo "Basic Mode Enabled - Using sed to set BookStack variables from Docker environment variables - check the docs"
-	cp /var/www/html/.env.example /var/www/html/.env
-	# set up .env
+	echo "Running config - db_user set"
 	sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
 	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
 	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
 	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
-else
-	echo "Nothing to do with .env - what did you do homer?"
-fi
-
-# Check to see if appurl is set, and whether advanced mode is set. Will set .env APP_URL if variable present, and advanced mode not set
-if [ ! -z "$APP_URL" -a -z "$ADVANCED_MODE" ];
+elif [ "${APP_URL}" ];
 	then
 	echo "App URL Set"
 	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /var/www/html/.env
-fi
-
-# set up the application to use memcached
-	sed -i "s/CACHE_DRIVER=file/CACHE_DRIVER=memcached/g"
-	sed -i "s/SESSION_DRIVER=file/SESSION_DRIVER=memcached/g"
-
-# email username set? let's do some more work
-if [ "$MAIL_USERNAME" -a -z "$ADVANCED_MODE" ];
-	then
-	echo "Setting up email vars. Check BookStack docs"
-	sed -i "s/MAIL_HOST=null/MAIL_HOST=${MAIL_HOST}/g"
-	sed -i "s/MAIL_PORT=1025/MAIL_PORT=${MAIL_PORT}/g"
-	sed -i "s/MAIL_USERNAME=null/MAIL_USERNAME=${MAIL_USERNAME}/g"
-	sed -i "s/MAIL_PASSWORD=null/MAIL_PASSWORD=${MAIL_PASSWORD}/g"
-	sed -i "s/MAIL_ENCRYPTION=null/MAIL_ENCRYPTION=${MAIL_ENCRYPTION}/g"
-	sed -i "s/MAIL_FROM=null/MAIL_FROM=${MAIL_FROM}/g"
-	sed -i "s/MAIL_FROM_NAME=null/MAIL_FROM_NAME=${MAIL_FROM_NAME}/g"
 fi
 
 # Create API key if needed
