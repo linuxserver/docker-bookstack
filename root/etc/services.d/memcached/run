@@ -1,2 +1,2 @@
 #!/usr/bin/with-contenv bash
-exec memcache memcached
+exec memcached -u abc
