@@ -27,15 +27,15 @@ done
 if [ "${DB_USER}" ];
 	then
 	echo "Running config - db_user set"
-	sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
-	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
-	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
-	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
-	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
+	sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /config/www/.env
+	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /config/www/.env
+	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
+	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
+	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /config/www/.env
 elif [ "${APP_URL}" ];
 	then
 	echo "App URL Set"
-	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /var/www/html/.env
+	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /config/www/.env
 fi
 
 # Create API key if needed
