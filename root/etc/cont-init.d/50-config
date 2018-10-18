@@ -13,7 +13,8 @@ symlinks=( \
 /var/www/html/storage/uploads/files \
 /var/www/html/storage/uploads/images \
 /var/www/html/public/uploads \
-/var/www/html/.env
+/var/www/html/.env \
+/var/www/html/storage/logs/laravel.log
 )
 
 for i in "${symlinks[@]}"
@@ -40,7 +41,7 @@ fi
 if [ "${DB_USER}" ];
 	then
 	echo "Running config - db_user set"
-	sed -i "s/APP_KEY=SomeRandomString/APP_KEY=${key}/g" /config/www/.env
+	sed -i "s,APP_KEY=SomeRandomString,APP_KEY=${key},g" /config/www/.env
 	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /config/www/.env
 	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
