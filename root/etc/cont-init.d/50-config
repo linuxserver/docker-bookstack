@@ -4,11 +4,18 @@
 mkdir -p \
 	/config/www/{uploads,files,images}
 
+# check for .env and copy default if needed
+[[ ! -f "/config/www/.env" ]] && \
+	cp /var/www/html/.env.example /config/www/.env
+
 # create symlinks
 symlinks=( \
 /var/www/html/storage/uploads/files \
 /var/www/html/storage/uploads/images \
-/var/www/html/public/uploads )
+/var/www/html/public/uploads \
+/var/www/html/.env \
+/var/www/html/storage/logs/laravel.log
+)
 
 for i in "${symlinks[@]}"
 do
@@ -16,43 +23,33 @@ do
 [[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
 done
 
-# Check for ADVANCED_MODE to be set. If set, copy sample env file to /config and then copy to /var/www/html.env so advanced users can make their own customisations
-#  If not set, runs in basic mode where .example.env is copied to /var/www/html/.env and seds are applied to set documented variables
-if [ "$ADVANCED_MODE" == 1 ];
-	then
-	echo "Advanced Mode Enabled - Syncing .env from /config to /var/www/html - if you're doing this you better read the BookStack documentation. Restart container after making changes to .env"
-	[[ ! -f "/config/.env" ]] && \
-		cp /var/www/html/.env.example /config/.env
-	cp /config/.env /var/www/html/.env
-elif [ -z "$ADVANCED_MODE" ];
-	then
-	echo "Basic Mode Enabled - Using sed to set BookStack variables from Docker environment variables - check the docs"
-	cp /var/www/html/.env.example /var/www/html/.env
-	# set up .env
-	sed -i "s/APP_KEY=SomeRandomString/APP_KEY=$key/g" /var/www/html/.env
-	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /var/www/html/.env
-	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /var/www/html/.env
-	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /var/www/html/.env
-	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /var/www/html/.env
-else
-	echo "Nothing to do with .env - what did you do homer?"
-fi
-
-# Check to see if appurl is set, and whether advanced mode is set. Will set .env APP_URL if variable present, and advanced mode not set
-if [ ! -z "$APP_URL" -a -z "$ADVANCED_MODE" ];
-	then
-	echo "App URL Set"
-	sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /var/www/html/.env
-fi
-
 # Create API key if needed
-if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]
+if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ];
 	then
 	echo "Generating BookStack app key for first run"
 	key=$(php /var/www/html/artisan key:generate --show | tr -d '//' )
 	echo $key > /config/BOOKSTACK_APP_KEY.txt
 	echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
+elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ];
+	then
+	echo "App Key found - setting variable for seds"
+	key=$(cat /config/BOOKSTACK_APP_KEY.txt)
 fi
+
+# .env file setup
+# check to see if db_user is set, if it is then run seds and if not then leave them
+if [ "${DB_USER}" ];
+	then
+	echo "Running config - db_user set"
+	sed -i "s,APP_KEY=SomeRandomString,APP_KEY=${key},g" /config/www/.env
+	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /config/www/.env
+	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
+	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
+	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /config/www/.env
+fi
+
+# set appurl if detected
+[[ "${APP_URL}" ]] && sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /config/www/.env
 
 # update database - will set up database if fresh, or, migrate existing
 php /var/www/html/artisan migrate --force

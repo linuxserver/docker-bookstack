@@ -16,10 +16,12 @@ RUN \
  echo "**** install build packages ****" && \
  apk add --no-cache  \
 	curl \
+	memcached \
 	php7-ctype \
 	php7-dom \
 	php7-gd \
 	php7-mbstring \
+	php7-memcached \
 	php7-mysqlnd \
 	php7-openssl \
 	php7-pdo_mysql \
