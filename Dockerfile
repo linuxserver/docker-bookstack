@@ -13,10 +13,12 @@ RUN \
  echo "**** install build packages ****" && \
  apk add --no-cache  \
 	curl \
+	tar \
 	memcached \
 	php7-ctype \
 	php7-dom \
 	php7-gd \
+	php7-ldap \
 	php7-mbstring \
 	php7-memcached \
 	php7-mysqlnd \
@@ -25,8 +27,7 @@ RUN \
 	php7-phar \
 	php7-simplexml \
 	php7-tidy \
-	php7-tokenizer \
-	tar && \
+	php7-tokenizer && \
  echo "**** configure php-fpm ****" && \
  sed -i 's/;clear_env = no/clear_env = no/g' /etc/php7/php-fpm.d/www.conf && \
  echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php7/php-fpm.conf && \
