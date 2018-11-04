@@ -81,6 +81,8 @@ freetype freetype-2.9.1-r1
 libjpeg-turbo libjpeg-turbo-1.5.3-r3
 libwebp libwebp-1.0.0-r0
 php7-gd php7-gd-7.2.10-r0
+libldap libldap-2.4.46-r0
+php7-ldap php7-ldap-7.2.10-r0
 libgcc libgcc-6.4.0-r9
 libstdc++ libstdc++-6.4.0-r9
 libmemcached-libs libmemcached-libs-1.0.18-r2
