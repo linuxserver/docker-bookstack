@@ -176,6 +176,7 @@ Some simple docker-compose files are included for you to get started with. You w
 
 ## Versions
 
+* **04.11.18:** - Added php7-ldap
 * **15.10.18:** - Changed functionality for advanced users
 * **08.10.18:** - Advanced mode, symlink changes, sed fixing, docs updated, added some composer files
 * **23.09.28:** - Updates pre-release
