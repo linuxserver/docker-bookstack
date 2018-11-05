@@ -48,7 +48,7 @@ app_setup_block: |
   from shell: mysql -u root -p
   CREATE DATABASE bookstackapp;
   GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
-  GRANT ALL privileges ON 'bookstackapp'.* TO 'myuser'@localhost;
+  GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@%;
   FLUSH PRIVILEGES;
   ```
 
