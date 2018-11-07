@@ -57,7 +57,7 @@ php7-session php7-session-7.2.10-r0
 php7-simplexml php7-simplexml-7.2.10-r0
 php7-xml php7-xml-7.2.10-r0
 php7-xmlwriter php7-xmlwriter-7.2.10-r0
-curl curl-7.61.1-r0
+curl curl-7.61.1-r1
 libevent libevent-2.1.8-r5
 db db-5.3.28-r0
 libsasl libsasl-2.1.26-r13
