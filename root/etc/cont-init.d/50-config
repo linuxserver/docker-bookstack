@@ -27,7 +27,7 @@ done
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ];
 	then
 	echo "Generating BookStack app key for first run"
-	key=$(php /var/www/html/artisan key:generate --show | tr -d '//' )
+	key=$(php /var/www/html/artisan key:generate --show)
 	echo $key > /config/BOOKSTACK_APP_KEY.txt
 	echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
 elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ];
