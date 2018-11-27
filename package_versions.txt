@@ -41,9 +41,9 @@ libmagic libmagic-5.32-r0
 nano nano-2.9.8-r0
 pcre pcre-8.42-r0
 nginx nginx-1.14.1-r0
-libcrypto1.0 libcrypto1.0-1.0.2p-r0
-libssl1.0 libssl1.0-1.0.2p-r0
-openssl openssl-1.0.2p-r0
+libcrypto1.0 libcrypto1.0-1.0.2q-r0
+libssl1.0 libssl1.0-1.0.2q-r0
+openssl openssl-1.0.2q-r0
 php7-common php7-common-7.2.10-r0
 libedit libedit-20170329.3.1-r3
 libxml2 libxml2-2.9.8-r1
