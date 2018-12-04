@@ -29,7 +29,7 @@ pipeline {
     CI_DELAY = '120'
     TEST_MYSQL_HOST = credentials('mysql_test_host')
     TEST_MYSQL_PASSWORD = credentials('mysql_test_password')
-    CI_DOCKERENV = '${TEST_MYSQL_HOST}|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=${TEST_MYSQL_PASSWORD}'
+    CI_DOCKERENV = 'DB_HOST=${TEST_MYSQL_HOST}|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=${TEST_MYSQL_PASSWORD}'
     CI_AUTH = 'user:password'
     CI_WEBPATH = ''
   }
