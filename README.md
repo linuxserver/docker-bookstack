@@ -140,7 +140,7 @@ Once the MariaDB container is deployed, you can enter the following commands int
 from shell: mysql -u root -p
 CREATE DATABASE bookstackapp;
 GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
-GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@%;
+GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@'%';
 FLUSH PRIVILEGES;
 ```
 
