@@ -327,12 +327,12 @@ pipeline {
                 LOCAL_CONTAINER=${IMAGE}:${META_TAG}
               fi
               if [ "${DIST_IMAGE}" == "alpine" ]; then
-                docker run --rm -v ${TEMPDIR}:/tmp ${LOCAL_CONTAINER} sh -c '\
+                docker run --rm --entrypoint '/bin/sh' -v ${TEMPDIR}:/tmp ${LOCAL_CONTAINER} -c '\
                   apk info > packages && \
                   apk info -v > versions && \
                   paste -d " " packages versions > /tmp/package_versions.txt'
               elif [ "${DIST_IMAGE}" == "ubuntu" ]; then
-                docker run --rm -v ${TEMPDIR}:/tmp ${LOCAL_CONTAINER} sh -c '\
+                docker run --rm --entrypoint '/bin/sh' -v ${TEMPDIR}:/tmp ${LOCAL_CONTAINER} -c '\
                   apt -qq list --installed | awk "{print \$1,\$2}" > /tmp/package_versions.txt'
               fi
               if [ "$(md5sum ${TEMPDIR}/package_versions.txt | cut -c1-8 )" != "${PACKAGE_TAG}" ]; then
