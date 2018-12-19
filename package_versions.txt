@@ -40,7 +40,7 @@ logrotate logrotate-3.14.0-r0
 libmagic libmagic-5.32-r0
 nano nano-2.9.8-r0
 pcre pcre-8.42-r0
-nginx nginx-1.14.1-r0
+nginx nginx-1.14.2-r0
 libcrypto1.0 libcrypto1.0-1.0.2q-r0
 libssl1.0 libssl1.0-1.0.2q-r0
 openssl openssl-1.0.2q-r0
