@@ -60,7 +60,7 @@ php7-xmlwriter php7-xmlwriter-7.2.13-r0
 curl curl-7.61.1-r1
 libevent libevent-2.1.8-r5
 db db-5.3.28-r0
-libsasl libsasl-2.1.26-r13
+libsasl libsasl-2.1.26-r14
 libseccomp libseccomp-2.3.3-r1
 memcached memcached-1.5.8-r0
 php7-ctype php7-ctype-7.2.13-r0
