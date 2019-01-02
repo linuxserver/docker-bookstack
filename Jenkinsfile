@@ -412,6 +412,9 @@ pipeline {
           string(credentialsId: 'spaces-key', variable: 'DO_KEY'),
           string(credentialsId: 'spaces-secret', variable: 'DO_SECRET')
         ]) {
+          script{
+            env.CI_URL = 'https://lsio-ci.ams3.digitaloceanspaces.com/' + env.IMAGE + '/' + env.META_TAG + '/index.html'
+          }
           sh '''#! /bin/bash
                 set -e
                 docker pull lsiodev/ci:latest
@@ -440,9 +443,6 @@ pipeline {
                 -e DO_BUCKET="lsio-ci" \
                 -t lsiodev/ci:latest \
                 python /ci/ci.py'''
-          script{
-            env.CI_URL = 'https://lsio-ci.ams3.digitaloceanspaces.com/' + env.IMAGE + '/' + env.META_TAG + '/index.html'
-          }
         }
       }
     }
