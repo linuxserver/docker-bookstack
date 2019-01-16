@@ -84,14 +84,10 @@ pipeline {
         script{
           env.PACKAGE_TAG = sh(
             script: '''#!/bin/bash
-                       http_code=$(curl --write-out %{http_code} -s -o /dev/null \
-                                   https://raw.githubusercontent.com/${LS_USER}/${LS_REPO}/master/package_versions.txt)
-                       if [[ "${http_code}" -ne 200 ]] ; then
-                         echo none
+                       if [ -e package_versions.txt ] ; then
+                         cat package_versions.txt | md5sum | cut -c1-8
                        else
-                         curl -s \
-                           https://raw.githubusercontent.com/${LS_USER}/${LS_REPO}/master/package_versions.txt \
-                         | md5sum | cut -c1-8
+                         echo none
                        fi''',
             returnStdout: true).trim()
         }
