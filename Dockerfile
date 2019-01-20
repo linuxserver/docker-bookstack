@@ -16,6 +16,7 @@ RUN \
 	tar \
 	memcached \
 	php7-ctype \
+	php7-curl \
 	php7-dom \
 	php7-gd \
 	php7-ldap \

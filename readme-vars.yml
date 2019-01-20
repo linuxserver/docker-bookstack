@@ -73,6 +73,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "20.01.19:", desc: "Added php7-curl"}
   - { date: "04.11.18:", desc: "Added php7-ldap"}
   - { date: "15.10.18:", desc: "Changed functionality for advanced users"}
   - { date: "08.10.18:", desc: "Advanced mode, symlink changes, sed fixing, docs updated, added some composer files"}
