@@ -64,6 +64,7 @@ libsasl libsasl-2.1.26-r14
 libseccomp libseccomp-2.3.3-r1
 memcached memcached-1.5.8-r0
 php7-ctype php7-ctype-7.2.13-r0
+php7-curl php7-curl-7.2.13-r0
 php7-dom php7-dom-7.2.13-r0
 libxau libxau-1.0.8-r2
 libbsd libbsd-0.8.6-r2
@@ -94,4 +95,4 @@ php7-phar php7-phar-7.2.13-r0
 tidyhtml-libs tidyhtml-libs-5.6.0-r0
 php7-tidy php7-tidy-7.2.13-r0
 php7-tokenizer php7-tokenizer-7.2.13-r0
-tar tar-1.30-r0
+tar tar-1.31-r0
