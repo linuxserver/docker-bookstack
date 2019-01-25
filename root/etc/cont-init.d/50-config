@@ -37,11 +37,15 @@ elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ];
 fi
 
 # .env file setup
+# check for the default app key or if it has been updated
+if grep -Fxq "APP_KEY=SomeRandomString" /config/www/.env || \
+! grep -Fxq "APP_KEY=${key}" /config/www/.env; then
+        sed -i "/APP_KEY=/c\APP_KEY=${key}" /config/www/.env
+fi
 # check to see if db_user is set, if it is then run seds and if not then leave them
 if [ "${DB_USER}" ];
 	then
 	echo "Running config - db_user set"
-	sed -i "s,APP_KEY=SomeRandomString,APP_KEY=${key},g" /config/www/.env
 	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /config/www/.env
 	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
