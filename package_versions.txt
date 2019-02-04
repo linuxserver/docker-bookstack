@@ -29,7 +29,7 @@ libuuid libuuid-2.32-r0
 apr apr-1.6.3-r1
 expat expat-2.2.5-r0
 apr-util apr-util-1.6.1-r3
-apache2-utils apache2-utils-2.4.38-r1
+apache2-utils apache2-utils-2.4.38-r3
 nghttp2-libs nghttp2-libs-1.32.0-r0
 libssh2 libssh2-1.8.0-r3
 libcurl libcurl-7.61.1-r1
