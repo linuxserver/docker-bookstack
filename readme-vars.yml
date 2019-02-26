@@ -61,7 +61,7 @@ app_setup_block: |
 
   If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
 
-  Documentation for BookStack \can be found at https://www.bookstackapp.com/docs/
+  Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
   ### Advanced Users (full control over the .env file)
   If you wish to use the extra functionality of BookStack such as email, memcache, ldap and so on you will need to make your own .env file with guidance from the BookStack documentation.
