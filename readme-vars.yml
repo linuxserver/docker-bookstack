@@ -29,7 +29,7 @@ param_env_vars:
   - { env_var: "DB_USER", env_value: "<yourdbuser>", desc: "for specifying the database user" }
   - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password" }
   - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used" }
-  - { env_var: "APPURL", env_value: "your.site.here.xyz", desc: "for specifying the url your application will be accessed on "}
+  - { env_var: "APP_URL", env_value: "your.site.here.xyz", desc: "for specifying the url your application will be accessed on (required for correct operation of reverse proxy)"}
 
 param_usage_include_ports: true
 param_ports:
@@ -45,10 +45,11 @@ app_setup_block: |
   **Note** this will allow any user with these credentials to connect to the server, it is not limited to localhost
 
   ```
-  from shell: mysql -u root -p
+  from shell on sql container: 
+  mysql -u root -p
   CREATE DATABASE bookstackapp;
   GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
-  GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@%;
+  GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@'%';
   FLUSH PRIVILEGES;
   ```
 
@@ -58,14 +59,14 @@ app_setup_block: |
 
   Default username is admin@admin.com with password of **password**
 
-  If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APPURL` environment variable is set, or it will not work
+  If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
 
-  Documentation can be found at https://www.bookstackapp.com/docs/
+  Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
-  ### Advanced Users
+  ### Advanced Users (full control over the .env file)
   If you wish to use the extra functionality of BookStack such as email, memcache, ldap and so on you will need to make your own .env file with guidance from the BookStack documentation.
 
-  When you create the container, do not set any arguements for SQL or APPURL. The container will copy an .env file to /config/www/.env on your host system for you to edit. 
+  When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit. 
 
   ### Composer
 
