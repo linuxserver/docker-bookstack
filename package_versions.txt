@@ -32,7 +32,7 @@ apr-util apr-util-1.6.1-r3
 apache2-utils apache2-utils-2.4.38-r3
 nghttp2-libs nghttp2-libs-1.32.0-r0
 libssh2 libssh2-1.8.0-r3
-libcurl libcurl-7.61.1-r1
+libcurl libcurl-7.61.1-r2
 pcre2 pcre2-10.31-r0
 git git-2.18.1-r0
 popt popt-1.16-r7
@@ -41,9 +41,9 @@ libmagic libmagic-5.32-r0
 nano nano-2.9.8-r0
 pcre pcre-8.42-r0
 nginx nginx-1.14.2-r0
-libcrypto1.0 libcrypto1.0-1.0.2q-r0
-libssl1.0 libssl1.0-1.0.2q-r0
-openssl openssl-1.0.2q-r0
+libcrypto1.0 libcrypto1.0-1.0.2r-r0
+libssl1.0 libssl1.0-1.0.2r-r0
+openssl openssl-1.0.2r-r0
 php7-common php7-common-7.2.13-r0
 libedit libedit-20170329.3.1-r3
 libxml2 libxml2-2.9.8-r1
@@ -57,7 +57,7 @@ php7-session php7-session-7.2.13-r0
 php7-simplexml php7-simplexml-7.2.13-r0
 php7-xml php7-xml-7.2.13-r0
 php7-xmlwriter php7-xmlwriter-7.2.13-r0
-curl curl-7.61.1-r1
+curl curl-7.61.1-r2
 libevent libevent-2.1.8-r5
 db db-5.3.28-r0
 libsasl libsasl-2.1.26-r14
