@@ -1,7 +1,4 @@
-FROM lsiobase/alpine.nginx.armhf:3.8
-
-# Add qemu to build on x86_64 systems
-COPY qemu-arm-static /usr/bin
+FROM lsiobase/nginx:arm32v7-3.8
 
 # set version label
 ARG BUILD_DATE
