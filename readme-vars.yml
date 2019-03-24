@@ -16,7 +16,7 @@ project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_
 available_architectures:
   - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
   - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-  - { arch: "{{ arch_armhf }}", tag: "arm32v6-latest"}
+  - { arch: "{{ arch_armhf }}", tag: "arm32v7-latest"}
 
 # container parameters
 param_container_name: "{{ project_name }}"
@@ -74,6 +74,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "22.03.19:", desc: "Switching to new Base images, shift to arm32v7 tag." }
   - { date: "20.01.19:", desc: "Added php7-curl"}
   - { date: "04.11.18:", desc: "Added php7-ldap"}
   - { date: "15.10.18:", desc: "Changed functionality for advanced users"}
