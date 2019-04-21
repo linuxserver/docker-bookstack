@@ -4,13 +4,13 @@
 project_name: bookstack
 project_url: "https://github.com/BookStackApp/BookStack"
 project_logo: "https://s3-us-west-2.amazonaws.com/linuxserver-docs/images/bookstack-logo500x500.png"
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 project_blurb: |
   [{{ project_name|capitalize }}]({{ project_url }}) is a free and open source Wiki designed for creating beautiful documentation. Feautring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
 
   Powered by SQL and including a Markdown editor for those who prefer it, BookStack is geared towards making documentation more of a pleasure than a chore.
 
   For more information on BookStack visit their website and check it out: https://www.bookstackapp.com
-project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 
 # supported architectures
 available_architectures:
@@ -29,51 +29,70 @@ param_env_vars:
   - { env_var: "DB_USER", env_value: "<yourdbuser>", desc: "for specifying the database user" }
   - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password" }
   - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used" }
-  - { env_var: "APP_URL", env_value: "your.site.here.xyz", desc: "for specifying the url your application will be accessed on (required for correct operation of reverse proxy)"}
 
 param_usage_include_ports: true
 param_ports:
   - { external_port: "6875", internal_port: "80", port_desc: "will map the container's port 80 to port 6875 on the host" }
 
+opt_param_usage_include_env: true
+opt_param_env_vars:
+  - { env_var: "APP_URL", env_value: "your.site.here.xyz", desc: "for specifying the url your application will be accessed on (required for correct operation of reverse proxy)"}
+
+custom_compose: |
+  ---
+  version: "2"
+  services:
+    bookstack:
+      image: linuxserver/bookstack
+      container_name: bookstack
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - DB_HOST=bookstack_db
+        - DB_USER=bookstack
+        - DB_PASS=<yourdbpass>
+        - DB_DATABASE=bookstackapp
+      volumes:
+        - <path to data>:/config
+      ports:
+        - 6875:80
+      restart: unless-stopped
+      depends_on:
+        - bookstack_db
+    bookstack_db:
+      image: linuxserver/mariadb
+      container_name: bookstack_db
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - MYSQL_ROOT_PASSWORD=<yourdbpass>
+        - TZ=Europe/London
+        - MYSQL_DATABASE=bookstackapp
+        - MYSQL_USER=bookstack
+        - MYSQL_PASSWORD=<yourdbpass>
+      volumes:
+        - <path to data>:/config
+      restart: unless-stopped
+
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
-  This application is dependent on an SQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container.
+  Default username is admin@admin.com with password of **password**, access the container at http://dockerhost:6875.
 
-  Once the MariaDB container is deployed, you can enter the following commands into the shell of the MariaDB container to create the user, password and database that the app will then use. Replace myuser/mypassword with your own data.
+  This application is dependent on an MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
 
-  **Note** this will allow any user with these credentials to connect to the server, it is not limited to localhost
-
-  ```
-  from shell on sql container: 
-  mysql -u root -p
-  CREATE DATABASE bookstackapp;
-  GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
-  GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@'%';
-  FLUSH PRIVILEGES;
-  ```
-
-  Once you have completed these, you can then use the docker run command to create your BookStack container. Make sure you replace things such as <yourdbuser> with the correct data.
-
-  Then docker start bookstackapp to start the container. You should then be able to access the container at http://dockerhost:6875
-
-  Default username is admin@admin.com with password of **password**
-
-  If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
+  If you intend to use this application behind a subfolder reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
 
   Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
   ### Advanced Users (full control over the .env file)
   If you wish to use the extra functionality of BookStack such as email, memcache, ldap and so on you will need to make your own .env file with guidance from the BookStack documentation.
 
-  When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit. 
-
-  ### Composer
-
-  Some simple docker-compose files are included for you to get started with. You will still need to manually configure the SQL server, but the compose files will get the stack running for you. 
+  When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit.
 
 # changelog
 changelogs:
+  - { date: "20.04.19:", desc: "Rebase to Alpine 3.9, add MySQL init logic." }
   - { date: "22.03.19:", desc: "Switching to new Base images, shift to arm32v7 tag." }
   - { date: "20.01.19:", desc: "Added php7-curl"}
   - { date: "04.11.18:", desc: "Added php7-ldap"}

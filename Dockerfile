@@ -1,4 +1,4 @@
-FROM lsiobase/nginx:3.8
+FROM lsiobase/nginx:3.9
 
 # set version label
 ARG BUILD_DATE
@@ -15,6 +15,7 @@ RUN \
 	curl \
 	tar \
 	memcached \
+	netcat-openbsd \
 	php7-ctype \
 	php7-curl \
 	php7-dom \

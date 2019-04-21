@@ -37,11 +37,15 @@ elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ];
 fi
 
 # .env file setup
+# check for the default app key or if it has been updated
+if grep -Fxq "APP_KEY=SomeRandomString" /config/www/.env || \
+! grep -Fxq "APP_KEY=${key}" /config/www/.env; then
+	sed -i "s#^APP_KEY=.*#APP_KEY=${key}#" /config/www/.env
+fi
 # check to see if db_user is set, if it is then run seds and if not then leave them
 if [ "${DB_USER}" ];
 	then
 	echo "Running config - db_user set"
-	sed -i "s,APP_KEY=SomeRandomString,APP_KEY=${key},g" /config/www/.env
 	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /config/www/.env
 	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
@@ -51,6 +55,21 @@ fi
 # set appurl if detected
 [[ "${APP_URL}" ]] && sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /config/www/.env
 
+# check for the mysql endpoint for 30 seconds
+END=$((SECONDS+30))
+while [ ${SECONDS} -lt ${END} ]; do
+	/usr/bin/nc -z ${DB_HOST} 3306 && \
+	if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST} 3306)" ]; then
+		[ ! -z "${RUN}" ] && break
+		RUN="RAN"
+		# we sleep here again due to first run init on DB containers
+		[ ! -f /dbwait.lock ] && sleep 5
+	else
+		sleep 1
+	fi
+	sleep 1
+done
+
 # update database - will set up database if fresh, or, migrate existing
 php /var/www/html/artisan migrate --force
 
@@ -58,3 +77,6 @@ php /var/www/html/artisan migrate --force
 chown -R abc:abc \
 	/config \
 	/var/www/
+
+# set lockfile to avoid DB waits for this specific container
+touch /dbwait.lock
