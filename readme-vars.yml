@@ -34,7 +34,7 @@ param_usage_include_ports: true
 param_ports:
   - { external_port: "6875", internal_port: "80", port_desc: "will map the container's port 80 to port 6875 on the host" }
 
-op_param_usage_include_env: true
+opt_param_usage_include_env: true
 opt_param_env_vars:
   - { env_var: "APP_URL", env_value: "your.site.here.xyz", desc: "for specifying the url your application will be accessed on (required for correct operation of reverse proxy)"}
 
