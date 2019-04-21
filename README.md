@@ -61,7 +61,6 @@ docker create \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
-  -e APP_URL=your.site.here.xyz \
   -p 6875:80 \
   -v <path to data>:/config \
   --restart unless-stopped \
@@ -83,16 +82,32 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - DB_HOST=<yourdbhost>
-      - DB_USER=<yourdbuser>
+      - DB_HOST=bookstack_db
+      - DB_USER=bookstack
       - DB_PASS=<yourdbpass>
       - DB_DATABASE=bookstackapp
-      - APP_URL=your.site.here.xyz
     volumes:
       - <path to data>:/config
     ports:
       - 6875:80
     restart: unless-stopped
+    depends_on:
+      - bookstack_db
+  bookstack_db:
+    image: linuxserver/mariadb
+    container_name: bookstack_db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=<yourdbpass>
+      - TZ=Europe/London
+      - MYSQL_DATABASE=bookstackapp
+      - MYSQL_USER=bookstack
+      - MYSQL_PASSWORD=<yourdbpass>
+    volumes:
+      - <path to data>:/config
+    restart: unless-stopped
+
 ```
 
 ## Parameters
@@ -108,7 +123,6 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
 | `-e DB_PASS=<yourdbpass>` | for specifying the database password |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `-e APP_URL=your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## User / Group Identifiers
@@ -128,39 +142,18 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 &nbsp;
 ## Application Setup
 
-This application is dependent on an SQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container.
+Default username is admin@admin.com with password of **password**, access the container at http://dockerhost:6875.
 
-Once the MariaDB container is deployed, you can enter the following commands into the shell of the MariaDB container to create the user, password and database that the app will then use. Replace myuser/mypassword with your own data.
+This application is dependent on an MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
 
-**Note** this will allow any user with these credentials to connect to the server, it is not limited to localhost
-
-```
-from shell on sql container: 
-mysql -u root -p
-CREATE DATABASE bookstackapp;
-GRANT USAGE ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
-GRANT ALL privileges ON `bookstackapp`.* TO 'myuser'@'%';
-FLUSH PRIVILEGES;
-```
-
-Once you have completed these, you can then use the docker run command to create your BookStack container. Make sure you replace things such as <yourdbuser> with the correct data.
-
-Then docker start bookstackapp to start the container. You should then be able to access the container at http://dockerhost:6875
-
-Default username is admin@admin.com with password of **password**
-
-If you intend to use this application behind a reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
+If you intend to use this application behind a subfolder reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
 
 Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
 ### Advanced Users (full control over the .env file)
 If you wish to use the extra functionality of BookStack such as email, memcache, ldap and so on you will need to make your own .env file with guidance from the BookStack documentation.
 
-When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit. 
-
-### Composer
-
-Some simple docker-compose files are included for you to get started with. You will still need to manually configure the SQL server, but the compose files will get the stack running for you. 
+When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit.
 
 
 
@@ -205,6 +198,7 @@ Below are the instructions for updating containers:
 
 ## Versions
 
+* **20.04.19:** - Rebase to Alpine 3.9, add MySQL init logic.
 * **22.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **20.01.19:** - Added php7-curl
 * **04.11.18:** - Added php7-ldap
