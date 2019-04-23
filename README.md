@@ -1,16 +1,16 @@
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)](https://linuxserver.io)
 
-The [LinuxServer.io](https://linuxserver.io) team brings you another container release featuring :-
+The [LinuxServer.io](https://linuxserver.io) team brings you another container release featuring:-
 
- * regular and timely application updates
- * easy user mappings (PGID, PUID)
- * custom base image with s6 overlay
- * weekly base OS updates with common layers across the entire LinuxServer.io ecosystem to minimise space usage, down time and bandwidth
- * regular security updates
+ * Regular and timely application updates
+ * Easy user mappings (PGID, PUID)
+ * Custom base image with s6 overlay
+ * Weekly base OS updates with common layers across the entire LinuxServer.io ecosystem to minimise space usage, downtime and bandwidth usage
+ * Regular security updates
 
 Find us at:
-* [Discord](https://discord.gg/YWrKVTn) - realtime support / chat with the community and the team.
-* [IRC](https://irc.linuxserver.io) - on freenode at `#linuxserver.io`. Our primary support channel is Discord.
+* [Discord](https://discord.gg/YWrKVTn) - real time support / chat with the community and the team.
+* [IRC](https://irc.linuxserver.io) - on Freenode at `#linuxserver.io`. Our primary support channel is Discord.
 * [Blog](https://blog.linuxserver.io) - all the things you can do with our containers including How-To guides, opinions and much more!
 
 # [linuxserver/bookstack](https://github.com/linuxserver/docker-bookstack)
@@ -22,7 +22,7 @@ Find us at:
 [![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Pipeline-Builders/docker-bookstack/master)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-bookstack/job/master/)
 [![](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/bookstack/latest/badge.svg)](https://lsio-ci.ams3.digitaloceanspaces.com/linuxserver/bookstack/latest/index.html)
 
-[Bookstack](https://github.com/BookStackApp/BookStack) is a free and open source Wiki designed for creating beautiful documentation. Feautring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
+[BookStack](https://github.com/BookStackApp/BookStack) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
 
 Powered by SQL and including a Markdown editor for those who prefer it, BookStack is geared towards making documentation more of a pleasure than a chore.
 
@@ -124,7 +124,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
 | `-e DB_PASS=<yourdbpass>` | for specifying the database password |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `-e APP_URL=your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
+| `-e APP_URL=your.site.here.xyz` | for specifying the URL your application will be accessed on (required for expected operation of reverse proxy) |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## User / Group Identifiers
@@ -163,9 +163,9 @@ When you create the container, do not set any arguments for any SQL settings, or
 
 * Shell access whilst the container is running: `docker exec -it bookstack /bin/bash`
 * To monitor the logs of the container in realtime: `docker logs -f bookstack`
-* container version number 
+* Container version number 
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' bookstack`
-* image version number
+* Image version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/bookstack`
 
 ## Updating Info
