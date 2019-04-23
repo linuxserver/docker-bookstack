@@ -30,6 +30,15 @@ RUN \
 	php7-simplexml \
 	php7-tidy \
 	php7-tokenizer && \
+ echo "**** install wkhtmltopdf ****" && \
+ apk add --no-cache \
+	ttf-freefont \
+	fontconfig && \
+ apk add --no-cache \
+	--repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	--allow-untrusted \
+	qt5-qtbase-dev \
+	wkhtmltopdf && \
  echo "**** configure php-fpm ****" && \
  sed -i 's/;clear_env = no/clear_env = no/g' /etc/php7/php-fpm.d/www.conf && \
  echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php7/php-fpm.conf && \
