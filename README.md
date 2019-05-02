@@ -124,7 +124,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
 | `-e DB_PASS=<yourdbpass>` | for specifying the database password |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `-e APP_URL=your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
+| `-e APP_URL=http://your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## User / Group Identifiers
