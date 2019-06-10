@@ -9,7 +9,7 @@ busybox-1.29.3-r10
 ca-certificates-20190108-r0
 ca-certificates-cacert-20190108-r0
 coreutils-8.30-r0
-curl-7.64.0-r1
+curl-7.64.0-r2
 db-5.3.28-r1
 expat-2.2.6-r0
 freetype-2.9.1-r2
@@ -20,7 +20,7 @@ libbsd-0.8.6-r2
 libbz2-1.0.6-r6
 libc-utils-0.7.1-r0
 libcrypto1.1-1.1.1b-r1
-libcurl-7.64.0-r1
+libcurl-7.64.0-r2
 libedit-20181209.3.1-r0
 libevent-2.1.8-r6
 libgcc-8.3.0-r0
@@ -91,7 +91,7 @@ php7-xmlwriter-7.2.18-r0
 popt-1.16-r7
 readline-7.0.003-r1
 scanelf-1.2.3-r0
-shadow-4.5-r1
+shadow-4.5-r2
 ssl_client-1.29.3-r10
 tar-1.32-r0
 tidyhtml-libs-5.6.0-r0
