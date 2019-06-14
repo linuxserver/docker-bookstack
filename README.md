@@ -144,18 +144,21 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 &nbsp;
 ## Application Setup
 
+
 The default username is admin@admin.com with the password of **password**, access the container at http://dockerhost:6875.
 
 This application is dependent on a MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
+
 
 If you intend to use this application behind a subfolder reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
 
 Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
 ### Advanced Users (full control over the .env file)
-If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
+If you wish to use the extra functionality of BookStack such as email, memcache, ldap and so on you will need to make your own .env file with guidance from the BookStack documentation.	If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
 
-When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
+
+When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit.	When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
 #### PDF Rendering
 [wkhtmltopdf](https://wkhtmltopdf.org/) is available to use as an alternative PDF rendering generator as described at https://www.bookstackapp.com/docs/admin/pdf-rendering/.
@@ -187,15 +190,6 @@ Below are the instructions for updating containers:
 * Start the new container: `docker start bookstack`
 * You can also remove the old dangling images: `docker image prune`
 
-### Via Taisun auto-updater (especially useful if you don't remember the original parameters)
-* Pull the latest image at its tag and replace it with the same env variables in one shot:
-  ```
-  docker run --rm \
-  -v /var/run/docker.sock:/var/run/docker.sock taisun/updater \
-  --oneshot bookstack
-  ```
-* You can also remove the old dangling images: `docker image prune`
-
 ### Via Docker Compose
 * Update all images: `docker-compose pull`
   * or update a single image: `docker-compose pull bookstack`
@@ -203,8 +197,38 @@ Below are the instructions for updating containers:
   * or update a single container: `docker-compose up -d bookstack`
 * You can also remove the old dangling images: `docker image prune`
 
+### Via Watchtower auto-updater (especially useful if you don't remember the original parameters)
+* Pull the latest image at its tag and replace it with the same env variables in one run:
+  ```
+  docker run --rm \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower \
+  --run-once bookstack
+  ```
+* You can also remove the old dangling images: `docker image prune`
+
+## Building locally
+
+If you want to make local modifications to these images for development purposes or just to customize the logic: 
+```
+git clone https://github.com/linuxserver/docker-bookstack.git
+cd docker-bookstack
+docker build \
+  --no-cache \
+  --pull \
+  -t linuxserver/bookstack:latest .
+```
+
+The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
+```
+docker run --rm --privileged multiarch/qemu-user-static:register --reset
+```
+
+Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64`.
+
 ## Versions
 
+* **14.06.19:** - Add wkhtmltopdf to image for PDF rendering.
 * **20.04.19:** - Rebase to Alpine 3.9, add MySQL init logic.
 * **22.03.19:** - Switching to new Base images, shift to arm32v7 tag.
 * **20.01.19:** - Added php7-curl
