@@ -36,7 +36,7 @@ param_ports:
 
 opt_param_usage_include_env: true
 opt_param_env_vars:
-  - { env_var: "APP_URL", env_value: "your.site.here.xyz", desc: "for specifying the url your application will be accessed on (required for correct operation of reverse proxy)"}
+  - { env_var: "APP_URL", env_value: "http://your.site.here.xyz", desc: "for specifying the url your application will be accessed on (required for correct operation of reverse proxy)"}
 
 custom_compose: |
   ---
