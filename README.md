@@ -155,9 +155,8 @@ If you intend to use this application behind a subfolder reverse proxy, such as 
 Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
 ### Advanced Users (full control over the .env file)
-If you wish to use the extra functionality of BookStack such as email, memcache, ldap and so on you will need to make your own .env file with guidance from the BookStack documentation.	If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
-
-
+If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
+  
 When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit.	When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
 #### PDF Rendering
