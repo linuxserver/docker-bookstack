@@ -69,7 +69,7 @@ libseccomp-2.4.1-r0
 libsm-1.2.3-r0
 libssl1.1-1.1.1c-r0
 libstdc++-8.3.0-r0
-libtasn1-4.13-r0
+libtasn1-4.14-r0
 libtheora-1.1.1-r14
 libtls-standalone-2.9.1-r0
 libunistring-0.9.10-r0
