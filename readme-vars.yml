@@ -100,6 +100,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "26.07.19:", desc: "Use old version of tidyhtml pending upstream fixes." }
   - { date: "28.06.19:", desc: "Rebasing to alpine 3.10." }
   - { date: "14.06.19:", desc: "Add wkhtmltopdf to image for PDF rendering." }
   - { date: "20.04.19:", desc: "Rebase to Alpine 3.9, add MySQL init logic." }

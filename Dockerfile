@@ -35,6 +35,11 @@ RUN \
 	tar \
 	ttf-freefont \
 	wkhtmltopdf && \
+ echo "**** tidy bug fix ****" && \
+ curl -s \
+	http://dl-cdn.alpinelinux.org/alpine/v3.7/community/x86_64/tidyhtml-libs-5.4.0-r0.apk | \
+	tar xfz - -C / && \
+ rm -f /usr/lib/libtidy.so.5.6.0 && \
  echo "**** configure php-fpm ****" && \
  sed -i 's/;clear_env = no/clear_env = no/g' /etc/php7/php-fpm.d/www.conf && \
  echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php7/php-fpm.conf && \
