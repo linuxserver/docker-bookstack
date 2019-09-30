@@ -20,7 +20,7 @@ db-5.3.28-r1
 dbus-libs-1.12.16-r0
 encodings-1.0.4-r1
 eudev-libs-3.2.8-r0
-expat-2.2.7-r1
+expat-2.2.8-r0
 fontconfig-2.13.1-r0
 freetype-2.10.0-r0
 fribidi-1.0.5-r1
