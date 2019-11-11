@@ -23,7 +23,7 @@ eudev-libs-3.2.8-r0
 expat-2.2.8-r0
 fontconfig-2.13.1-r0
 freetype-2.10.0-r0
-fribidi-1.0.5-r1
+fribidi-1.0.5-r2
 git-2.22.0-r0
 glib-2.60.4-r0
 gmp-6.1.2-r1
