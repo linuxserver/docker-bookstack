@@ -54,7 +54,7 @@ libgpg-error-1.36-r2
 libice-1.0.9-r3
 libinput-libs-1.13.2-r0
 libintl-0.19.8.1-r4
-libjpeg-turbo-2.0.2-r0
+libjpeg-turbo-2.0.3-r0
 libldap-2.4.48-r0
 libmagic-5.37-r1
 libmemcached-libs-1.0.18-r3
