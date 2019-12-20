@@ -29,13 +29,11 @@ pipeline {
     DIST_IMAGE = 'alpine'
     MULTIARCH = 'true'
     CI = 'true'
-    CI_WEB = 'true'
+    CI_WEB = 'false'
     CI_PORT = '80'
     CI_SSL = 'false'
     CI_DELAY = '120'
-    TEST_MYSQL_HOST = credentials('mysql_test_host')
-    TEST_MYSQL_PASSWORD = credentials('mysql_test_password')
-    CI_DOCKERENV = 'DB_HOST=${TEST_MYSQL_HOST}|DB_DATABASE=bookstack|DB_USERNAME=root|DB_PASSWORD=${TEST_MYSQL_PASSWORD}'
+    CI_DOCKERENV = 'CI_RUN=true'
     CI_AUTH = 'user:password'
     CI_WEBPATH = ''
   }
