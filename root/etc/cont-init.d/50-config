@@ -57,11 +57,9 @@ fi
 
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
-while [ ${SECONDS} -lt ${END} ] && [ "${DB_HOST}" ];
-	do
+while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST+x}" ]; do
 	/usr/bin/nc -z ${DB_HOST} 3306 && \
-	if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST} 3306)" ];
-		then
+	if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST} 3306)" ]; then
 		[ ! -z "${RUN}" ] && break
 		RUN="RAN"
 		# we sleep here again due to first run init on DB containers
@@ -73,7 +71,9 @@ while [ ${SECONDS} -lt ${END} ] && [ "${DB_HOST}" ];
 done
 
 # update database - will set up database if fresh, or, migrate existing
-php /var/www/html/artisan migrate --force
+if [ -z "${CI_RUN+x}" ]; then
+	php /var/www/html/artisan migrate --force
+fi
 
 # set permissions
 chown -R abc:abc \
