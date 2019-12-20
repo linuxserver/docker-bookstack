@@ -256,6 +256,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **19.12.19:** - Rebasing to alpine 3.11.
 * **26.07.19:** - Use old version of tidyhtml pending upstream fixes.
 * **28.06.19:** - Rebasing to alpine 3.10.
 * **14.06.19:** - Add wkhtmltopdf to image for PDF rendering.
