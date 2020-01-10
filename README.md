@@ -77,7 +77,7 @@ docker create \
   -e DB_DATABASE=bookstackapp \
   -e APP_URL=http://your.site.here.xyz `#optional` \
   -p 6875:80 \
-  -v <path to data>:/config \
+  -v /path/to/data:/config \
   --restart unless-stopped \
   linuxserver/bookstack
 ```
@@ -102,7 +102,7 @@ services:
       - DB_PASS=<yourdbpass>
       - DB_DATABASE=bookstackapp
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     ports:
       - 6875:80
     restart: unless-stopped
@@ -120,7 +120,7 @@ services:
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=<yourdbpass>
     volumes:
-      - <path to data>:/config
+      - /path/to/data:/config
     restart: unless-stopped
 
 ```
@@ -183,7 +183,7 @@ Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 ### Advanced Users (full control over the .env file)
 If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
   
-When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an .env file to /config/www/.env on your host system for you to edit.	When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
+When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
 #### PDF Rendering
 [wkhtmltopdf](https://wkhtmltopdf.org/) is available to use as an alternative PDF rendering generator as described at https://www.bookstackapp.com/docs/admin/pdf-rendering/.
