@@ -32,8 +32,8 @@ pipeline {
     CI_WEB = 'false'
     CI_PORT = '80'
     CI_SSL = 'false'
-    CI_DELAY = '180'
-    CI_DOCKERENV = 'CI_RUN=true'
+    CI_DELAY = '30'
+    CI_DOCKERENV='TEST_RUN=1'
     CI_AUTH = 'user:password'
     CI_WEBPATH = ''
   }
