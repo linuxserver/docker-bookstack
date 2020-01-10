@@ -23,6 +23,11 @@ do
 [[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
 done
 
+# Echo init finish for test runs
+if [ -n "${TEST_RUN}" ]; then
+	echo '[services.d] done.'
+fi
+
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ];
 	then
