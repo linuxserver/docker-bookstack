@@ -107,8 +107,8 @@ mesa-gl-19.2.7-r0
 mesa-glapi-19.2.7-r0
 mkfontscale-1.2.1-r1
 mtdev-1.1.5-r2
-musl-1.1.24-r0
-musl-utils-1.1.24-r0
+musl-1.1.24-r1
+musl-utils-1.1.24-r1
 nano-4.6-r0
 ncurses-libs-6.1_p20200118-r2
 ncurses-terminfo-base-6.1_p20200118-r2
