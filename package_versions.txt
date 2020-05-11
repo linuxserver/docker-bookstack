@@ -41,7 +41,7 @@ libbsd-0.10.0-r0
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r0
 libcap-2.27-r0
-libcrypto1.1-1.1.1d-r3
+libcrypto1.1-1.1.1g-r0
 libcurl-7.67.0-r0
 libdrm-2.4.100-r0
 libedit-20191211.3.1-r0
@@ -56,7 +56,7 @@ libice-1.0.10-r0
 libinput-libs-1.14.3-r0
 libintl-0.20.1-r2
 libjpeg-turbo-2.0.4-r0
-libldap-2.4.48-r1
+libldap-2.4.48-r2
 libmagic-5.37-r1
 libmemcached-libs-1.0.18-r4
 libmount-2.34-r1
@@ -69,7 +69,7 @@ libressl3.0-libssl-3.0.2-r0
 libsasl-2.1.27-r5
 libseccomp-2.4.2-r2
 libsm-1.2.3-r0
-libssl1.1-1.1.1d-r3
+libssl1.1-1.1.1g-r0
 libstdc++-9.2.0-r4
 libtasn1-4.15.0-r0
 libtheora-1.1.1-r14
@@ -89,7 +89,7 @@ libxfixes-5.0.3-r2
 libxft-2.3.3-r0
 libxkbcommon-0.9.1-r0
 libxkbcommon-x11-0.9.1-r0
-libxml2-2.9.10-r2
+libxml2-2.9.10-r3
 libxpm-3.5.13-r0
 libxrender-0.9.10-r3
 libxshmfence-1.3-r0
@@ -110,8 +110,8 @@ mtdev-1.1.5-r2
 musl-1.1.24-r2
 musl-utils-1.1.24-r2
 nano-4.6-r0
-ncurses-libs-6.1_p20200118-r3
-ncurses-terminfo-base-6.1_p20200118-r3
+ncurses-libs-6.1_p20200118-r4
+ncurses-terminfo-base-6.1_p20200118-r4
 netcat-openbsd-1.130-r1
 nettle-3.5.1-r0
 nghttp2-libs-1.40.0-r0
@@ -157,12 +157,12 @@ qt5-qtwebkit-5.9.1-r7
 readline-8.0.1-r0
 scanelf-1.2.4-r0
 shadow-4.7-r1
-sqlite-libs-3.30.1-r1
+sqlite-libs-3.30.1-r2
 ssl_client-1.31.1-r9
 tar-1.32-r1
 tidyhtml-libs-5.6.0-r0
 ttf-freefont-20120503-r1
-tzdata-2019c-r0
+tzdata-2020a-r0
 wayland-libs-client-1.17.0-r0
 wayland-libs-egl-1.17.0-r0
 wayland-libs-server-1.17.0-r0
