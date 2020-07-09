@@ -65,7 +65,7 @@ Here are some example snippets to help you get started creating a container.
 
 ### docker
 
-```
+```sh
 docker create \
   --name=bookstack \
   -e PUID=1000 \
@@ -86,8 +86,7 @@ docker create \
 
 Compatible with docker-compose v2 schemas.
 
-```
----
+```yml
 version: "2"
 services:
   bookstack:
@@ -121,7 +120,81 @@ services:
     volumes:
       - /path/to/data:/config
     restart: unless-stopped
+```
 
+### docker-compose with automatic https
+
+This compose example will allow automatic configuration of a reverse-proxy for bookstack with the `linuxserver/letsencrypt` docker image.
+
+The minimum you will need to replace to get this compose file running is:
+1. `/path/to/data` - this will be the path that all of the persistent files and configs are stored. Specify a reasonable location like `/opt/bookstack`
+2. `/path/to/letsencrypt` - all of the nginx and letsencrypt configuration will be stored here. Specify a reasonable location like `/opt/letsencrypt`
+3. `email@emmail.com` - good to put a reasonable email for the certificate.
+
+Now you can run the compose file and letsencrypt will set things up and obtain the certificate.  At this point you should 
+1. Rename the following file `/path/to/letsencrypt/config/nginx/proxy-confs/bookstack.subdomain.conf.sample` to `bookstack.subdomain.conf` and 
+2. Restart the service with `docker-compose-restart letsencrypt` to load the newly included config file.
+
+> Note! This configuration is by default expecting a known domain with a subdomain `bookstack` e.g. `bookstack.yourdomain.com`.  This is only the default configuration and you can easily change the expected subdomain by modifying the nginx config files.
+
+```yml
+version: "2.1"
+services:
+  bookstack:
+    image: linuxserver/bookstack
+    container_name: bookstack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - DB_HOST=bookstack_db
+      - DB_USER=bookstack
+      - DB_PASS=yourdbpass
+      - DB_DATABASE=bookstackapp
+      - APP_URL=https://bookstack.yourdomain.com
+    volumes:
+      - /path/to/data:/config
+    restart: unless-stopped
+    depends_on:
+      - bookstack_db
+  bookstack_db:
+    image: linuxserver/mariadb
+    container_name: bookstack_db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=yourdbpass
+      - TZ=Europe/London
+      - MYSQL_DATABASE=bookstackapp
+      - MYSQL_USER=bookstack
+      - MYSQL_PASSWORD=yourdbpass
+    volumes:
+      - /path/to/data:/config
+    restart: unless-stopped  
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: letsencrypt
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=yourdomain.com
+      - SUBDOMAINS=bookstack
+      - VALIDATION=http
+      - DNSPLUGIN=cloudflare #optional
+      - PROPAGATION= #optional
+      - DUCKDNSTOKEN= #optional
+      - EMAIL=email@email.com #optional
+      - ONLY_SUBDOMAINS=true #optional
+      - EXTRA_DOMAINS= #optional
+      - STAGING=false #optional
+    volumes:
+      - /path/to/letsencrypt:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
 ```
 
 ## Parameters
@@ -146,7 +219,7 @@ You can set any environment variable from a file by using a special prepend `FIL
 
 As an example:
 
-```
+```sh
 -e FILE__PASSWORD=/run/secrets/mysecretpassword
 ```
 
@@ -165,7 +238,7 @@ Ensure any volume directories on the host are owned by the same user you specify
 
 In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
 
-```
+```sh
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
 ```
@@ -233,7 +306,7 @@ Below are the instructions for updating containers:
 
 ### Via Watchtower auto-updater (especially useful if you don't remember the original parameters)
 * Pull the latest image at its tag and replace it with the same env variables in one run:
-  ```
+  ```sh
   docker run --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   containrrr/watchtower \
@@ -247,7 +320,7 @@ Below are the instructions for updating containers:
 ## Building locally
 
 If you want to make local modifications to these images for development purposes or just to customize the logic:
-```
+```sh
 git clone https://github.com/linuxserver/docker-bookstack.git
 cd docker-bookstack
 docker build \
@@ -257,7 +330,7 @@ docker build \
 ```
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
-```
+```sh
 docker run --rm --privileged multiarch/qemu-user-static:register --reset
 ```
 
