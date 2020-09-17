@@ -60,6 +60,10 @@ fi
 # set appurl if detected
 [ -n "${APP_URL}" ] && sed -r "s,([#\s]*)?APP_URL=.*,APP_URL=${APP_URL},g" -i /config/www/.env
 
+## Bump php upload max filesize and post max size to 100MB by default
+grep -qxF 'upload_max_filesize' /config/php/php-local.ini || echo 'upload_max_filesize = 100MB' >> /config/php/php-local.ini
+grep -qxF 'post_max_size' /config/php/php-local.ini || echo 'post_max_size = 100MB' >> /config/php/php-local.ini
+
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
 while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST+x}" ]; do

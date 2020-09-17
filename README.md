@@ -265,6 +265,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **17.09.20:** - Rebase to alpine 3.12. Fix APP_URL setting. Bump php post max and upload max filesizes to 100MB by default.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **26.07.19:** - Use old version of tidyhtml pending upstream fixes.
 * **28.06.19:** - Rebasing to alpine 3.10.

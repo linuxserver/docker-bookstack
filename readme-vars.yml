@@ -100,6 +100,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "17.09.20:", desc: "Rebase to alpine 3.12. Fix APP_URL setting. Bump php post max and upload max filesizes to 100MB by default." }
   - { date: "19.12.19:", desc: "Rebasing to alpine 3.11." }
   - { date: "26.07.19:", desc: "Use old version of tidyhtml pending upstream fixes." }
   - { date: "28.06.19:", desc: "Rebasing to alpine 3.10." }
