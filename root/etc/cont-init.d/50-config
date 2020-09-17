@@ -58,7 +58,7 @@ if [ "${DB_USER}" ];
 fi
 
 # set appurl if detected
-[[ "${APP_URL}" ]] && sed -i "s,#\sAPP_URL.*,APP_URL=${APP_URL},g" /config/www/.env
+[ -n "${APP_URL}" ] && sed -r "s,([#\s]*)?APP_URL=.*,APP_URL=${APP_URL},g" -i /config/www/.env
 
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
