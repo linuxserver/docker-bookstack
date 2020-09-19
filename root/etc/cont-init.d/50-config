@@ -64,6 +64,12 @@ fi
 grep -qx '^upload_max_filesize.*$' /config/php/php-local.ini || echo 'upload_max_filesize = 100M' >> /config/php/php-local.ini
 grep -qx '^post_max_size.*$' /config/php/php-local.ini || echo 'post_max_size = 100M' >> /config/php/php-local.ini
 
+
+## TODO: Remove this following bit by 12/19/2020
+# Remove erronously added configs post-init
+sed -i "s/^upload_max_filesize = 100MB$//g" /config/php/php-local.ini
+sed -i "s/^post_max_size = 100MB$//g" /config/php/php-local.ini
+
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
 while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST+x}" ]; do
