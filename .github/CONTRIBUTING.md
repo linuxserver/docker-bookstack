@@ -71,9 +71,9 @@ opt_param_env_vars:
 
 ```yml
 param_ports:
-  - { external_port: "80", internal_port: "80", port_desc: "Application WebUI" }
+  - { external_port: "8080", internal_port: "8080", port_desc: "Application WebUI" }
 opt_param_ports:
-  - { external_port: "80", internal_port: "80", port_desc: "Application WebUI" }
+  - { external_port: "8080", internal_port: "8080", port_desc: "Application WebUI" }
 ```
 
 ### Volumes

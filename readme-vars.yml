@@ -32,7 +32,7 @@ param_env_vars:
 
 param_usage_include_ports: true
 param_ports:
-  - { external_port: "6875", internal_port: "80", port_desc: "will map the container's port 80 to port 6875 on the host" }
+  - { external_port: "6875", internal_port: "8080", port_desc: "will map the container's port 8080 to port 6875 on the host" }
 
 opt_param_usage_include_env: true
 opt_param_env_vars:
@@ -55,7 +55,7 @@ custom_compose: |
       volumes:
         - /path/to/data:/config
       ports:
-        - 6875:80
+        - 6875:8080
       restart: unless-stopped
       depends_on:
         - bookstack_db

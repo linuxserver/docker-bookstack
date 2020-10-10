@@ -1,7 +1,7 @@
 ## Version 2018/03/06 - Changelog: https://github.com/linuxserver/docker-heimdall/commits/master/root/defaults/default
 
 server {
-	listen 80 default_server;
+	listen 8080 default_server;
 
 	listen 443 ssl;
 

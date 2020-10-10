@@ -87,7 +87,7 @@ services:
     volumes:
       - /path/to/data:/config
     ports:
-      - 6875:80
+      - 6875:8080
     restart: unless-stopped
     depends_on:
       - bookstack_db
@@ -120,7 +120,7 @@ docker run -d \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
   -e APP_URL=http://your.site.here.xyz `#optional` \
-  -p 6875:80 \
+  -p 6875:8080 \
   -v /path/to/data:/config \
   --restart unless-stopped \
   linuxserver/bookstack
@@ -129,11 +129,11 @@ docker run -d \
 
 ## Parameters
 
-Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:8080` would expose port `8080` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
 | Parameter | Function |
 | :----: | --- |
-| `-p 80` | will map the container's port 80 to port 6875 on the host |
+| `-p 8080` | will map the container's port 8080 to port 6875 on the host |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e DB_HOST=<yourdbhost>` | for specifying the database host |
