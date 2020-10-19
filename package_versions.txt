@@ -94,7 +94,7 @@ libxkbcommon-x11-0.10.0-r1
 libxml2-2.9.10-r5
 libxpm-3.5.13-r0
 libxrender-0.9.10-r3
-libxshmfence-1.3-r0
+libxshmfence-1.3-r1
 libxslt-1.1.34-r0
 libxt-1.2.0-r0
 libxv-1.0.11-r2
