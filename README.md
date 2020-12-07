@@ -133,7 +133,7 @@ Container images are configured using parameters passed at runtime (such as thos
 
 | Parameter | Function |
 | :----: | --- |
-| `-p 80` | will map the container's port 80 to port 6875 on the host |
+| `-p 6875:80` | will map the container's port 80 to port 6875 on the host |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e DB_HOST=<yourdbhost>` | for specifying the database host |
