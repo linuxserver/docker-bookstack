@@ -75,11 +75,12 @@ Compatible with docker-compose v2 schemas.
 version: "2"
 services:
   bookstack:
-    image: linuxserver/bookstack
+    image: ghcr.io/linuxserver/bookstack
     container_name: bookstack
     environment:
       - PUID=1000
       - PGID=1000
+      - APP_URL=
       - DB_HOST=bookstack_db
       - DB_USER=bookstack
       - DB_PASS=<yourdbpass>
@@ -92,7 +93,7 @@ services:
     depends_on:
       - bookstack_db
   bookstack_db:
-    image: linuxserver/mariadb
+    image: ghcr.io/linuxserver/mariadb
     container_name: bookstack_db
     environment:
       - PUID=1000
@@ -115,11 +116,11 @@ docker run -d \
   --name=bookstack \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e APP_URL= \
   -e DB_HOST=<yourdbhost> \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
-  -e APP_URL=http://your.site.here.xyz `#optional` \
   -p 6875:80 \
   -v /path/to/data:/config \
   --restart unless-stopped \
@@ -136,11 +137,11 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-p 80` | will map the container's port 80 to port 6875 on the host |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
+| `-e APP_URL=` | for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
 | `-e DB_HOST=<yourdbhost>` | for specifying the database host |
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
 | `-e DB_PASS=<yourdbpass>` | for specifying the database password |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `-e APP_URL=http://your.site.here.xyz` | for specifying the url your application will be accessed on (required for correct operation of reverse proxy) |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## Environment variables from files (Docker secrets)
@@ -183,14 +184,14 @@ The default username is admin@admin.com with the password of **password**, acces
 This application is dependent on a MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
 
 
-If you intend to use this application behind a subfolder reverse proxy, such as our LetsEncrypt container or Traefik you will need to make sure that the `APP_URL` environment variable is set, or it will not work
+If you intend to use this application behind a subfolder reverse proxy, such as our SWAG container or Traefik you will need to make sure that the `APP_URL` environment variable is set to your external domain, or it will not work
 
 Documentation for BookStack can be found at https://www.bookstackapp.com/docs/
 
 ### Advanced Users (full control over the .env file)
 If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
   
-When you create the container, do not set any arguments for any SQL settings, or APP_URL. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
+When you create the container, do not set any arguments for any SQL settings. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
 #### PDF Rendering
 [wkhtmltopdf](https://wkhtmltopdf.org/) is available to use as an alternative PDF rendering generator as described at https://www.bookstackapp.com/docs/admin/pdf-rendering/.
@@ -269,6 +270,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **17.12.20:** - Make APP_URL var required (upstream changes).
 * **17.09.20:** - Rebase to alpine 3.12. Fix APP_URL setting. Bump php post max and upload max filesizes to 100MB by default.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **26.07.19:** - Use old version of tidyhtml pending upstream fixes.

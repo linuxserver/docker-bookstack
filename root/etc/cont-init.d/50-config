@@ -57,18 +57,27 @@ if [ "${DB_USER}" ];
 	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /config/www/.env
 fi
 
-# set appurl if detected
-[ -n "${APP_URL}" ] && sed -r "s,([#\s]*)?APP_URL=.*,APP_URL=${APP_URL},g" -i /config/www/.env
+# set appurl
+if [ -z "${APP_URL}" ]; then
+	EXT_IP=$(curl -s https://icanhazip.com)
+	APP_URL="http://${EXT_IP}:6875"
+	echo "**** Docker env var APP_URL is not set, setting it to ${APP_URL} ****"
+fi
+OLD_URL=$(grep APP_URL /config/www/.env | sed 's|.*APP_URL=||g')
+if [ "${APP_URL}" != "${OLD_URL}" ]; then
+	sed -r "s,([#\s]*)?APP_URL=.*,APP_URL=${APP_URL},g" -i /config/www/.env
+	echo "**** APP_URL in /config/www/.env is being updated from ${OLD_URL} to ${APP_URL} ****"
+	if [ "${OLD_URL}" != "http://example.com" ]; then
+		echo "**** If this is an existing install, you should run the following line from your host terminal to update the database URL entries: ****"
+		echo "************************************************************************"
+		echo "docker exec -it bookstack php /var/www/html/artisan bookstack:update-url ${OLD_URL} ${APP_URL}"
+		echo "************************************************************************"
+	fi
+fi
 
 ## Bump php upload max filesize and post max size to 100MB by default
 grep -qx '^upload_max_filesize.*$' /config/php/php-local.ini || echo 'upload_max_filesize = 100M' >> /config/php/php-local.ini
 grep -qx '^post_max_size.*$' /config/php/php-local.ini || echo 'post_max_size = 100M' >> /config/php/php-local.ini
-
-
-## TODO: Remove this following bit by 12/19/2020
-# Remove erronously added configs post-init
-sed -i "s/^upload_max_filesize = 100MB$//g" /config/php/php-local.ini
-sed -i "s/^post_max_size = 100MB$//g" /config/php/php-local.ini
 
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
