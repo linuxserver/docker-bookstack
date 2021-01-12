@@ -145,7 +145,6 @@ php7-pecl-memcached-3.1.5-r0
 php7-phar-7.3.26-r0
 php7-session-7.3.26-r0
 php7-simplexml-7.3.26-r0
-php7-tidy-7.3.26-r0
 php7-tokenizer-7.3.26-r0
 php7-xml-7.3.26-r0
 php7-xmlwriter-7.3.26-r0
@@ -166,7 +165,6 @@ shadow-4.8.1-r0
 sqlite-libs-3.32.1-r0
 ssl_client-1.31.1-r19
 tar-1.32-r1
-tidyhtml-libs-5.6.0-r0
 ttf-freefont-20120503-r1
 tzdata-2020c-r1
 wayland-libs-client-1.18.0-r4
