@@ -29,7 +29,6 @@ RUN \
 	php7-pdo_mysql \
 	php7-phar \
 	php7-simplexml \
-	php7-tidy \
 	php7-tokenizer \
 	qt5-qtbase \
 	tar \
