@@ -166,7 +166,7 @@ sqlite-libs-3.32.1-r0
 ssl_client-1.31.1-r19
 tar-1.32-r1
 ttf-freefont-20120503-r1
-tzdata-2020c-r1
+tzdata-2020f-r0
 wayland-libs-client-1.18.0-r4
 wayland-libs-egl-1.18.0-r4
 wayland-libs-server-1.18.0-r4
