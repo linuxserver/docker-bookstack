@@ -25,7 +25,7 @@ expat-2.2.9-r1
 fontconfig-2.13.1-r2
 freetype-2.10.4-r0
 fribidi-1.0.9-r0
-git-2.26.2-r0
+git-2.26.3-r0
 glib-2.64.6-r0
 gmp-6.2.0-r0
 gnutls-3.6.15-r0
