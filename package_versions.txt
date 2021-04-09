@@ -12,7 +12,7 @@ brotli-libs-1.0.9-r1
 busybox-1.31.1-r20
 ca-certificates-20191127-r4
 ca-certificates-bundle-20191127-r4
-cairo-1.16.0-r2
+cairo-1.16.0-r3
 cdparanoia-libs-10.2-r8
 coreutils-8.32-r0
 cups-libs-2.3.3-r0
