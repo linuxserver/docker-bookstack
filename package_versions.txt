@@ -2,7 +2,7 @@ alpine-baselayout-3.2.0-r7
 alpine-keys-2.2-r0
 alsa-lib-1.2.2-r0
 apache2-utils-2.4.46-r1
-apk-tools-2.10.5-r3
+apk-tools-2.10.6-r0
 apr-1.7.0-r0
 apr-util-1.6.1-r6
 argon2-libs-20190702-r1
@@ -16,7 +16,7 @@ cairo-1.16.0-r3
 cdparanoia-libs-10.2-r8
 coreutils-8.32-r0
 cups-libs-2.3.3-r0
-curl-7.69.1-r3
+curl-7.76.1-r0
 db-5.3.28-r1
 dbus-libs-1.12.18-r0
 encodings-1.0.5-r0
@@ -44,7 +44,7 @@ libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
 libcap-2.27-r0
 libcrypto1.1-1.1.1k-r0
-libcurl-7.69.1-r3
+libcurl-7.76.1-r0
 libdrm-2.4.102-r0
 libedit-20191231.3.1-r0
 libevdev-1.9.0-r0
