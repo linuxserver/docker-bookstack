@@ -63,7 +63,6 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-
 The default username is admin@admin.com with the password of **password**, access the container at http://dockerhost:6875.
 
 This application is dependent on a MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
