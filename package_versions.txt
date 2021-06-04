@@ -162,7 +162,7 @@ qt5-qtwebkit-5.212.0_alpha4-r11
 readline-8.0.4-r0
 scanelf-1.2.6-r0
 shadow-4.8.1-r0
-sqlite-libs-3.32.1-r0
+sqlite-libs-3.32.1-r1
 ssl_client-1.31.1-r20
 tar-1.32-r2
 ttf-freefont-20120503-r1
