@@ -8,6 +8,10 @@ mkdir -p \
 [[ ! -f "/config/www/.env" ]] && \
 	cp /var/www/html/.env.example /config/www/.env
 
+# check for zero-length .env and alert user if found
+[[ ! -s "/config/www/.env" ]] && \
+  echo "WARNING: zero-length .env file detected. Please delete /config/www/.env and restart the container"
+
 # create symlinks
 symlinks=( \
 /var/www/html/storage/uploads/files \
