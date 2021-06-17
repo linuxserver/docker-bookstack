@@ -1,7 +1,7 @@
 alpine-baselayout-3.2.0-r7
 alpine-keys-2.2-r0
 alsa-lib-1.2.2-r0
-apache2-utils-2.4.46-r1
+apache2-utils-2.4.48-r0
 apk-tools-2.10.6-r0
 apr-1.7.0-r0
 apr-util-1.6.1-r6
