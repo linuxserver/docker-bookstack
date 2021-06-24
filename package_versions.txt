@@ -6,7 +6,7 @@ apk-tools-2.10.6-r0
 apr-1.7.0-r0
 apr-util-1.6.1-r6
 argon2-libs-20190702-r1
-avahi-libs-0.8-r0
+avahi-libs-0.8-r1
 bash-5.0.17-r0
 brotli-libs-1.0.9-r1
 busybox-1.31.1-r20
