@@ -52,7 +52,7 @@ libevent-2.1.11-r1
 libffi-3.3-r2
 libfontenc-1.1.4-r0
 libgcc-9.3.0-r2
-libgcrypt-1.8.5-r0
+libgcrypt-1.8.8-r0
 libgpg-error-1.37-r0
 libice-1.0.10-r0
 libinput-libs-1.15.5-r1
