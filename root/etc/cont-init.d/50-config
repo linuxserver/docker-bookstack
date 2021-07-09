@@ -55,10 +55,11 @@ fi
 if [ "${DB_USER}" ];
 	then
 	echo "Running config - db_user set"
+	ESCAPED_PASSWORD=$(sed -e 's/[$\/&]/\\&/g' <<< $DB_PASS)
 	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /config/www/.env
 	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
-	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${DB_PASS}/g" /config/www/.env
+	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${ESCAPED_PASSWORD}/g" /config/www/.env
 fi
 
 # set appurl
