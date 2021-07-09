@@ -105,8 +105,10 @@ fi
 
 # set permissions
 chown -R abc:abc \
-	/config \
-	/var/www/
+	/config
+
+find /var/www -print0 | xargs -P "$(nproc)" -I {} -0 chown -h abc:abc {}
+find /var/www -print0 -type d | xargs -P "$(nproc)" -I {} -0 chown -h abc:abc {}
 
 # set lockfile to avoid DB waits for this specific container
 touch /dbwait.lock
