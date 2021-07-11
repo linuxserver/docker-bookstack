@@ -101,6 +101,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "11.07.21:", desc: "Rebase to Alpine 3.14." }
   - { date: "12.01.21:", desc: "Remove unused requirement, as of release 0.31.0." }
   - { date: "17.12.20:", desc: "Make APP_URL var required (upstream changes)." }
   - { date: "17.09.20:", desc: "Rebase to alpine 3.12. Fix APP_URL setting. Bump php post max and upload max filesizes to 100MB by default." }
