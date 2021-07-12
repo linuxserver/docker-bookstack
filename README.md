@@ -269,6 +269,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **11.07.21:** - Rebase to Alpine 3.14.
 * **12.01.21:** - Remove unused requirement, as of release 0.31.0.
 * **17.12.20:** - Make APP_URL var required (upstream changes).
 * **17.09.20:** - Rebase to alpine 3.12. Fix APP_URL setting. Bump php post max and upload max filesizes to 100MB by default.
