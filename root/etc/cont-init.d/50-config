@@ -1,5 +1,11 @@
 #!/usr/bin/with-contenv bash
 
+if [ -d /var/www-tmp ]; then
+    echo "New container detected. Setting up app folder and fixing permissions."
+    mv /var/www-tmp /var/www
+    chown -R abc:abc /var/www
+fi
+
 # create directory structure
 mkdir -p \
 	/config/www/{uploads,files,images}
@@ -107,9 +113,6 @@ fi
 # set permissions
 chown -R abc:abc \
 	/config
-
-find /var/www -print0 | xargs -P "$(nproc)" -I {} -0 chown -h abc:abc {}
-find /var/www -print0 -type d | xargs -P "$(nproc)" -I {} -0 chown -h abc:abc {}
 
 # set lockfile to avoid DB waits for this specific container
 touch /dbwait.lock

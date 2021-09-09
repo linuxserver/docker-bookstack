@@ -53,6 +53,8 @@ RUN \
     /var/www/html/ --strip-components=1 && \
   echo "**** install composer dependencies ****" && \
   composer install -d /var/www/html/ && \
+  echo "**** overlay-fs bug workaround ****" && \
+  mv /var/www /var/www-tmp && \
   echo "**** cleanup ****" && \
   rm -rf \
     /root/.composer \
