@@ -53,7 +53,7 @@ libevent-2.1.12-r2
 libffi-3.3-r2
 libfontenc-1.1.4-r0
 libgcc-10.3.1_git20210424-r2
-libgcrypt-1.9.3-r0
+libgcrypt-1.9.4-r0
 libgpg-error-1.42-r0
 libice-1.0.10-r0
 libinput-libs-1.18.0-r0
