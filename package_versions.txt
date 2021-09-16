@@ -17,7 +17,7 @@ cdparanoia-libs-10.2-r9
 composer-2.1.6-r0
 coreutils-8.32-r2
 cups-libs-2.3.3-r2
-curl-7.78.0-r0
+curl-7.79.0-r0
 dbus-libs-1.12.20-r2
 encodings-1.0.5-r0
 eudev-libs-3.2.10-r0
@@ -45,7 +45,7 @@ libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
 libcap-2.50-r0
 libcrypto1.1-1.1.1l-r0
-libcurl-7.78.0-r0
+libcurl-7.79.0-r0
 libdrm-2.4.106-r0
 libedit-20210216.3.1-r0
 libevdev-1.11.0-r1
@@ -118,7 +118,7 @@ nano-5.7-r2
 ncurses-libs-6.2_p20210612-r0
 ncurses-terminfo-base-6.2_p20210612-r0
 netcat-openbsd-1.130-r2
-nettle-3.7.2-r0
+nettle-3.7.3-r0
 nghttp2-libs-1.43.0-r0
 nginx-1.20.1-r3
 oniguruma-6.9.7.1-r0
