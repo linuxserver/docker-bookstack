@@ -33,6 +33,7 @@ Find us at:
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-bookstack.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-bookstack/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-bookstack/packages)
 [![GitLab Container Registry](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitLab%20Registry&logo=gitlab)](https://gitlab.com/linuxserver.io/docker-bookstack/container_registry)
+[![Quay.io](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=Quay.io)](https://quay.io/repository/linuxserver.io/bookstack)
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/bookstack.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/bookstack)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/bookstack.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/bookstack)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-bookstack%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-bookstack/job/master/)
@@ -50,7 +51,7 @@ For more information on BookStack visit their website and check it out: https://
 
 Our images support multiple architectures such as `x86-64`, `arm64` and `armhf`. We utilise the docker manifest for multi-platform awareness. More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and our announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
 
-Simply pulling `ghcr.io/linuxserver/bookstack` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
+Simply pulling `lscr.io/linuxserver/bookstack` should retrieve the correct image for your arch, but you can also pull specific arch images via tags.
 
 The architectures supported by this image are:
 
@@ -141,7 +142,7 @@ docker run -d \
   -p 6875:80 \
   -v /path/to/data:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/bookstack
+  lscr.io/linuxserver/bookstack
 ```
 
 ## Parameters
@@ -203,7 +204,7 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 * container version number
   * `docker inspect -f '{{ index .Config.Labels "build_version" }}' bookstack`
 * image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/bookstack`
+  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' lscr.io/linuxserver/bookstack`
 
 ## Updating Info
 
@@ -221,7 +222,7 @@ Below are the instructions for updating containers:
 
 ### Via Docker Run
 
-* Update the image: `docker pull ghcr.io/linuxserver/bookstack`
+* Update the image: `docker pull lscr.io/linuxserver/bookstack`
 * Stop the running container: `docker stop bookstack`
 * Delete the container: `docker rm bookstack`
 * Recreate a new container with the same docker run parameters as instructed above (if mapped correctly to a host folder, your `/config` folder and settings will be preserved)
@@ -256,7 +257,7 @@ cd docker-bookstack
 docker build \
   --no-cache \
   --pull \
-  -t ghcr.io/linuxserver/bookstack:latest .
+  -t lscr.io/linuxserver/bookstack:latest .
 ```
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
