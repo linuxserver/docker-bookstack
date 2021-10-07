@@ -1,7 +1,7 @@
 alpine-baselayout-3.2.0-r16
 alpine-keys-2.3-r1
 alsa-lib-1.2.5-r2
-apache2-utils-2.4.49-r0
+apache2-utils-2.4.50-r0
 apk-tools-2.12.7-r0
 apr-1.7.0-r0
 apr-util-1.6.1-r7
@@ -14,7 +14,7 @@ ca-certificates-20191127-r5
 ca-certificates-bundle-20191127-r5
 cairo-1.16.0-r3
 cdparanoia-libs-10.2-r9
-composer-2.1.6-r0
+composer-2.1.9-r0
 coreutils-8.32-r2
 cups-libs-2.3.3-r2
 curl-7.79.1-r0
@@ -176,7 +176,7 @@ sqlite-libs-3.35.5-r0
 ssl_client-1.33.1-r3
 tar-1.34-r0
 ttf-freefont-20120503-r1
-tzdata-2021b-r0
+tzdata-2021c-r0
 utmps-0.1.0.2-r0
 wayland-libs-client-1.19.0-r0
 wayland-libs-cursor-1.19.0-r0
