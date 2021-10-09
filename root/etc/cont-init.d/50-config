@@ -8,7 +8,7 @@ fi
 
 # create directory structure
 mkdir -p \
-	/config/www/{uploads,files,images}
+	/config/www/{uploads,files,images,themes}
 
 # check for .env and copy default if needed
 [[ ! -f "/config/www/.env" ]] && \
@@ -20,6 +20,7 @@ mkdir -p \
 
 # create symlinks
 symlinks=( \
+/var/www/html/themes \
 /var/www/html/storage/uploads/files \
 /var/www/html/storage/uploads/images \
 /var/www/html/public/uploads \
