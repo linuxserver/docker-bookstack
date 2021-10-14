@@ -1,9 +1,9 @@
 #!/usr/bin/with-contenv bash
 
-if [ -d /var/www-tmp ]; then
+if [ -d /app/www-tmp ]; then
     echo "New container detected. Setting up app folder and fixing permissions."
-    mv /var/www-tmp /var/www
-    chown -R abc:abc /var/www
+    mv /app/www-tmp /app/www
+    chown -R abc:abc /app/www
 fi
 
 # create directory structure
@@ -11,52 +11,53 @@ mkdir -p \
 	/config/www/{uploads,files,images,themes}
 
 # check for .env and copy default if needed
-[[ ! -f "/config/www/.env" ]] && \
-	cp /var/www/html/.env.example /config/www/.env
-
-# check for zero-length .env and alert user if found
-[[ ! -s "/config/www/.env" ]] && \
-  echo "WARNING: zero-length .env file detected. Please delete /config/www/.env and restart the container"
+if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
+    cp /app/www/.env.example /config/www/.env
+fi
 
 # create symlinks
 symlinks=( \
-/var/www/html/themes \
-/var/www/html/storage/uploads/files \
-/var/www/html/storage/uploads/images \
-/var/www/html/public/uploads \
-/var/www/html/.env \
-/var/www/html/storage/logs/laravel.log
+/app/www/themes \
+/app/www/storage/uploads/files \
+/app/www/storage/uploads/images \
+/app/www/public/uploads \
+/app/www/.env \
+/app/www/storage/logs/laravel.log
 )
 
 for i in "${symlinks[@]}"
 do
-[[ -e "$i" && ! -L "$i" ]] && rm -rf "$i"
-[[ ! -L "$i" ]] && ln -s /config/www/"$(basename "$i")" "$i"
+    if [[ -e "$i" && ! -L "$i" ]]; then
+        rm -rf "$i"
+    fi
+    if [[ ! -L "$i" ]]; then
+        ln -s /config/www/"$(basename "$i")" "$i"
+    fi
 done
 
 # Echo init finish for test runs
 if [ -n "${TEST_RUN}" ]; then
-	echo '[services.d] done.'
+    echo '[services.d] done.'
 fi
 
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ];
-	then
-	echo "Generating BookStack app key for first run"
-	key=$(php /var/www/html/artisan key:generate --show)
-	echo $key > /config/BOOKSTACK_APP_KEY.txt
-	echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
+    then
+    echo "Generating BookStack app key for first run"
+    key=$(php /app/www/artisan key:generate --show)
+    echo $key > /config/BOOKSTACK_APP_KEY.txt
+    echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
 elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ];
-	then
-	echo "App Key found - setting variable for seds"
-	key=$(cat /config/BOOKSTACK_APP_KEY.txt)
+    then
+    echo "App Key found - setting variable for seds"
+    key=$(cat /config/BOOKSTACK_APP_KEY.txt)
 fi
 
 # .env file setup
 # check for the default app key or if it has been updated
 if grep -Fxq "APP_KEY=SomeRandomString" /config/www/.env || \
 ! grep -Fxq "APP_KEY=${key}" /config/www/.env; then
-	sed -i "s#^APP_KEY=.*#APP_KEY=${key}#" /config/www/.env
+    sed -i "s#^APP_KEY=.*#APP_KEY=${key}#" /config/www/.env
 fi
 # check to see if db_user is set, if it is then run seds and if not then leave them
 if [ "${DB_USER}" ];
@@ -71,49 +72,58 @@ fi
 
 # set appurl
 if [ -z "${APP_URL}" ]; then
-	EXT_IP=$(curl -s https://icanhazip.com)
-	APP_URL="http://${EXT_IP}:6875"
-	echo "**** Docker env var APP_URL is not set, setting it to ${APP_URL} ****"
+    EXT_IP=$(curl -s https://icanhazip.com)
+    APP_URL="http://${EXT_IP}:6875"
+    echo "**** Docker env var APP_URL is not set, setting it to ${APP_URL} ****"
 fi
 OLD_URL=$(grep APP_URL /config/www/.env | sed 's|.*APP_URL=||g')
 if [ "${APP_URL}" != "${OLD_URL}" ]; then
-	sed -r "s,([#\s]*)?APP_URL=.*,APP_URL=${APP_URL},g" -i /config/www/.env
-	echo "**** APP_URL in /config/www/.env is being updated from ${OLD_URL} to ${APP_URL} ****"
-	if [ "${OLD_URL}" != "http://example.com" ]; then
-		echo "**** If this is an existing install, you should run the following line from your host terminal to update the database URL entries: ****"
-		echo "************************************************************************"
-		echo "docker exec -it bookstack php /var/www/html/artisan bookstack:update-url ${OLD_URL} ${APP_URL}"
-		echo "************************************************************************"
-	fi
+    sed -r "s,([#\s]*)?APP_URL=.*,APP_URL=${APP_URL},g" -i /config/www/.env
+    echo "**** APP_URL in /config/www/.env is being updated from ${OLD_URL} to ${APP_URL} ****"
+    if [ "${OLD_URL}" != "http://example.com" ]; then
+        echo "**** If this is an existing install, you should run the following line from your host terminal to update the database URL entries: ****"
+        echo "************************************************************************"
+        echo "docker exec -it bookstack php /app/www/artisan bookstack:update-url ${OLD_URL} ${APP_URL}"
+        echo "************************************************************************"
+    fi
 fi
 
 ## Bump php upload max filesize and post max size to 100MB by default
-grep -qx '^upload_max_filesize.*$' /config/php/php-local.ini || echo 'upload_max_filesize = 100M' >> /config/php/php-local.ini
-grep -qx '^post_max_size.*$' /config/php/php-local.ini || echo 'post_max_size = 100M' >> /config/php/php-local.ini
+if ! grep -qx '^upload_max_filesize.*$' /config/php/php-local.ini; then
+    echo 'upload_max_filesize = 100M' >> /config/php/php-local.ini
+fi
+if ! grep -qx '^post_max_size.*$' /config/php/php-local.ini; then
+    echo 'post_max_size = 100M' >> /config/php/php-local.ini
+fi
 
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
 while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST+x}" ]; do
-	/usr/bin/nc -z ${DB_HOST} 3306 && \
-	if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST} 3306)" ]; then
-		[ ! -z "${RUN}" ] && break
-		RUN="RAN"
-		# we sleep here again due to first run init on DB containers
-		[ ! -f /dbwait.lock ] && sleep 5
-	else
-		sleep 1
-	fi
-	sleep 1
+    if /usr/bin/nc -z ${DB_HOST} 3306; then
+        if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST} 3306)" ]; then
+            if [ ! -z "${RUN}" ]; then
+                break
+            fi
+            RUN="RAN"
+            # we sleep here again due to first run init on DB containers
+            if [ ! -f /dbwait.lock ]; then
+                sleep 5
+            fi
+        else
+            sleep 1
+        fi
+    fi
+    sleep 1
 done
 
 # update database - will set up database if fresh, or, migrate existing
 if [ -z "${CI_RUN+x}" ]; then
-	php /var/www/html/artisan migrate --force
+    php /app/www/artisan migrate --force
 fi
 
 # set permissions
 chown -R abc:abc \
-	/config
+    /config
 
 # set lockfile to avoid DB waits for this specific container
 touch /dbwait.lock
