@@ -93,7 +93,7 @@ Here are some example snippets to help you get started creating a container.
 version: "2"
 services:
   bookstack:
-    image: ghcr.io/linuxserver/bookstack
+    image: lscr.io/linuxserver/bookstack
     container_name: bookstack
     environment:
       - PUID=1000
@@ -111,7 +111,7 @@ services:
     depends_on:
       - bookstack_db
   bookstack_db:
-    image: ghcr.io/linuxserver/mariadb
+    image: lscr.io/linuxserver/mariadb
     container_name: bookstack_db
     environment:
       - PUID=1000
