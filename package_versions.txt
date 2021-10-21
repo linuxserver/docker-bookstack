@@ -1,5 +1,5 @@
 alpine-baselayout-3.2.0-r16
-alpine-keys-2.3-r1
+alpine-keys-2.4-r0
 alsa-lib-1.2.5-r2
 apache2-utils-2.4.51-r0
 apk-tools-2.12.7-r0
@@ -176,7 +176,7 @@ sqlite-libs-3.35.5-r0
 ssl_client-1.33.1-r3
 tar-1.34-r0
 ttf-freefont-20120503-r1
-tzdata-2021c-r0
+tzdata-2021d-r0
 utmps-0.1.0.2-r0
 wayland-libs-client-1.19.0-r0
 wayland-libs-cursor-1.19.0-r0
