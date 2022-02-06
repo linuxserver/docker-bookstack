@@ -39,7 +39,7 @@ hyphen-2.8.8-r1
 icu-libs-67.1-r2
 libacl-2.2.53-r0
 libattr-2.5.1-r0
-libblkid-2.37.2-r0
+libblkid-2.37.3-r0
 libbsd-0.11.3-r0
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
@@ -63,7 +63,7 @@ libldap-2.4.58-r0
 libmagic-5.40-r1
 libmd-1.0.3-r0
 libmemcached-libs-1.0.18-r4
-libmount-2.37.2-r0
+libmount-2.37.3-r0
 libogg-1.3.5-r0
 libpciaccess-0.16-r0
 libpcre2-16-10.36-r0
