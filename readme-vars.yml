@@ -101,6 +101,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "14.03.22:", desc: "Add symlinks for theme support." }
   - { date: "11.07.21:", desc: "Rebase to Alpine 3.14." }
   - { date: "12.01.21:", desc: "Remove unused requirement, as of release 0.31.0." }
   - { date: "17.12.20:", desc: "Make APP_URL var required (upstream changes)." }
