@@ -71,7 +71,7 @@ libpng-1.6.37-r1
 libproc-3.3.17-r0
 libressl3.3-libcrypto-3.3.6-r0
 libressl3.3-libssl-3.3.6-r0
-libretls-3.3.3p1-r2
+libretls-3.3.3p1-r3
 libsasl-2.1.28-r0
 libseccomp-2.5.1-r2
 libsm-1.2.3-r0
@@ -191,5 +191,5 @@ xcb-util-wm-0.4.1-r1
 xkeyboard-config-2.33-r0
 xz-5.2.5-r0
 xz-libs-5.2.5-r0
-zlib-1.2.11-r3
+zlib-1.2.12-r0
 zstd-libs-1.4.9-r1
