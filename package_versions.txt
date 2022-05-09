@@ -23,7 +23,7 @@ encodings-1.0.5-r0
 eudev-libs-3.2.10-r0
 expat-2.4.7-r0
 fontconfig-2.13.1-r4
-freetype-2.10.4-r1
+freetype-2.10.4-r2
 fribidi-1.0.10-r0
 gdbm-1.19-r0
 git-2.32.1-r0
