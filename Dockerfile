@@ -7,7 +7,7 @@ ARG BOOKSTACK_RELEASE
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="homerr"
 
-# package versions
+# package versions
 ARG BOOKSTACK_RELEASE
 
 RUN \
@@ -31,6 +31,7 @@ RUN \
     php7-phar \
     php7-simplexml \
     php7-tokenizer \
+    php7-opcache \
     qt5-qtbase \
     tar \
     ttf-freefont \
@@ -38,6 +39,11 @@ RUN \
   echo "**** configure php-fpm ****" && \
   sed -i 's/;clear_env = no/clear_env = no/g' /etc/php7/php-fpm.d/www.conf && \
   echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php7/php-fpm.conf && \
+  echo "**** configure php.ini ****" && \
+  sed -i 's/;opcache.enable=1/opcache.enable=1/g' /etc/php7/php.ini && \
+  sed -i 's/;opcache.memory_consumption=128/opcache.memory_consumption=128/g' /etc/php7/php.ini && \
+  sed -i 's/;opcache.max_accelerated_files=10000/opcache.max_accelerated_files=1000000/g' /etc/php7/php.ini && \
+  sed -i 's/;opcache.revalidate_freq=2/opcache.revalidate_freq=60/g' /etc/php7/php.ini && \
   echo "**** fetch bookstack ****" && \
   mkdir -p\
     /var/www/html && \
