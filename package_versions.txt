@@ -103,7 +103,7 @@ libxv-1.0.11-r2
 libxxf86vm-1.1.4-r2
 libzip-1.7.3-r2
 linux-pam-1.5.1-r1
-logrotate-3.18.1-r2
+logrotate-3.18.1-r3
 memcached-1.6.9-r0
 mesa-21.1.2-r0
 mesa-egl-21.1.2-r0
