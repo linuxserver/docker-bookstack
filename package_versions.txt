@@ -44,7 +44,7 @@ libbsd-0.11.3-r0
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
 libcap-2.50-r0
-libcrypto1.1-1.1.1o-r0
+libcrypto1.1-1.1.1p-r0
 libcurl-7.79.1-r2
 libdrm-2.4.106-r0
 libedit-20210216.3.1-r0
@@ -75,7 +75,7 @@ libretls-3.3.3p1-r3
 libsasl-2.1.28-r0
 libseccomp-2.5.1-r2
 libsm-1.2.3-r0
-libssl1.1-1.1.1o-r0
+libssl1.1-1.1.1p-r0
 libstdc++-10.3.1_git20210424-r2
 libtasn1-4.17.0-r0
 libtheora-1.1.1-r16
@@ -122,7 +122,7 @@ nettle-3.7.3-r0
 nghttp2-libs-1.43.0-r0
 nginx-1.20.2-r1
 oniguruma-6.9.7.1-r0
-openssl-1.1.1o-r0
+openssl-1.1.1q-r0
 opus-1.3.1-r1
 orc-0.4.32-r0
 p11-kit-0.23.22-r0
