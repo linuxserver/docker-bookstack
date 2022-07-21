@@ -115,8 +115,8 @@ mtdev-1.1.6-r0
 musl-1.2.2-r3
 musl-utils-1.2.2-r3
 nano-5.7-r2
-ncurses-libs-6.2_p20210612-r0
-ncurses-terminfo-base-6.2_p20210612-r0
+ncurses-libs-6.2_p20210612-r1
+ncurses-terminfo-base-6.2_p20210612-r1
 netcat-openbsd-1.130-r2
 nettle-3.7.3-r0
 nghttp2-libs-1.43.0-r0
