@@ -10,8 +10,8 @@ avahi-libs-0.8-r5
 bash-5.1.16-r0
 brotli-libs-1.0.9-r5
 busybox-1.33.1-r8
-ca-certificates-20211220-r0
-ca-certificates-bundle-20211220-r0
+ca-certificates-20220614-r0
+ca-certificates-bundle-20220614-r0
 cairo-1.16.0-r5
 cdparanoia-libs-10.2-r9
 composer-2.1.9-r0
