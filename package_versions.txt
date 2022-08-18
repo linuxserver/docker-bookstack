@@ -191,5 +191,5 @@ xcb-util-wm-0.4.1-r1
 xkeyboard-config-2.33-r0
 xz-5.2.5-r1
 xz-libs-5.2.5-r1
-zlib-1.2.12-r2
+zlib-1.2.12-r3
 zstd-libs-1.4.9-r1
