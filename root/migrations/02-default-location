@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+
+DEFAULT_CONF="/config/nginx/site-confs/default.conf"
+OLD_ROOT="root /var/www/html/public;"
+NEW_ROOT="root /app/www/public;"
+
+if grep -q "${OLD_ROOT}" "${DEFAULT_CONF}";then
+    echo "updating root in ${DEFAULT_CONF}"
+    sed -i "s|${OLD_ROOT}|${NEW_ROOT}|" "${DEFAULT_CONF}"
+fi
