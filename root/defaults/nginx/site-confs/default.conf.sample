@@ -12,18 +12,12 @@ server {
     root /app/www/public;
     index index.html index.htm index.php;
 
-    error_page 599 = @noauth;
-
-    location @noauth {
-            try_files $uri $uri/ /index.php?$args;
-    }
-
     location / {
         # enable for basic auth
         #auth_basic "Restricted";
         #auth_basic_user_file /config/nginx/.htpasswd;
 
-		try_files $uri $uri/ /index.php?$query_string;
+        try_files $uri $uri/ /index.php$is_args$args;
     }
 
     location ~ ^(.+\.php)(.*)$ {
