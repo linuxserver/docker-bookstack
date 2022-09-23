@@ -96,11 +96,21 @@ if ! grep -qx '^post_max_size.*$' /config/php/php-local.ini; then
     echo 'post_max_size = 100M' >> /config/php/php-local.ini
 fi
 
+# extract actual host and port from DB_HOST endpoint format, not support IPv6
+# DB_HOST enpoint 'domainIp:port' or 'domainIp'
+# DB_HOST_ONLY drop ':port' portion
+# DB_PORT_ONLY drop host_only portion, remains '' or ':port'
+# DB_PORT_ONLY drop ':' if any, remain '' or 'port'
+# ${DB_PORT_ONLY:-3306} use default 3306 if missing
+DB_HOST_ONLY=${DB_HOST%:*}
+DB_PORT_ONLY=${DB_HOST#$DB_HOST_ONLY}
+DB_PORT_ONLY=${DB_PORT_ONLY#:}
+
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
-while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST+x}" ]; do
-    if /usr/bin/nc -z ${DB_HOST} 3306; then
-        if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST} 3306)" ]; then
+while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST_ONLY+x}" ]; do
+    if /usr/bin/nc -z ${DB_HOST_ONLY} ${DB_PORT_ONLY:-3306}; then
+        if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST_ONLY} ${DB_PORT_ONLY:-3306})" ]; then
             if [ ! -z "${RUN}" ]; then
                 break
             fi
