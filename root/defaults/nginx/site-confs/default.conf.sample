@@ -1,4 +1,4 @@
-## Version 2022/08/20 - Changelog: https://github.com/linuxserver/docker-bookstack/commits/master/root/defaults/nginx/site-confs/default.conf.sample
+## Version 2022/10/04 - Changelog: https://github.com/linuxserver/docker-bookstack/commits/master/root/defaults/nginx/site-confs/default.conf.sample
 
 server {
     listen 80 default_server;
