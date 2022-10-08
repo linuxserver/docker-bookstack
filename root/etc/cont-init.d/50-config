@@ -13,6 +13,12 @@ mkdir -p \
 # check for .env and copy default if needed
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
     cp /app/www/.env.example /config/www/.env
+
+    if ! grep -Fxq "DB_PORT=3306" /config/www/.env; then
+        # add line DB_PORT=3306 to /config/www/.env because current /app/www/.env.example dont have it
+        sed -i "/DB_HOST=localhost/a DB_PORT=3306" /config/www/.env
+        echo "**** Insert DB_PORT=3306 into /config/www/.env ****"
+    fi
 fi
 
 # create symlinks
@@ -68,6 +74,11 @@ if [ "${DB_USER}" ];
 	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
 	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
 	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${ESCAPED_PASSWORD}/g" /config/www/.env
+
+	if [ "${DB_PORT}" ];
+		then
+		sed -i "s/DB_PORT=3306/DB_PORT=${DB_PORT}/g" /config/www/.env
+	fi
 fi
 
 # set appurl
@@ -101,7 +112,7 @@ fi
 # DB_HOST_ONLY drop ':port' portion
 # DB_PORT_ONLY drop host_only portion, remains '' or ':port'
 # DB_PORT_ONLY drop ':' if any, remain '' or 'port'
-# ${DB_PORT_ONLY:-3306} use default 3306 if missing
+# ${DB_PORT_ONLY:-${DB_PORT:-3306}} use DB_PORT if no port provided in DB_HOST, use default 3306 if not provide DB_PORT
 DB_HOST_ONLY=${DB_HOST%:*}
 DB_PORT_ONLY=${DB_HOST#$DB_HOST_ONLY}
 DB_PORT_ONLY=${DB_PORT_ONLY#:}
@@ -109,8 +120,8 @@ DB_PORT_ONLY=${DB_PORT_ONLY#:}
 # check for the mysql endpoint for 30 seconds
 END=$((SECONDS+30))
 while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST_ONLY+x}" ]; do
-    if /usr/bin/nc -z ${DB_HOST_ONLY} ${DB_PORT_ONLY:-3306}; then
-        if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST_ONLY} ${DB_PORT_ONLY:-3306})" ]; then
+    if /usr/bin/nc -z ${DB_HOST_ONLY} ${DB_PORT_ONLY:-${DB_PORT:-3306}}; then
+        if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST_ONLY} ${DB_PORT_ONLY:-${DB_PORT:-3306}})" ]; then
             if [ ! -z "${RUN}" ]; then
                 break
             fi
