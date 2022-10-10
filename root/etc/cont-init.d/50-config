@@ -13,12 +13,6 @@ mkdir -p \
 # check for .env and copy default if needed
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
     cp /app/www/.env.example /config/www/.env
-
-    if ! grep -xq "^DB_PORT=.*" /config/www/.env; then
-        # add line DB_PORT=3306 to /config/www/.env because current /app/www/.env.example dont have it
-        sed -i "/^DB_HOST=.*/a DB_PORT=3306" /config/www/.env
-        echo "**** Insert DB_PORT=3306 into /config/www/.env ****"
-    fi
 fi
 
 # create symlinks
@@ -76,7 +70,13 @@ if [ "${DB_USER}" ];
 	sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${ESCAPED_PASSWORD}/g" /config/www/.env
 
 	if [ -n "${DB_PORT}" ]; then
-		sed -i "s/^DB_PORT=.*/DB_PORT=${DB_PORT}/g" /config/www/.env
+		if ! grep -xq "^DB_PORT=.*" /config/www/.env; then
+			# add line DB_PORT=3306 to /config/www/.env because current /app/www/.env.example dont have it
+			sed -i "/^DB_HOST=.*/a DB_PORT=${DB_PORT}" /config/www/.env
+			echo "**** Insert DB_PORT=${DB_PORT} into /config/www/.env ****"
+		else
+			sed -i "s/^DB_PORT=.*/DB_PORT=${DB_PORT}/g" /config/www/.env
+		fi
 	fi
 fi
 
