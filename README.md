@@ -271,6 +271,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **10.10.22:** - Remove password escape logic which caused problems for a small subset of users.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **14.03.22:** - Add symlinks for theme support.
 * **11.07.21:** - Rebase to Alpine 3.14.
