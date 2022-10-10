@@ -14,9 +14,9 @@ mkdir -p \
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
     cp /app/www/.env.example /config/www/.env
 
-    if ! grep -Fxq "DB_PORT=3306" /config/www/.env; then
+    if ! grep -xq "^DB_PORT=.*" /config/www/.env; then
         # add line DB_PORT=3306 to /config/www/.env because current /app/www/.env.example dont have it
-        sed -i "/DB_HOST=localhost/a DB_PORT=3306" /config/www/.env
+        sed -i "/^DB_HOST=.*/a DB_PORT=3306" /config/www/.env
         echo "**** Insert DB_PORT=3306 into /config/www/.env ****"
     fi
 fi
@@ -70,14 +70,13 @@ if [ "${DB_USER}" ];
 	then
 	echo "Running config - db_user set"
 	ESCAPED_PASSWORD=$(sed -E 's/('\'')/\\\1/g' <<< $DB_PASS)
-	sed -i "s/DB_HOST=localhost/DB_HOST=${DB_HOST}/g" /config/www/.env
-	sed -i "s/DB_DATABASE=database_database/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
-	sed -i "s/DB_USERNAME=database_username/DB_USERNAME=${DB_USER}/g" /config/www/.env
-	sed -i "s/DB_PASSWORD=database_user_password/DB_PASSWORD=${ESCAPED_PASSWORD}/g" /config/www/.env
+	sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/g" /config/www/.env
+	sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
+	sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${DB_USER}/g" /config/www/.env
+	sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${ESCAPED_PASSWORD}/g" /config/www/.env
 
-	if [ "${DB_PORT}" ];
-		then
-		sed -i "s/DB_PORT=3306/DB_PORT=${DB_PORT}/g" /config/www/.env
+	if [ -n "${DB_PORT}" ]; then
+		sed -i "s/^DB_PORT=.*/DB_PORT=${DB_PORT}/g" /config/www/.env
 	fi
 fi
 
