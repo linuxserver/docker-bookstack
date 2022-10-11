@@ -159,7 +159,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DB_HOST=<yourdbhost>` | for specifying the database host |
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
 | `-e DB_PASS=<yourdbpass>` | for specifying the database password |
-| `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
+| `-e DB_DATABASE=bookstackapp` | for specifying the database to be used (non-alphanumeric passwords must be properly escaped.) |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## Environment variables from files (Docker secrets)
@@ -271,6 +271,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **10.10.22:** - Remove password escape logic which caused problems for a small subset of users.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).
 * **14.03.22:** - Add symlinks for theme support.
 * **11.07.21:** - Rebase to Alpine 3.14.

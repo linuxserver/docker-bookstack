@@ -63,11 +63,10 @@ fi
 if [ "${DB_USER}" ];
 	then
 	echo "Running config - db_user set"
-	ESCAPED_PASSWORD=$(sed -E 's/('\'')/\\\1/g' <<< $DB_PASS)
 	sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/g" /config/www/.env
 	sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
 	sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${DB_USER}/g" /config/www/.env
-	sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${ESCAPED_PASSWORD}/g" /config/www/.env
+	sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASS}/g" /config/www/.env
 
 	if [ -n "${DB_PORT}" ]; then
 		if ! grep -xq "^DB_PORT=.*" /config/www/.env; then
