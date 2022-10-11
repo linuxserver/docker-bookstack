@@ -8,7 +8,7 @@ fi
 
 # create directory structure
 mkdir -p \
-	/config/www/{uploads,files,images,themes}
+    /config/www/{uploads,files,images,themes}
 
 # check for .env and copy default if needed
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
@@ -16,22 +16,21 @@ if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
 fi
 
 # create symlinks
-symlinks=( \
-/app/www/themes \
-/app/www/storage/uploads/files \
-/app/www/storage/uploads/images \
-/app/www/public/uploads \
-/app/www/.env \
-/app/www/storage/logs/laravel.log
+symlinks=(
+    /app/www/themes
+    /app/www/storage/uploads/files
+    /app/www/storage/uploads/images
+    /app/www/public/uploads
+    /app/www/.env
+    /app/www/storage/logs/laravel.log
 )
 
-for i in "${symlinks[@]}"
-do
-    if [[ -e "$i" && ! -L "$i" ]]; then
-        rm -rf "$i"
+for i in "${symlinks[@]}"; do
+    if [[ -e "${i}" && ! -L "${i}" ]]; then
+        rm -rf "${i}"
     fi
-    if [[ ! -L "$i" ]]; then
-        ln -s /config/www/"$(basename "$i")" "$i"
+    if [[ ! -L "${i}" ]]; then
+        ln -s /config/www/"$(basename "${i}")" "${i}"
     fi
 done
 
@@ -41,42 +40,58 @@ if [ -n "${TEST_RUN}" ]; then
 fi
 
 # Create API key if needed
-if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ];
-    then
+if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]; then
     echo "Generating BookStack app key for first run"
     key=$(php /app/www/artisan key:generate --show)
-    echo $key > /config/BOOKSTACK_APP_KEY.txt
-    echo "App Key set to $key you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
-elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ];
-    then
+    echo "${key}" >/config/BOOKSTACK_APP_KEY.txt
+    echo "App Key set to ${key} you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
+elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ]; then
     echo "App Key found - setting variable for seds"
     key=$(cat /config/BOOKSTACK_APP_KEY.txt)
 fi
 
 # .env file setup
 # check for the default app key or if it has been updated
-if grep -Fxq "APP_KEY=SomeRandomString" /config/www/.env || \
-! grep -Fxq "APP_KEY=${key}" /config/www/.env; then
+if ! grep -Fxq "APP_KEY=${key}" /config/www/.env; then
     sed -i "s#^APP_KEY=.*#APP_KEY=${key}#" /config/www/.env
 fi
-# check to see if db_user is set, if it is then run seds and if not then leave them
-if [ "${DB_USER}" ];
-	then
-	echo "Running config - db_user set"
-	sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/g" /config/www/.env
-	sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
-	sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${DB_USER}/g" /config/www/.env
-	sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASS}/g" /config/www/.env
 
-	if [ -n "${DB_PORT}" ]; then
-		if ! grep -xq "^DB_PORT=.*" /config/www/.env; then
-			# add line DB_PORT=3306 to /config/www/.env because current /app/www/.env.example dont have it
-			sed -i "/^DB_HOST=.*/a DB_PORT=${DB_PORT}" /config/www/.env
-			echo "**** Insert DB_PORT=${DB_PORT} into /config/www/.env ****"
-		else
-			sed -i "s/^DB_PORT=.*/DB_PORT=${DB_PORT}/g" /config/www/.env
-		fi
-	fi
+# if DB_HOST contains a port
+if echo "${DB_HOST}" | grep -qP '^(?:[0-9.]+|(?:\[[0-9a-fA-F:]+\]))(:[0-9]+)$'; then
+    DB_HOST_PORT="${DB_HOST}"
+fi
+
+# if DB_HOST_PORT is set
+if [[ -n "${DB_HOST_PORT}" ]]; then
+    # if DB_PORT is set
+    if [[ -n "${DB_PORT}" ]]; then
+        echo "DB_PORT is not supported when using DB_HOST with port"
+        sleep infinity
+    fi
+    DB_HOST="${DB_HOST_PORT%:*}"
+    DB_PORT="${DB_HOST_PORT##*:}"
+fi
+
+# if DB_PORT is not set
+if [[ -z "${DB_PORT}" ]]; then
+    DB_PORT="3306"
+fi
+
+# check to see if DB_HOST is set, if it is then run seds and if not then leave them
+if [[ -n "${DB_HOST}" ]]; then
+    echo "Running config - DB_HOST set"
+
+    if ! grep -xq "^DB_PORT=.*" /config/www/.env; then
+        # add DB_PORT line to /config/www/.env because current /app/www/.env.example doesn't have it
+        sed -i "/^DB_HOST=.*/a DB_PORT=${DB_PORT}" /config/www/.env
+        echo "**** Insert DB_PORT=${DB_PORT} into /config/www/.env ****"
+    fi
+
+    sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/g" /config/www/.env
+    sed -i "s/^DB_PORT=.*/DB_PORT=${DB_PORT}/g" /config/www/.env
+    sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${DB_DATABASE}/g" /config/www/.env
+    sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${DB_USER}/g" /config/www/.env
+    sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASS}/g" /config/www/.env
 fi
 
 # set appurl
@@ -99,28 +114,18 @@ fi
 
 ## Bump php upload max filesize and post max size to 100MB by default
 if ! grep -qx '^upload_max_filesize.*$' /config/php/php-local.ini; then
-    echo 'upload_max_filesize = 100M' >> /config/php/php-local.ini
+    echo 'upload_max_filesize = 100M' >>/config/php/php-local.ini
 fi
 if ! grep -qx '^post_max_size.*$' /config/php/php-local.ini; then
-    echo 'post_max_size = 100M' >> /config/php/php-local.ini
+    echo 'post_max_size = 100M' >>/config/php/php-local.ini
 fi
 
-# extract actual host and port from DB_HOST endpoint format, not support IPv6
-# DB_HOST enpoint 'domainIp:port' or 'domainIp'
-# DB_HOST_ONLY drop ':port' portion
-# DB_PORT_ONLY drop host_only portion, remains '' or ':port'
-# DB_PORT_ONLY drop ':' if any, remain '' or 'port'
-# ${DB_PORT_ONLY:-${DB_PORT:-3306}} use DB_PORT if no port provided in DB_HOST, use default 3306 if not provide DB_PORT
-DB_HOST_ONLY=${DB_HOST%:*}
-DB_PORT_ONLY=${DB_HOST#$DB_HOST_ONLY}
-DB_PORT_ONLY=${DB_PORT_ONLY#:}
-
 # check for the mysql endpoint for 30 seconds
-END=$((SECONDS+30))
-while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST_ONLY+x}" ]; do
-    if /usr/bin/nc -z ${DB_HOST_ONLY} ${DB_PORT_ONLY:-${DB_PORT:-3306}}; then
-        if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST_ONLY} ${DB_PORT_ONLY:-${DB_PORT:-3306}})" ]; then
-            if [ ! -z "${RUN}" ]; then
+END=$((SECONDS + 30))
+while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST}" ]; do
+    if /usr/bin/nc -z "${DB_HOST}" "${DB_PORT}"; then
+        if [ -n "$(/usr/bin/nc -w1 "${DB_HOST}" "${DB_PORT}")" ]; then
+            if [ -n "${RUN}" ]; then
                 break
             fi
             RUN="RAN"
