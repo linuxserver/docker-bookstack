@@ -35,11 +35,6 @@ do
     fi
 done
 
-# Echo init finish for test runs
-if [ -n "${TEST_RUN}" ]; then
-    echo '[services.d] done.'
-fi
-
 # Create API key if needed
 if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ];
     then
@@ -95,24 +90,22 @@ if ! grep -qx '^post_max_size.*$' /config/php/php-local.ini; then
     echo 'post_max_size = 100M' >> /config/php/php-local.ini
 fi
 
-# check for the mysql endpoint for 30 seconds
+# check for the mysql endpoint
+echo "Waiting for DB to be available"
 END=$((SECONDS+30))
-while [ ${SECONDS} -lt ${END} ] && [ -n "${DB_HOST+x}" ]; do
-    if /usr/bin/nc -z ${DB_HOST} 3306; then
-        if [ ! -z "$(/usr/bin/nc -w1 ${DB_HOST} 3306)" ]; then
-            if [ ! -z "${RUN}" ]; then
-                break
-            fi
-            RUN="RAN"
-            # we sleep here again due to first run init on DB containers
-            if [ ! -f /dbwait.lock ]; then
-                sleep 5
-            fi
-        else
-            sleep 1
+while [[ ${SECONDS} -lt ${END} ]] && [[ -n "${DB_HOST+x}" ]]; do
+    if [[ $(/usr/bin/nc -w1 "${DB_HOST}" 3306 | tr -d '\0') ]]; then
+        if [[ -n "${RUN}" ]]; then
+            break
         fi
+        RUN="RAN"
+        # we sleep here again due to first run init on DB containers
+        if [[ ! -f /dbwait.lock ]]; then
+            sleep 5
+        fi
+    else
+        sleep 1
     fi
-    sleep 1
 done
 
 # update database - will set up database if fresh, or, migrate existing
