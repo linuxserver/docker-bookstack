@@ -16,10 +16,8 @@ RUN \
     composer && \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
-    curl \
     fontconfig \
     memcached \
-    netcat-openbsd \
     php8-ctype \
     php8-curl \
     php8-dom \
