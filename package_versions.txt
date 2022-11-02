@@ -11,7 +11,7 @@ busybox-1.34.1-r7
 ca-certificates-20220614-r0
 ca-certificates-bundle-20220614-r0
 coreutils-9.0-r2
-curl-7.80.0-r3
+curl-7.80.0-r4
 dbus-libs-1.12.24-r0
 encodings-1.0.5-r0
 expat-2.5.0-r0
@@ -28,7 +28,7 @@ libbsd-0.11.3-r1
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
 libcrypto1.1-1.1.1q-r0
-libcurl-7.80.0-r3
+libcurl-7.80.0-r4
 libedit-20210910.3.1-r0
 libevent-2.1.12-r4
 libffi-3.4.2-r1
@@ -74,7 +74,7 @@ netcat-openbsd-1.130-r3
 nghttp2-libs-1.46.0-r0
 nginx-1.20.2-r1
 oniguruma-6.9.7.1-r0
-openssl-1.1.1q-r0
+openssl-1.1.1s-r0
 pcre-8.45-r1
 pcre2-10.40-r0
 php8-8.0.25-r0
