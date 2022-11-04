@@ -123,7 +123,7 @@ services:
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=<yourdbpass>
     volumes:
-      - /path/to/data:/config
+      - /path/to/data:/var/lib/mysql:rw
     restart: unless-stopped
 
 ```
