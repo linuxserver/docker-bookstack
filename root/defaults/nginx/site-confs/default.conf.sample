@@ -11,7 +11,12 @@ server {
 
     root /app/www/public;
     index index.html index.htm index.php;
-
+    
+    # display real ip in nginx logs when connected through reverse proxy via docker network or via docker_mods=cloudflared
+    set_real_ip_from  127.0.0.1;
+    set_real_ip_from  172.16.0.0/12;
+    real_ip_header    X-Forwarded-For;
+    
     location / {
         # enable for basic auth
         #auth_basic "Restricted";
