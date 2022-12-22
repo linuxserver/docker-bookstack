@@ -58,7 +58,7 @@ fi
 
 # if DB_HOST contains a port and DB_HOST is not a IPv6 without brackets [..]
 # support ipv4:port, [ipv6]:port, and domain:port
-if echo "$DB_HOST" | grep -qE ':[0-9]+$' && ! echo "$DB_HOST" | grep -qE '^(:{0,2}[a-fA-F0-9]{1,4})+$'; then
+if [[ ${DB_HOST} =~ :[0-9]+$ ]] && ! [[ ${DB_HOST} =~ ^(:{0,2}[a-fA-F0-9]{1,4})+$ ]]; then
     DB_HOST_PORT="${DB_HOST}"
 fi
 
