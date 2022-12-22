@@ -27,9 +27,10 @@ param_usage_include_env: true
 param_env_vars:
   - { env_var: "APP_URL", env_value: "", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
   - { env_var: "DB_HOST", env_value: "<yourdbhost>", desc: "for specifying the database host" }
+  - { env_var: "DB_PORT", env_value: "<yourdbport>", desc: "for specifying the database port if not default 3306" }
   - { env_var: "DB_USER", env_value: "<yourdbuser>", desc: "for specifying the database user" }
-  - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password" }
-  - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used (non-alphanumeric passwords must be properly escaped.)" }
+  - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password (non-alphanumeric passwords must be properly escaped.)" }
+  - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used" }
 
 param_usage_include_ports: true
 param_ports:
@@ -50,6 +51,7 @@ custom_compose: |
         - PGID=1000
         - APP_URL=
         - DB_HOST=bookstack_db
+        - DB_PORT=3306
         - DB_USER=bookstack
         - DB_PASS=<yourdbpass>
         - DB_DATABASE=bookstackapp
