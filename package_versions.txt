@@ -70,7 +70,6 @@ musl-utils-1.2.2-r7
 nano-5.9-r0
 ncurses-libs-6.3_p20211120-r1
 ncurses-terminfo-base-6.3_p20211120-r1
-netcat-openbsd-1.130-r3
 nghttp2-libs-1.46.0-r0
 nginx-1.20.2-r1
 oniguruma-6.9.7.1-r0
