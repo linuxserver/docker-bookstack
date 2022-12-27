@@ -25,6 +25,7 @@ param_volumes:
   - { vol_path: "/config", vol_host_path: "/path/to/data", desc: "this will store any uploaded data on the docker host" }
 param_usage_include_env: true
 param_env_vars:
+  - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London"}
   - { env_var: "APP_URL", env_value: "", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
   - { env_var: "DB_HOST", env_value: "<yourdbhost>", desc: "for specifying the database host" }
   - { env_var: "DB_PORT", env_value: "<yourdbport>", desc: "for specifying the database port if not default 3306" }
