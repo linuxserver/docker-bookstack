@@ -136,6 +136,7 @@ docker run -d \
   --name=bookstack \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Europe/London \
   -e APP_URL= \
   -e DB_HOST=<yourdbhost> \
   -e DB_PORT=<yourdbport> \
@@ -157,6 +158,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-p 80` | will map the container's port 80 to port 6875 on the host |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
+| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London |
 | `-e APP_URL=` | for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
 | `-e DB_HOST=<yourdbhost>` | for specifying the database host |
 | `-e DB_PORT=<yourdbport>` | for specifying the database port if not default 3306 |
