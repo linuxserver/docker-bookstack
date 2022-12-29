@@ -11,7 +11,7 @@ busybox-1.34.1-r7
 ca-certificates-20220614-r0
 ca-certificates-bundle-20220614-r0
 coreutils-9.0-r2
-curl-7.80.0-r4
+curl-7.80.0-r5
 dbus-libs-1.12.24-r0
 encodings-1.0.5-r0
 expat-2.5.0-r0
@@ -28,7 +28,7 @@ libbsd-0.11.3-r1
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
 libcrypto1.1-1.1.1s-r1
-libcurl-7.80.0-r4
+libcurl-7.80.0-r5
 libedit-20210910.3.1-r0
 libevent-2.1.12-r4
 libffi-3.4.2-r1
