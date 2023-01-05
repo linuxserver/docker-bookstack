@@ -276,6 +276,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **05.01.23:** - Fix db password setting (sed escape `&`).
 * **21.12.22:** - Update db info in .env file when env vars are updated.
 * **10.10.22:** - Remove password escape logic which caused problems for a small subset of users.
 * **20.08.22:** - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base)).

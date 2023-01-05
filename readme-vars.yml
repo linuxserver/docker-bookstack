@@ -104,6 +104,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "05.01.23:", desc: "Fix db password setting (sed escape `&`)." }
   - { date: "21.12.22:", desc: "Update db info in .env file when env vars are updated." }
   - { date: "10.10.22:", desc: "Remove password escape logic which caused problems for a small subset of users." }
   - { date: "20.08.22:", desc: "Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes announcement](https://info.linuxserver.io/issues/2022-08-20-nginx-base))." }
