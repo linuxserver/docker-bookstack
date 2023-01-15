@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bash
+# shellcheck shell=bash
 
 if [ -d /app/www-tmp ]; then
     echo "New container detected. Setting up app folder and fixing permissions."
@@ -123,7 +124,7 @@ fi
 
 # check for the mysql endpoint
 echo "Waiting for DB to be available"
-END=$((SECONDS+30))
+END=$((SECONDS + 30))
 while [[ ${SECONDS} -lt ${END} ]] && [[ -n "${DB_HOST+x}" ]]; do
     if [[ $(/usr/bin/nc -w1 "${DB_HOST}" "${DB_PORT}" | tr -d '\0') ]]; then
         if [[ -n "${RUN}" ]]; then
