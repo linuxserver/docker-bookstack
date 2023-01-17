@@ -276,6 +276,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **16.01.23:** - Wrap `.env` values in quotes.
 * **05.01.23:** - Fix db password setting (sed escape `&`).
 * **21.12.22:** - Update db info in .env file when env vars are updated.
 * **10.10.22:** - Remove password escape logic which caused problems for a small subset of users.
