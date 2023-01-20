@@ -1,4 +1,6 @@
-FROM ghcr.io/linuxserver/baseimage-alpine-nginx:3.15
+# syntax=docker/dockerfile:1
+
+FROM ghcr.io/linuxserver/baseimage-alpine-nginx:3.17
 
 # set version label
 ARG BUILD_DATE
@@ -18,29 +20,28 @@ RUN \
   apk add --no-cache \
     fontconfig \
     memcached \
-    php8-ctype \
-    php8-curl \
-    php8-dom \
-    php8-gd \
-    php8-ldap \
-    php8-mbstring \
-    php8-mysqlnd \
-    php8-openssl \
-    php8-pdo_mysql \
-    php8-pecl-memcached \
-    php8-phar \
-    php8-simplexml \
-    php8-tokenizer \
+    php81-ctype \
+    php81-curl \
+    php81-dom \
+    php81-gd \
+    php81-ldap \
+    php81-mbstring \
+    php81-mysqlnd \
+    php81-openssl \
+    php81-pdo_mysql \
+    php81-pecl-memcached \
+    php81-phar \
+    php81-simplexml \
+    php81-tokenizer \
     qt5-qtbase \
-    tar \
     ttf-freefont && \
   apk add --no-cache \
     --repository=http://dl-cdn.alpinelinux.org/alpine/v3.14/community \
     wkhtmltopdf && \
   echo "**** configure php-fpm to pass env vars ****" && \
-  sed -E -i 's/^;?clear_env ?=.*$/clear_env = no/g' /etc/php8/php-fpm.d/www.conf && \
-  grep -qxF 'clear_env = no' /etc/php8/php-fpm.d/www.conf || echo 'clear_env = no' >> /etc/php8/php-fpm.d/www.conf && \
-  echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php8/php-fpm.conf && \
+  sed -E -i 's/^;?clear_env ?=.*$/clear_env = no/g' /etc/php81/php-fpm.d/www.conf && \
+  grep -qxF 'clear_env = no' /etc/php81/php-fpm.d/www.conf || echo 'clear_env = no' >> /etc/php81/php-fpm.d/www.conf && \
+  echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php81/php-fpm.conf && \
   echo "**** fetch bookstack ****" && \
   mkdir -p\
     /app/www && \

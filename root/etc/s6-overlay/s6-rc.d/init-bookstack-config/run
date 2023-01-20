@@ -4,7 +4,7 @@
 if [ -d /app/www-tmp ]; then
     echo "New container detected. Setting up app folder and fixing permissions."
     mv /app/www-tmp /app/www
-    chown -R abc:abc /app/www
+    lsiown -R abc:abc /app/www
 fi
 
 # create directory structure
@@ -145,8 +145,8 @@ if [ -z "${CI_RUN+x}" ]; then
     php /app/www/artisan migrate --force
 fi
 
-# set permissions
-chown -R abc:abc \
+# permissions
+lsiown -R abc:abc \
     /config
 
 # set lockfile to avoid DB waits for this specific container
