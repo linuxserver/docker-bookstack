@@ -1,12 +1,6 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
-if [ -d /app/www-tmp ]; then
-    echo "New container detected. Setting up app folder and fixing permissions."
-    mv /app/www-tmp /app/www
-    lsiown -R abc:abc /app/www
-fi
-
 # create directory structure
 mkdir -p \
     /config/www/{uploads,files,images,themes}
@@ -147,6 +141,7 @@ fi
 
 # permissions
 lsiown -R abc:abc \
+    /app/www/storage \
     /config
 
 # set lockfile to avoid DB waits for this specific container

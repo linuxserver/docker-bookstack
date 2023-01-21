@@ -52,7 +52,7 @@ RUN \
   echo "**** install composer dependencies ****" && \
   composer install -d /app/www/ && \
   echo "**** overlay-fs bug workaround ****" && \
-  mv /app/www /app/www-tmp && \
+  mv /app/www /app/www && \
   echo "**** cleanup ****" && \
   apk del --purge \
     build-dependencies && \
