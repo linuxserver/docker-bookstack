@@ -104,6 +104,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "19.01.23:", desc: "Rebase to alpine 3.17 with php8.1." }
   - { date: "16.01.23:", desc: "Wrap `.env` values in quotes." }
   - { date: "05.01.23:", desc: "Fix db password setting (sed escape `&`)." }
   - { date: "21.12.22:", desc: "Update db info in .env file when env vars are updated." }
