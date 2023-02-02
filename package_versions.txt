@@ -5,7 +5,7 @@ alpine-release-3.17.1-r0
 aom-libs-3.5.0-r0
 apache2-utils-2.4.55-r0
 apk-tools-2.12.10-r1
-apr-1.7.0-r2
+apr-1.7.1-r0
 apr-util-1.6.1-r14
 argon2-libs-20190702-r2
 bash-5.2.15-r0
