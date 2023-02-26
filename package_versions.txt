@@ -23,7 +23,7 @@ fontconfig-2.14.1-r0
 freetype-2.12.1-r0
 gdbm-1.23-r0
 git-2.38.4-r0
-glib-2.74.5-r0
+glib-2.74.6-r0
 icu-data-full-72.1-r1
 icu-libs-72.1-r1
 jq-1.6-r2
