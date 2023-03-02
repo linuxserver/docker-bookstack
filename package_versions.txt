@@ -23,7 +23,7 @@ busybox-binsh                       1.35.0-r29             apk
 ca-certificates                     20220614-r4            apk           
 ca-certificates-bundle              20220614-r4            apk           
 coreutils                           9.1-r0                 apk           
-curl                                7.87.0-r2              apk           
+curl                                7.88.1-r0              apk           
 dasprid/enum                        1.0.3                  php-composer  
 dbus-libs                           1.14.4-r0              apk           
 dflydev/dot-access-data             v3.0.2                 php-composer  
@@ -79,7 +79,7 @@ libbsd                              0.11.7-r0              apk
 libbz2                              1.0.8-r4               apk           
 libc-utils                          0.7.2-r3               apk           
 libcrypto3                          3.0.8-r0               apk           
-libcurl                             7.87.0-r2              apk           
+libcurl                             7.88.1-r0              apk           
 libdav1d                            1.0.0-r2               apk           
 libedit                             20221030.3.1-r0        apk           
 libevent                            2.1.12-r5              apk           
@@ -128,6 +128,7 @@ nano                                7.0-r0                 apk
 ncurses-libs                        6.3_p20221119-r0       apk           
 ncurses-terminfo-base               6.3_p20221119-r0       apk           
 nesbot/carbon                       2.66.0                 php-composer  
+netcat-openbsd                      1.130-r4               apk           
 nette/schema                        v1.2.3                 php-composer  
 nette/utils                         v4.0.0                 php-composer  
 nghttp2-libs                        1.51.0-r0              apk           
