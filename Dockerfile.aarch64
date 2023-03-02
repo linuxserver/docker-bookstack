@@ -24,6 +24,7 @@ RUN \
     php81-curl \
     php81-dom \
     php81-gd \
+    php81-iconv \
     php81-ldap \
     php81-mysqlnd \
     php81-pdo_mysql \
