@@ -117,6 +117,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "13.04.23:", desc: "Move ssl.conf include to default.conf." }
   - { date: "01.03.23:", desc: "Add php iconv." }
   - { date: "19.01.23:", desc: "Rebase to alpine 3.17 with php8.1." }
   - { date: "16.01.23:", desc: "Wrap `.env` values in quotes." }
