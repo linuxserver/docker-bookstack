@@ -290,6 +290,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **13.04.23:** - Move ssl.conf include to default.conf.
 * **01.03.23:** - Add php iconv.
 * **19.01.23:** - Rebase to alpine 3.17 with php8.1.
 * **16.01.23:** - Wrap `.env` values in quotes.
