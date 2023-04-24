@@ -139,7 +139,7 @@ nunomaduro/larastan                 2.5.1                  php-composer
 nunomaduro/termwind                 v1.15.1                php-composer  
 onelogin/php-saml                   4.1.0                  php-composer  
 oniguruma                           6.9.8-r0               apk           
-openssl                             3.0.8-r3               apk           
+openssl                             3.0.8-r4               apk           
 paragonie/constant_time_encoding    v2.6.3                 php-composer  
 paragonie/random_compat             v9.99.100              php-composer  
 pcre                                8.45-r2                apk           
