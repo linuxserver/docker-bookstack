@@ -45,7 +45,7 @@ fontconfig                          2.14.1-r0              apk
 freetype                            2.12.1-r0              apk           
 fruitcake/php-cors                  v1.2.0                 php-composer  
 gdbm                                1.23-r0                apk           
-git                                 2.38.4-r1              apk           
+git                                 2.38.5-r0              apk           
 glib                                2.74.6-r0              apk           
 graham-campbell/result-type         v1.1.1                 php-composer  
 guzzlehttp/guzzle                   7.5.0                  php-composer  
@@ -78,7 +78,7 @@ libblkid                            2.38.1-r1              apk
 libbsd                              0.11.7-r0              apk           
 libbz2                              1.0.8-r4               apk           
 libc-utils                          0.7.2-r3               apk           
-libcrypto3                          3.0.8-r3               apk           
+libcrypto3                          3.0.8-r4               apk           
 libcurl                             8.0.1-r0               apk           
 libdav1d                            1.0.0-r2               apk           
 libedit                             20221030.3.1-r0        apk           
@@ -100,7 +100,7 @@ libproc                             3.3.17-r2              apk
 libsasl                             2.1.28-r3              apk           
 libseccomp                          2.5.4-r0               apk           
 libsm                               1.2.3-r1               apk           
-libssl3                             3.0.8-r3               apk           
+libssl3                             3.0.8-r4               apk           
 libstdc++                           12.2.1_git20220924-r4  apk           
 libuuid                             2.38.1-r1              apk           
 libwebp                             1.2.4-r1               apk           
