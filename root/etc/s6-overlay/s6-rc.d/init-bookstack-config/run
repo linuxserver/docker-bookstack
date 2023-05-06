@@ -3,7 +3,7 @@
 
 # create directory structure
 mkdir -p \
-    /config/www/{uploads,files,images,themes}
+    /config/www/{uploads,files,images,themes,backups}
 
 # check for .env and copy default if needed
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
@@ -13,6 +13,7 @@ fi
 # create symlinks
 symlinks=(
     /app/www/themes
+    /app/www/storage/backups
     /app/www/storage/uploads/files
     /app/www/storage/uploads/images
     /app/www/public/uploads

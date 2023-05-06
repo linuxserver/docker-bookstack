@@ -31,6 +31,8 @@ RUN \
     php81-pecl-memcached \
     php81-phar \
     php81-tokenizer \
+    php81-zip \
+    mariadb-client \
     qt5-qtbase \
     ttf-freefont && \
   echo "**** configure php-fpm to pass env vars ****" && \
