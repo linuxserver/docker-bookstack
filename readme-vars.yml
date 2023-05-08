@@ -99,6 +99,7 @@ app_setup_block: |
   - **/config container path** => **BookStack relative path**
   - `/config/www/.env` => `.env`
   - `/config/www/laravel.log` => `storage/logs/laravel.log`
+  - `/config/www/backups/` => `storage/backups/`
   - `/config/www/files/` => `storage/uploads/files/`
   - `/config/www/images/` => `storage/uploads/images/`
   - `/config/www/themes/` => `themes/`
@@ -117,6 +118,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "08.05.23:", desc: "Add php zip extension and mariadb-client for bookstack-system-cli support." }
   - { date: "13.04.23:", desc: "Move ssl.conf include to default.conf." }
   - { date: "01.03.23:", desc: "Add php iconv." }
   - { date: "19.01.23:", desc: "Rebase to alpine 3.17 with php8.1." }
