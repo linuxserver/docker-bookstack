@@ -19,6 +19,7 @@ RUN \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
     fontconfig \
+    mariadb-client \
     memcached \
     php81-ctype \
     php81-curl \
@@ -32,7 +33,6 @@ RUN \
     php81-phar \
     php81-tokenizer \
     php81-zip \
-    mariadb-client \
     qt5-qtbase \
     ttf-freefont && \
   echo "**** configure php-fpm to pass env vars ****" && \
