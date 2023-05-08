@@ -26,7 +26,7 @@ param_volumes:
 param_usage_include_env: true
 param_env_vars:
   - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London"}
-  - { env_var: "APP_URL", env_value: "", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
+  - { env_var: "APP_URL", env_value: "<yourbaseurl>", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
   - { env_var: "DB_HOST", env_value: "<yourdbhost>", desc: "for specifying the database host" }
   - { env_var: "DB_PORT", env_value: "<yourdbport>", desc: "for specifying the database port if not default 3306" }
   - { env_var: "DB_USER", env_value: "<yourdbuser>", desc: "for specifying the database user" }
@@ -50,14 +50,14 @@ custom_compose: |
       environment:
         - PUID=1000
         - PGID=1000
-        - APP_URL=
+        - APP_URL=https://bookstack.example.com
         - DB_HOST=bookstack_db
         - DB_PORT=3306
         - DB_USER=bookstack
         - DB_PASS=<yourdbpass>
         - DB_DATABASE=bookstackapp
       volumes:
-        - /path/to/data:/config
+        - ./app_data:/config
       ports:
         - 6875:80
       restart: unless-stopped
@@ -75,7 +75,7 @@ custom_compose: |
         - MYSQL_USER=bookstack
         - MYSQL_PASSWORD=<yourdbpass>
       volumes:
-        - /path/to/data:/config
+        - ./db_data:/config
       restart: unless-stopped
 
 # application setup block
