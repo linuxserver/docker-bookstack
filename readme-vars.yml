@@ -57,7 +57,7 @@ custom_compose: |
         - DB_PASS=<yourdbpass>
         - DB_DATABASE=bookstackapp
       volumes:
-        - ./app_data:/config
+        - ./bookstack_app_data:/config
       ports:
         - 6875:80
       restart: unless-stopped
@@ -75,7 +75,7 @@ custom_compose: |
         - MYSQL_USER=bookstack
         - MYSQL_PASSWORD=<yourdbpass>
       volumes:
-        - ./db_data:/config
+        - ./bookstack_db_data:/config
       restart: unless-stopped
 
 # application setup block
