@@ -23,7 +23,7 @@ busybox-binsh                       1.35.0-r29             apk
 ca-certificates                     20230506-r0            apk           
 ca-certificates-bundle              20230506-r0            apk           
 coreutils                           9.1-r0                 apk           
-curl                                8.0.1-r0               apk           
+curl                                8.1.0-r1               apk           
 dasprid/enum                        1.0.4                  php-composer  
 dbus-libs                           1.14.4-r0              apk           
 dflydev/dot-access-data             v3.0.2                 php-composer  
@@ -46,7 +46,7 @@ freetype                            2.12.1-r0              apk
 fruitcake/php-cors                  v1.2.0                 php-composer  
 gdbm                                1.23-r0                apk           
 git                                 2.38.5-r0              apk           
-glib                                2.74.6-r0              apk           
+glib                                2.74.7-r0              apk           
 graham-campbell/result-type         v1.1.1                 php-composer  
 guzzlehttp/guzzle                   7.7.0                  php-composer  
 guzzlehttp/promises                 1.5.3                  php-composer  
@@ -80,7 +80,7 @@ libbsd                              0.11.7-r0              apk
 libbz2                              1.0.8-r4               apk           
 libc-utils                          0.7.2-r3               apk           
 libcrypto3                          3.0.8-r4               apk           
-libcurl                             8.0.1-r0               apk           
+libcurl                             8.1.0-r1               apk           
 libdav1d                            1.0.0-r2               apk           
 libedit                             20221030.3.1-r0        apk           
 libevent                            2.1.12-r5              apk           
@@ -104,7 +104,7 @@ libsm                               1.2.3-r1               apk
 libssl3                             3.0.8-r4               apk           
 libstdc++                           12.2.1_git20220924-r4  apk           
 libuuid                             2.38.1-r1              apk           
-libwebp                             1.2.4-r1               apk           
+libwebp                             1.2.4-r2               apk           
 libx11                              1.8.4-r0               apk           
 libxau                              1.0.10-r0              apk           
 libxcb                              1.15-r0                apk           
@@ -122,8 +122,8 @@ mkfontscale                         1.2.2-r1               apk
 mockery/mockery                     1.5.1                  php-composer  
 monolog/monolog                     2.9.1                  php-composer  
 mtdowling/jmespath.php              2.6.1                  php-composer  
-musl                                1.2.3-r4               apk           
-musl-utils                          1.2.3-r4               apk           
+musl                                1.2.3-r5               apk           
+musl-utils                          1.2.3-r5               apk           
 myclabs/deep-copy                   1.11.1                 php-composer  
 nano                                7.0-r0                 apk           
 ncurses-libs                        6.3_p20221119-r0       apk           
