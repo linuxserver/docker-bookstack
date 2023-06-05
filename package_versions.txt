@@ -79,9 +79,9 @@ libblkid                            2.38.1-r7               apk
 libbsd                              0.11.7-r1               apk           
 libbz2                              1.0.8-r5                apk           
 libc-utils                          0.7.2-r5                apk           
-libcrypto3                          3.1.0-r4                apk           
+libcrypto3                          3.1.1-r1                apk           
 libcurl                             8.1.1-r1                apk           
-libdav1d                            1.2.0-r0                apk           
+libdav1d                            1.2.1-r0                apk           
 libedit                             20221030.3.1-r1         apk           
 libevent                            2.1.12-r6               apk           
 libexpat                            2.5.0-r1                apk           
@@ -103,7 +103,7 @@ libproc2                            4.0.3-r1                apk
 libsasl                             2.1.28-r4               apk           
 libseccomp                          2.5.4-r2                apk           
 libsm                               1.2.4-r1                apk           
-libssl3                             3.1.0-r4                apk           
+libssl3                             3.1.1-r1                apk           
 libstdc++                           12.2.1_git20220924-r10  apk           
 libunistring                        1.1-r1                  apk           
 libuuid                             2.38.1-r7               apk           
@@ -143,7 +143,7 @@ nunomaduro/larastan                 v2.6.0                  php-composer
 nunomaduro/termwind                 v1.15.1                 php-composer  
 onelogin/php-saml                   4.1.0                   php-composer  
 oniguruma                           6.9.8-r1                apk           
-openssl                             3.1.0-r4                apk           
+openssl                             3.1.1-r1                apk           
 paragonie/constant_time_encoding    v2.6.3                  php-composer  
 paragonie/random_compat             v9.99.100               php-composer  
 pcre                                8.45-r3                 apk           
@@ -171,7 +171,7 @@ php82-pdo                           8.2.6-r1                apk
 php82-pdo_mysql                     8.2.6-r1                apk           
 php82-pecl-igbinary                 3.2.14-r0               apk           
 php82-pecl-memcached                3.2.0-r1                apk           
-php82-pecl-msgpack                  2.2.0_rc2-r1            apk           
+php82-pecl-msgpack                  2.2.0-r0                apk           
 php82-phar                          8.2.6-r1                apk           
 php82-session                       8.2.6-r1                apk           
 php82-simplexml                     8.2.6-r1                apk           
