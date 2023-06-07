@@ -16,7 +16,6 @@ project_blurb: |
 available_architectures:
   - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
   - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-  - { arch: "{{ arch_armhf }}", tag: "arm32v7-latest"}
 
 # container parameters
 param_container_name: "{{ project_name }}"
@@ -118,7 +117,8 @@ app_setup_block: |
 
 # changelog
 changelogs:
-  - { date: "23.05.23:", desc: "Add php zip extension and mariadb-client for bookstack-system-cli support." }
+  - { date: "07.06.23:", desc: "Add mariadb-client for bookstack-system-cli support." }
+  - { date: "25.05.23:", desc: "Rebase to Alpine 3.18, deprecate armhf." }
   - { date: "13.04.23:", desc: "Move ssl.conf include to default.conf." }
   - { date: "01.03.23:", desc: "Add php iconv." }
   - { date: "19.01.23:", desc: "Rebase to alpine 3.17 with php8.1." }

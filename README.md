@@ -60,7 +60,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ✅ | arm32v7-\<version tag\> |
+| armhf | ❌ | |
 
 ## Application Setup
 
@@ -81,6 +81,7 @@ Below is a mapping of container `/config` paths to those relative within a BookS
 - **/config container path** => **BookStack relative path**
 - `/config/www/.env` => `.env`
 - `/config/www/laravel.log` => `storage/logs/laravel.log`
+- `/config/www/backups/` => `storage/backups/`
 - `/config/www/files/` => `storage/uploads/files/`
 - `/config/www/images/` => `storage/uploads/images/`
 - `/config/www/themes/` => `themes/`
@@ -290,6 +291,8 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **07.06.23:** - Add mariadb-client for bookstack-system-cli support.
+* **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **13.04.23:** - Move ssl.conf include to default.conf.
 * **01.03.23:** - Add php iconv.
 * **19.01.23:** - Rebase to alpine 3.17 with php8.1.
