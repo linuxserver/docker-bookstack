@@ -9,13 +9,14 @@ ARG BOOKSTACK_RELEASE
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="homerr"
 
-# package versions
+# package versions
 ARG BOOKSTACK_RELEASE
 
 RUN \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
     fontconfig \
+    mariadb-client \
     memcached \
     php82-dom \
     php82-gd \
