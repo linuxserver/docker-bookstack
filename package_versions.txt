@@ -54,8 +54,8 @@ guzzlehttp/promises                 1.5.3                   php-composer
 guzzlehttp/psr7                     2.5.0                   php-composer  
 guzzlehttp/uri-template             v1.0.1                  php-composer  
 hamcrest/hamcrest-php               v2.0.1                  php-composer  
-icu-data-full                       73.1-r1                 apk           
-icu-libs                            73.1-r1                 apk           
+icu-data-full                       73.2-r0                 apk           
+icu-libs                            73.2-r0                 apk           
 intervention/image                  2.7.2                   php-composer  
 itsgoingd/clockwork                 v5.1.12                 php-composer  
 jq                                  1.6-r3                  apk           
@@ -92,7 +92,7 @@ libgcc                              12.2.1_git20220924-r10  apk
 libice                              1.1.1-r2                apk           
 libidn2                             2.3.4-r1                apk           
 libintl                             0.21.1-r7               apk           
-libjpeg-turbo                       2.1.5.1-r2              apk           
+libjpeg-turbo                       2.1.5.1-r3              apk           
 libldap                             2.6.4-r3                apk           
 libmd                               1.0.4-r2                apk           
 libmemcached-libs                   1.1.4-r1                apk           
@@ -109,7 +109,7 @@ libstdc++                           12.2.1_git20220924-r10  apk
 libunistring                        1.1-r1                  apk           
 libuuid                             2.38.1-r8               apk           
 libwebp                             1.3.0-r2                apk           
-libx11                              1.8.4-r3                apk           
+libx11                              1.8.4-r4                apk           
 libxau                              1.0.11-r2               apk           
 libxcb                              1.15-r1                 apk           
 libxdmcp                            1.1.4-r2                apk           
@@ -123,8 +123,8 @@ logrotate                           3.21.0-r1               apk
 mariadb-client                      10.11.4-r0              apk           
 mariadb-common                      10.11.4-r0              apk           
 masterminds/html5                   2.8.0                   php-composer  
-memcached                           1.6.20                  binary        
-memcached                           1.6.20-r0               apk           
+memcached                           1.6.21                  binary        
+memcached                           1.6.21-r0               apk           
 mkfontscale                         1.2.2-r3                apk           
 mockery/mockery                     1.5.1                   php-composer  
 monolog/monolog                     2.9.1                   php-composer  
