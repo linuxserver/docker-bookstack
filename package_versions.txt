@@ -2,7 +2,7 @@ NAME                                VERSION                 TYPE
 alpine-baselayout                   3.4.3-r1                apk           
 alpine-baselayout-data              3.4.3-r1                apk           
 alpine-keys                         2.4-r1                  apk           
-alpine-release                      3.18.0-r0               apk           
+alpine-release                      3.18.2-r0               apk           
 aom-libs                            3.6.1-r0                apk           
 apache2-utils                       2.4.57-r2               apk           
 apk-tools                           2.14.0-r2               apk           
@@ -233,7 +233,7 @@ sebastian/recursion-context         4.0.5                   php-composer
 sebastian/resource-operations       3.0.3                   php-composer  
 sebastian/type                      3.2.1                   php-composer  
 sebastian/version                   3.0.2                   php-composer  
-shadow                              4.13-r2                 apk           
+shadow                              4.13-r4                 apk           
 skalibs                             2.13.1.1-r1             apk           
 socialiteproviders/discord          4.1.2                   php-composer  
 socialiteproviders/gitlab           4.1.0                   php-composer  
