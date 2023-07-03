@@ -54,8 +54,8 @@ guzzlehttp/promises                 1.5.3                   php-composer
 guzzlehttp/psr7                     2.5.0                   php-composer  
 guzzlehttp/uri-template             v1.0.1                  php-composer  
 hamcrest/hamcrest-php               v2.0.1                  php-composer  
-icu-data-full                       73.2-r0                 apk           
-icu-libs                            73.2-r0                 apk           
+icu-data-full                       73.2-r1                 apk           
+icu-libs                            73.2-r1                 apk           
 intervention/image                  2.7.2                   php-composer  
 itsgoingd/clockwork                 v5.1.12                 php-composer  
 jq                                  1.6-r3                  apk           
