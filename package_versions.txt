@@ -80,7 +80,7 @@ libblkid                            2.38.1-r8               apk
 libbsd                              0.11.7-r1               apk           
 libbz2                              1.0.8-r5                apk           
 libc-utils                          0.7.2-r5                apk           
-libcrypto3                          3.1.1-r1                apk           
+libcrypto3                          3.1.1-r3                apk           
 libcurl                             8.1.2-r0                apk           
 libdav1d                            1.2.1-r0                apk           
 libedit                             20221030.3.1-r1         apk           
@@ -104,7 +104,7 @@ libproc2                            4.0.3-r1                apk
 libsasl                             2.1.28-r4               apk           
 libseccomp                          2.5.4-r2                apk           
 libsm                               1.2.4-r1                apk           
-libssl3                             3.1.1-r1                apk           
+libssl3                             3.1.1-r3                apk           
 libstdc++                           12.2.1_git20220924-r10  apk           
 libunistring                        1.1-r1                  apk           
 libuuid                             2.38.1-r8               apk           
@@ -146,7 +146,7 @@ nunomaduro/larastan                 v2.6.3                  php-composer
 nunomaduro/termwind                 v1.15.1                 php-composer  
 onelogin/php-saml                   4.1.0                   php-composer  
 oniguruma                           6.9.8-r1                apk           
-openssl                             3.1.1-r1                apk           
+openssl                             3.1.1-r3                apk           
 paragonie/constant_time_encoding    v2.6.3                  php-composer  
 paragonie/random_compat             v9.99.100               php-composer  
 pcre                                8.45-r3                 apk           
