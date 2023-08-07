@@ -173,7 +173,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DB_HOST=<yourdbhost>` | for specifying the database host |
 | `-e DB_PORT=<yourdbport>` | for specifying the database port if not default 3306 |
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
-| `-e DB_PASS=<yourdbpass>` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
+| `-e DB_PASS=<yourdbpass>` | for specifying the database password (non-alphanumeric passwords must be properly escaped.) |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
 | `-v /config` | this will store any uploaded data on the docker host |
 
