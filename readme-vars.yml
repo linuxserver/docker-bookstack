@@ -29,7 +29,7 @@ param_env_vars:
   - { env_var: "DB_HOST", env_value: "<yourdbhost>", desc: "for specifying the database host" }
   - { env_var: "DB_PORT", env_value: "<yourdbport>", desc: "for specifying the database port if not default 3306" }
   - { env_var: "DB_USER", env_value: "<yourdbuser>", desc: "for specifying the database user" }
-  - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password (non-alphanumeric passwords must be properly escaped.)" }
+  - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.)" }
   - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used" }
 
 param_usage_include_ports: true
