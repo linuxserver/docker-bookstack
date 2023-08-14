@@ -3,7 +3,7 @@ Reads from stdin without leaking info to the terminal and outputs back to stdout
 alpine-baselayout                                                                 3.4.3-r1                apk           
 alpine-baselayout-data                                                            3.4.3-r1                apk           
 alpine-keys                                                                       2.4-r1                  apk           
-alpine-release                                                                    3.18.2-r0               apk           
+alpine-release                                                                    3.18.3-r0               apk           
 aom-libs                                                                          3.6.1-r0                apk           
 apache2-utils                                                                     2.4.57-r3               apk           
 apk-tools                                                                         2.14.0-r2               apk           
@@ -124,7 +124,6 @@ logrotate                                                                       
 mariadb-client                                                                    10.11.4-r0              apk           
 mariadb-common                                                                    10.11.4-r0              apk           
 masterminds/html5                                                                 2.8.0                   php-composer  
-memcached                                                                         1.6.21                  binary        
 memcached                                                                         1.6.21-r0               apk           
 mkfontscale                                                                       1.2.2-r3                apk           
 mockery/mockery                                                                   1.6.2                   php-composer  
@@ -160,7 +159,6 @@ phar-io/version                                                                 
 phenx/php-font-lib                                                                0.5.4                   php-composer  
 phenx/php-svg-lib                                                                 0.5.0                   php-composer  
 php-cli                                                                           8.2.8                   binary        
-php-fpm                                                                           8.2.8                   binary        
 php82                                                                             8.2.8-r0                apk           
 php82-common                                                                      8.2.8-r0                apk           
 php82-ctype                                                                       8.2.8-r0                apk           
