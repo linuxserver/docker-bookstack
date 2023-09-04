@@ -146,11 +146,11 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e APP_URL=<yourbaseurl> \
-  -e DB_HOST=<yourdbhost> \
-  -e DB_PORT=<yourdbport> \
-  -e DB_USER=<yourdbuser> \
-  -e DB_PASS=<yourdbpass> \
+  -e APP_URL=yourbaseurl \
+  -e DB_HOST=yourdbhost \
+  -e DB_PORT=yourdbport \
+  -e DB_USER=yourdbuser \
+  -e DB_PASS=yourdbpass \
   -e DB_DATABASE=bookstackapp \
   -e QUEUE_CONNECTION= `#optional` \
   -p 6875:80 \
@@ -170,13 +170,13 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `-e APP_URL=<yourbaseurl>` | for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
-| `-e DB_HOST=<yourdbhost>` | for specifying the database host |
-| `-e DB_PORT=<yourdbport>` | for specifying the database port if not default 3306 |
-| `-e DB_USER=<yourdbuser>` | for specifying the database user |
-| `-e DB_PASS=<yourdbpass>` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
+| `-e APP_URL=yourbaseurl` | for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
+| `-e DB_HOST=yourdbhost` | for specifying the database host |
+| `-e DB_PORT=yourdbport` | for specifying the database port if not default 3306 |
+| `-e DB_USER=yourdbuser` | for specifying the database user |
+| `-e DB_PASS=yourdbpass` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
-| `-e QUEUE_CONNECTION=` | Set to `database` to enable async actions like sending email or triggering webhooks. |
+| `-e QUEUE_CONNECTION=` | Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling). |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## Environment variables from files (Docker secrets)
