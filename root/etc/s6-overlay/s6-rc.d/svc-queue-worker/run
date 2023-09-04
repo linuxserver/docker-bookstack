@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+echo "*** Starting Async Action Queue ***"
+
+exec /usr/bin/php /app/www/artisan queue:work --sleep=3 --tries=1 --max-time=3600

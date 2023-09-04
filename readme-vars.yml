@@ -25,19 +25,20 @@ param_volumes:
 param_usage_include_env: true
 param_env_vars:
   - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London"}
-  - { env_var: "APP_URL", env_value: "<yourbaseurl>", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
-  - { env_var: "DB_HOST", env_value: "<yourdbhost>", desc: "for specifying the database host" }
-  - { env_var: "DB_PORT", env_value: "<yourdbport>", desc: "for specifying the database port if not default 3306" }
-  - { env_var: "DB_USER", env_value: "<yourdbuser>", desc: "for specifying the database user" }
-  - { env_var: "DB_PASS", env_value: "<yourdbpass>", desc: "for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.)" }
+  - { env_var: "APP_URL", env_value: "yourbaseurl", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
+  - { env_var: "DB_HOST", env_value: "yourdbhost", desc: "for specifying the database host" }
+  - { env_var: "DB_PORT", env_value: "yourdbport", desc: "for specifying the database port if not default 3306" }
+  - { env_var: "DB_USER", env_value: "yourdbuser", desc: "for specifying the database user" }
+  - { env_var: "DB_PASS", env_value: "yourdbpass", desc: "for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.)" }
   - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used" }
 
 param_usage_include_ports: true
 param_ports:
   - { external_port: "6875", internal_port: "80", port_desc: "will map the container's port 80 to port 6875 on the host" }
 
-opt_param_usage_include_env: false
+opt_param_usage_include_env: true
 opt_param_env_vars:
+  - { env_var: "QUEUE_CONNECTION", env_value: "", desc: "Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling)." }
 
 custom_compose: |
   ---
@@ -85,7 +86,7 @@ app_setup_block: |
 
   This application is dependent on a MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
 
-  
+
   If you intend to use this application behind a subfolder reverse proxy, such as our SWAG container or Traefik you will need to make sure that the `APP_URL` environment variable is set to your external domain, or it will not work.
 
   Documentation for BookStack can be found at https://www.bookstackapp.com/docs/.
@@ -106,7 +107,7 @@ app_setup_block: |
 
   ### Advanced Users (full control over the .env file)
   If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
-    
+
   When you create the container, do not set any arguments for any SQL settings. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
 

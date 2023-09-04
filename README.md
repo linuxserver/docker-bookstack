@@ -89,7 +89,7 @@ Below is a mapping of container `/config` paths to those relative within a BookS
 
 ### Advanced Users (full control over the .env file)
 If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
-  
+
 When you create the container, do not set any arguments for any SQL settings. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
 ## Usage
@@ -152,6 +152,7 @@ docker run -d \
   -e DB_USER=<yourdbuser> \
   -e DB_PASS=<yourdbpass> \
   -e DB_DATABASE=bookstackapp \
+  -e QUEUE_CONNECTION= `#optional` \
   -p 6875:80 \
   -v /path/to/data:/config \
   --restart unless-stopped \
@@ -175,6 +176,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DB_USER=<yourdbuser>` | for specifying the database user |
 | `-e DB_PASS=<yourdbpass>` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
+| `-e QUEUE_CONNECTION=` | Set to `database` to enable async actions like sending email or triggering webhooks. |
 | `-v /config` | this will store any uploaded data on the docker host |
 
 ## Environment variables from files (Docker secrets)
