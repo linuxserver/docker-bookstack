@@ -128,8 +128,8 @@ mkfontscale                                                                     
 mockery/mockery                                                                   1.6.6                   php-composer  
 monolog/monolog                                                                   2.9.1                   php-composer  
 mtdowling/jmespath.php                                                            2.6.1                   php-composer  
-musl                                                                              1.2.4-r1                apk           
-musl-utils                                                                        1.2.4-r1                apk           
+musl                                                                              1.2.4-r2                apk           
+musl-utils                                                                        1.2.4-r2                apk           
 myclabs/deep-copy                                                                 1.11.1                  php-composer  
 nano                                                                              7.2-r1                  apk           
 ncurses-terminfo-base                                                             6.4_p20230506-r0        apk           
