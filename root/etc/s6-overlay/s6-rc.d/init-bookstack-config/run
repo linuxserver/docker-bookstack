@@ -86,9 +86,12 @@ if [[ -n "${DB_HOST}" ]]; then
 
     sed -i -E "s/^[#]?DB_HOST=.*/DB_HOST='${DB_HOST}'/g" /config/www/.env
     sed -i -E "s/^[#]?DB_PORT=.*/DB_PORT='${DB_PORT}'/g" /config/www/.env
-    sed -i -E "s/^[#]?DB_DATABASE=.*/DB_DATABASE='${DB_DATABASE}'/g" /config/www/.env
-    sed -i -E "s/^[#]?DB_USERNAME=.*/DB_USERNAME='${DB_USER}'/g" /config/www/.env
-    sed -i -E "s/^[#]?DB_PASSWORD=.*/DB_PASSWORD='${DB_PASS//&/\\&}'/g" /config/www/.env
+    SED_DB_DATABASE=$(sed -e 's|[&\\/]|\\&|g; s|$|\\|; $s|\\$||' <<<"${DB_DATABASE}")
+    sed -i -E "s/^[#]?DB_DATABASE=.*/DB_DATABASE='${SED_DB_DATABASE}'/g" /config/www/.env
+    SED_DB_USER=$(sed -e 's|[&\\/]|\\&|g; s|$|\\|; $s|\\$||' <<<"${DB_USER}")
+    sed -i -E "s/^[#]?DB_USERNAME=.*/DB_USERNAME='${SED_DB_USER}'/g" /config/www/.env
+    SED_DB_PASS=$(sed -e 's|[&\\/]|\\&|g; s|$|\\|; $s|\\$||' <<<"${DB_PASS}")
+    sed -i -E "s/^[#]?DB_PASSWORD=.*/DB_PASSWORD='${SED_DB_PASS}'/g" /config/www/.env
 fi
 
 # set appurl
