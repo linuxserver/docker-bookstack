@@ -113,6 +113,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "31.10.23:", desc: "Further sanitize sed replace." }
   - { date: "07.06.23:", desc: "Add mariadb-client for bookstack-system-cli support." }
   - { date: "25.05.23:", desc: "Rebase to Alpine 3.18, deprecate armhf." }
   - { date: "13.04.23:", desc: "Move ssl.conf include to default.conf." }
