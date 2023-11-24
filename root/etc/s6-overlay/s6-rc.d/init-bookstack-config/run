@@ -3,7 +3,9 @@
 
 # create directory structure
 mkdir -p \
-    /config/www/{uploads,files,images,themes,backups,logs}
+    /config/www/{uploads,files,images,themes} \
+    /config/backups \
+    /config/log/bookstack
 
 # check for .env and copy default if needed
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
@@ -13,8 +15,6 @@ fi
 # create symlinks
 symlinks=(
     /app/www/themes
-    /app/www/storage/backups
-    /app/www/storage/logs
     /app/www/storage/uploads/files
     /app/www/storage/uploads/images
     /app/www/public/uploads
@@ -29,6 +29,20 @@ for i in "${symlinks[@]}"; do
         ln -s /config/www/"$(basename "${i}")" "${i}"
     fi
 done
+
+if [[ -e "/app/www/storage/backups" && ! -L "/app/www/storage/backups" ]]; then
+    rm -rf "/app/www/storage/backups"
+fi
+if [[ ! -L "/app/www/storage/backups" ]]; then
+    ln -s "/config/backups" "/app/www/storage/backups"
+fi
+
+if [[ -e "/app/www/storage/logs" && ! -L "/app/www/storage/logs" ]]; then
+    rm -rf "/app/www/storage/logs"
+fi
+if [[ ! -L "/app/www/storage/logs" ]]; then
+    ln -s "/config/log/bookstack" "/app/www/storage/logs"
+fi
 
 # Echo init finish for test runs
 if [ -n "${TEST_RUN}" ]; then
