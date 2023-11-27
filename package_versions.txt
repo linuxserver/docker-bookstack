@@ -150,7 +150,7 @@ paragonie/constant_time_encoding                                     v2.6.3     
 paragonie/random_compat                                              v9.99.100               php-composer  
 pcre                                                                 8.45-r3                 apk           
 pcre2                                                                10.42-r1                apk           
-perl                                                                 5.36.1-r2               apk           
+perl                                                                 5.36.2-r0               apk           
 perl-error                                                           0.17029-r1              apk           
 perl-git                                                             2.40.1-r0               apk           
 phar-io/manifest                                                     2.0.3                   php-composer  
