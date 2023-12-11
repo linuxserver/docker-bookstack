@@ -3,7 +3,7 @@ Readsfromstdinwithoutleakinginfototheterminalandoutputsbacktostdout  1,         
 alpine-baselayout                                                    3.4.3-r1                apk           
 alpine-baselayout-data                                               3.4.3-r1                apk           
 alpine-keys                                                          2.4-r1                  apk           
-alpine-release                                                       3.18.4-r0               apk           
+alpine-release                                                       3.18.5-r0               apk           
 aom-libs                                                             3.6.1-r0                apk           
 apache2-utils                                                        2.4.58-r0               apk           
 apk-tools                                                            2.14.0-r2               apk           
@@ -23,7 +23,7 @@ busybox-binsh                                                        1.36.1-r5  
 ca-certificates                                                      20230506-r0             apk           
 ca-certificates-bundle                                               20230506-r0             apk           
 coreutils                                                            9.3-r1                  apk           
-curl                                                                 8.4.0-r0                apk           
+curl                                                                 8.5.0-r0                apk           
 dasprid/enum                                                         1.0.5                   php-composer  
 dbus-libs                                                            1.14.8-r0               apk           
 dflydev/dot-access-data                                              v3.0.2                  php-composer  
@@ -58,7 +58,7 @@ icu-data-full                                                        73.2-r2    
 icu-libs                                                             73.2-r2                 apk           
 intervention/image                                                   2.7.2                   php-composer  
 itsgoingd/clockwork                                                  v5.1.12                 php-composer  
-jq                                                                   1.6-r3                  apk           
+jq                                                                   1.6-r4                  apk           
 knplabs/knp-snappy                                                   v1.4.4                  php-composer  
 laravel/framework                                                    v9.52.16                php-composer  
 laravel/serializable-closure                                         v1.3.1                  php-composer  
@@ -81,7 +81,7 @@ libbsd                                                               0.11.7-r1  
 libbz2                                                               1.0.8-r5                apk           
 libc-utils                                                           0.7.2-r5                apk           
 libcrypto3                                                           3.1.4-r1                apk           
-libcurl                                                              8.4.0-r0                apk           
+libcurl                                                              8.5.0-r0                apk           
 libdav1d                                                             1.2.1-r0                apk           
 libedit                                                              20221030.3.1-r1         apk           
 libevent                                                             2.1.12-r6               apk           
