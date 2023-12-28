@@ -152,7 +152,7 @@ docker run -d \
   -e DB_DATABASE=bookstackapp \
   -e QUEUE_CONNECTION= `#optional` \
   -p 6875:80 \
-  -v /path/to/data:/config \
+  -v /path/to/bookstack/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/bookstack:latest
 ```
@@ -174,7 +174,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e DB_PASS=yourdbpass` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
 | `-e QUEUE_CONNECTION=` | Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling). |
-| `-v /config` | this will store any uploaded data on the docker host |
+| `-v /config` | Persistent config files |
 
 ## Environment variables from files (Docker secrets)
 
@@ -352,6 +352,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **31.10.23:** - Further sanitize sed replace.
 * **07.06.23:** - Add mariadb-client for bookstack-system-cli support.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
