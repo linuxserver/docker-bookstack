@@ -113,6 +113,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "29.12.23:", desc: "Update default.conf.sample for reverse proxy & cloudflare purpose."}
   - { date: "23.12.23:", desc: "Rebase to Alpine 3.19 with php 8.3."}
   - { date: "31.10.23:", desc: "Further sanitize sed replace." }
   - { date: "07.06.23:", desc: "Add mariadb-client for bookstack-system-cli support." }
