@@ -215,7 +215,7 @@ psr/http-message                    2.0                     php-composer
 psr/log                             3.0.0                   php-composer  
 psr/simple-cache                    3.0.0                   php-composer  
 psy/psysh                           v0.11.22                php-composer  
-qt5-qtbase                          5.15.10_git20230714-r1  apk           
+qt5-qtbase                          5.15.10_git20230714-r2  apk           
 ralouphie/getallheaders             3.0.3                   php-composer  
 ramsey/collection                   1.3.0                   php-composer  
 ramsey/uuid                         4.7.5                   php-composer  
@@ -282,7 +282,7 @@ symfony/uid                         v6.0.19                 php-composer
 symfony/var-dumper                  v6.0.19                 php-composer  
 theseer/tokenizer                   1.2.2                   php-composer  
 tijsverkoyen/css-to-inline-styles   v2.2.7                  php-composer  
-tzdata                              2023c-r1                apk           
+tzdata                              2023d-r0                apk           
 utmps-libs                          0.1.2.2-r0              apk           
 vlucas/phpdotenv                    v5.6.0                  php-composer  
 voku/portable-ascii                 2.0.1                   php-composer  
