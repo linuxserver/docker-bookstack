@@ -21,7 +21,7 @@ available_architectures:
 param_container_name: "{{ project_name }}"
 param_usage_include_vols: true
 param_volumes:
-  - { vol_path: "/config", vol_host_path: "/path/to/data", desc: "this will store any uploaded data on the docker host" }
+  - { vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/config", desc: "Persistent config files" }
 param_usage_include_env: true
 param_env_vars:
   - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London"}
@@ -113,7 +113,8 @@ app_setup_block: |
 
 # changelog
 changelogs:
-  - { date: "25.12.23:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf." }
+  - { date: "25.01.24:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf." }
+  - { date: "23.12.23:", desc: "Rebase to Alpine 3.19 with php 8.3."}
   - { date: "31.10.23:", desc: "Further sanitize sed replace." }
   - { date: "07.06.23:", desc: "Add mariadb-client for bookstack-system-cli support." }
   - { date: "25.05.23:", desc: "Rebase to Alpine 3.18, deprecate armhf." }
