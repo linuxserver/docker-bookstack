@@ -129,8 +129,8 @@ libxt                               1.3.0-r4                apk
 libzip                              1.10.1-r0               apk           
 linux-pam                           1.5.3-r7                apk           
 logrotate                           3.21.0-r1               apk           
-mariadb-client                      10.11.5-r3              apk           
-mariadb-common                      10.11.5-r3              apk           
+mariadb-client                      10.11.6-r0              apk           
+mariadb-common                      10.11.6-r0              apk           
 masterminds/html5                   2.8.1                   php-composer  
 memcached                           1.6.22-r0               apk           
 mkfontscale                         1.2.2-r4                apk           
