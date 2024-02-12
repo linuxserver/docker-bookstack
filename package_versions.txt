@@ -24,7 +24,7 @@ c-ares                              1.24.0-r1               apk
 ca-certificates                     20230506-r0             apk           
 ca-certificates-bundle              20230506-r0             apk           
 carbonphp/carbon-doctrine-types     2.1.0                   php-composer  
-composer                            2.6.6                   binary        
+composer                            2.7.0                   binary        
 coreutils                           9.4-r2                  apk           
 coreutils-env                       9.4-r2                  apk           
 coreutils-fmt                       9.4-r2                  apk           
@@ -282,7 +282,7 @@ symfony/uid                         v6.0.19                 php-composer
 symfony/var-dumper                  v6.0.19                 php-composer  
 theseer/tokenizer                   1.2.2                   php-composer  
 tijsverkoyen/css-to-inline-styles   v2.2.7                  php-composer  
-tzdata                              2023d-r0                apk           
+tzdata                              2024a-r0                apk           
 utmps-libs                          0.1.2.2-r0              apk           
 vlucas/phpdotenv                    v5.6.0                  php-composer  
 voku/portable-ascii                 2.0.1                   php-composer  
