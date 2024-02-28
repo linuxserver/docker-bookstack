@@ -11,7 +11,7 @@ apr                                 1.7.4-r0                apk
 apr-util                            1.6.3-r1                apk           
 argon2-libs                         20190702-r5             apk           
 aws/aws-crt-php                     v1.2.4                  php-composer  
-aws/aws-sdk-php                     3.300.4                 php-composer  
+aws/aws-sdk-php                     3.300.6                 php-composer  
 bacon/bacon-qr-code                 2.0.8                   php-composer  
 barryvdh/laravel-dompdf             v2.0.1                  php-composer  
 barryvdh/laravel-snappy             v1.0.2                  php-composer  
@@ -67,7 +67,7 @@ intervention/image                  2.7.2                   php-composer
 itsgoingd/clockwork                 v5.2.0                  php-composer  
 jq                                  1.7.1-r0                apk           
 knplabs/knp-snappy                  v1.4.4                  php-composer  
-larastan/larastan                   v2.9.0                  php-composer  
+larastan/larastan                   v2.9.1                  php-composer  
 laravel/framework                   v9.52.16                php-composer  
 laravel/serializable-closure        v1.3.3                  php-composer  
 laravel/socialite                   v5.12.1                 php-composer  
@@ -90,7 +90,7 @@ libbz2                              1.0.8-r6                apk
 libc-utils                          0.7.2-r5                apk           
 libcrypto3                          3.1.4-r5                apk           
 libcurl                             8.5.0-r0                apk           
-libdav1d                            1.3.0-r0                apk           
+libdav1d                            1.3.0-r1                apk           
 libedit                             20230828.3.1-r3         apk           
 libevent                            2.1.12-r7               apk           
 libexpat                            2.6.0-r0                apk           
