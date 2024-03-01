@@ -126,6 +126,29 @@ if [ "${APP_URL}" != "${OLD_URL}" ]; then
     fi
 fi
 
+# set S3 storage
+declare -A env_vars=(
+    ["STORAGE_TYPE"]="${STORAGE_TYPE}"
+    ["STORAGE_S3_KEY"]="${STORAGE_S3_KEY}"
+    ["STORAGE_S3_SECRET"]="${STORAGE_S3_SECRET}"
+    ["STORAGE_S3_BUCKET"]="${STORAGE_S3_BUCKET}"
+    ["STORAGE_S3_REGION"]="${STORAGE_S3_REGION}"
+    ["STORAGE_S3_ENDPOINT"]="${STORAGE_S3_ENDPOINT}"
+)
+
+echo "# S3 storage configuration" >> /config/www/.env
+
+for key in "${!env_vars[@]}"; do
+    value=${env_vars[$key]}
+    if [[ -n $value ]]; then
+        if grep -q "^${key}=" /config/www/.env; then
+            sed -i "s|^${key}=.*|${key}=${value}|g" /config/www/.env
+        else
+            echo "${key}=${value}" >> /config/www/.env
+        fi
+    fi
+done
+
 ## Bump php upload max filesize and post max size to 100MB by default
 if ! grep -qx '^upload_max_filesize.*$' /config/php/php-local.ini; then
     echo 'upload_max_filesize = 100M' >>/config/php/php-local.ini
