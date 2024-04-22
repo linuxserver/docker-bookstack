@@ -6,7 +6,7 @@ alpine-keys                         2.4-r1                  apk
 alpine-release                      3.19.1-r0               apk             
 aom-libs                            3.7.1-r0                apk             
 apache2-utils                       2.4.59-r0               apk             
-apk-tools                           2.14.3-r1               apk             
+apk-tools                           2.14.4-r0               apk             
 apr                                 1.7.4-r0                apk             
 apr-util                            1.6.3-r1                apk             
 argon2-libs                         20190702-r5             apk             
@@ -46,6 +46,7 @@ egulias/email-validator             3.2.6                   php-composer
 encodings                           1.0.7-r1                apk             
 fakerphp/faker                      v1.23.1                 php-composer    
 filp/whoops                         2.15.4                  php-composer    
+findutils                           4.9.0-r5                apk             
 font-freefont                       20120503-r4             apk             
 fontconfig                          2.14.2-r4               apk             
 freetype                            2.13.2-r0               apk             
