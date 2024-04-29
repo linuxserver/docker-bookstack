@@ -24,7 +24,7 @@ c-ares                              1.27.0-r0               apk
 ca-certificates                     20240226-r0             apk             
 ca-certificates-bundle              20240226-r0             apk             
 carbonphp/carbon-doctrine-types     2.1.0                   php-composer    
-composer                            2.7.2                   binary          
+composer                            2.7.4                   binary          
 coreutils                           9.4-r2                  apk             
 coreutils-env                       9.4-r2                  apk             
 coreutils-fmt                       9.4-r2                  apk             
@@ -61,7 +61,6 @@ guzzlehttp/promises                 2.0.2                   php-composer
 guzzlehttp/psr7                     2.6.2                   php-composer    
 guzzlehttp/uri-template             v1.0.3                  php-composer    
 hamcrest/hamcrest-php               v2.0.1                  php-composer    
-hiredis                             1.2.0-r0                apk             
 icu-data-full                       74.1-r0                 apk             
 icu-libs                            74.1-r0                 apk             
 intervention/image                  2.7.2                   php-composer    
@@ -148,7 +147,7 @@ netcat-openbsd                      1.226-r0                apk
 nette/schema                        v1.2.5                  php-composer    
 nette/utils                         v4.0.4                  php-composer    
 nghttp2-libs                        1.58.0-r0               apk             
-nginx                               1.24.0-r15              apk             
+nginx                               1.24.0-r16              apk             
 nikic/php-parser                    v5.0.1                  php-composer    
 nunomaduro/collision                v6.4.0                  php-composer    
 nunomaduro/termwind                 v1.15.1                 php-composer    
