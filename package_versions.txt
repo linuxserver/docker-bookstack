@@ -53,7 +53,7 @@ fruitcake/php-cors                  v1.3.0                  php-composer
 gdbm                                1.23-r1                 apk             
 git                                 2.43.0-r0               apk             
 git-perl                            2.43.0-r0               apk             
-glib                                2.78.5-r0               apk             
+glib                                2.78.6-r0               apk             
 graham-campbell/result-type         v1.1.2                  php-composer    
 guzzlehttp/guzzle                   7.8.1                   php-composer    
 guzzlehttp/promises                 2.0.2                   php-composer    
