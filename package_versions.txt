@@ -51,8 +51,8 @@ fontconfig                          2.14.2-r4               apk
 freetype                            2.13.2-r0               apk             
 fruitcake/php-cors                  v1.3.0                  php-composer    
 gdbm                                1.23-r1                 apk             
-git                                 2.43.0-r0               apk             
-git-perl                            2.43.0-r0               apk             
+git                                 2.43.4-r0               apk             
+git-perl                            2.43.4-r0               apk             
 glib                                2.78.6-r0               apk             
 graham-campbell/result-type         v1.1.2                  php-composer    
 guzzlehttp/guzzle                   7.8.1                   php-composer    
@@ -161,7 +161,7 @@ pcre                                8.45-r3                 apk
 pcre2                               10.42-r2                apk             
 perl                                5.38.2-r0               apk             
 perl-error                          0.17029-r2              apk             
-perl-git                            2.43.0-r0               apk             
+perl-git                            2.43.4-r0               apk             
 phar-io/manifest                    2.0.4                   php-composer    
 phar-io/version                     3.2.1                   php-composer    
 phenx/php-font-lib                  0.5.6                   php-composer    
