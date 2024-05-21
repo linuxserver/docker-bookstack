@@ -11,7 +11,7 @@ apr                                 1.7.4-r0                apk
 apr-util                            1.6.3-r1                apk             
 argon2-libs                         20190702-r5             apk             
 aws/aws-crt-php                     v1.2.5                  php-composer    
-aws/aws-sdk-php                     3.305.9                 php-composer    
+aws/aws-sdk-php                     3.307.1                 php-composer    
 bacon/bacon-qr-code                 2.0.8                   php-composer    
 bash                                5.2.21-r0               apk             
 brick/math                          0.12.1                  php-composer    
@@ -45,7 +45,7 @@ encodings                           1.0.7-r1                apk
 fakerphp/faker                      v1.23.1                 php-composer    
 filp/whoops                         2.15.4                  php-composer    
 findutils                           4.9.0-r5                apk             
-firebase/php-jwt                    v6.10.0                 php-composer    
+firebase/php-jwt                    v6.10.1                 php-composer    
 font-freefont                       20120503-r4             apk             
 fontconfig                          2.14.2-r4               apk             
 freetype                            2.13.2-r0               apk             
@@ -63,15 +63,15 @@ hamcrest/hamcrest-php               v2.0.1                  php-composer
 icu-data-full                       74.1-r0                 apk             
 icu-libs                            74.1-r0                 apk             
 intervention/gif                    4.1.0                   php-composer    
-intervention/image                  3.6.3                   php-composer    
+intervention/image                  3.6.4                   php-composer    
 itsgoingd/clockwork                 v5.2.2                  php-composer    
 jq                                  1.7.1-r0                apk             
 knplabs/knp-snappy                  v1.5.0                  php-composer    
-larastan/larastan                   v2.9.5                  php-composer    
+larastan/larastan                   v2.9.6                  php-composer    
 laravel/framework                   v10.48.10               php-composer    
 laravel/prompts                     v0.1.21                 php-composer    
 laravel/serializable-closure        v1.3.3                  php-composer    
-laravel/socialite                   v5.13.2                 php-composer    
+laravel/socialite                   v5.14.0                 php-composer    
 laravel/tinker                      v2.9.0                  php-composer    
 league/commonmark                   2.4.2                   php-composer    
 league/config                       v1.2.0                  php-composer    
@@ -135,7 +135,7 @@ mariadb-common                      10.11.6-r0              apk
 masterminds/html5                   2.9.0                   php-composer    
 memcached                           1.6.22-r0               apk             
 mkfontscale                         1.2.2-r4                apk             
-mockery/mockery                     1.6.11                  php-composer    
+mockery/mockery                     1.6.12                  php-composer    
 monolog/monolog                     3.6.0                   php-composer    
 mtdowling/jmespath.php              2.7.0                   php-composer    
 musl                                1.2.4_git20230717-r4    apk             
@@ -155,7 +155,7 @@ nunomaduro/termwind                 v1.15.1                 php-composer
 onelogin/php-saml                   4.1.0                   php-composer    
 oniguruma                           6.9.9-r0                apk             
 openssl                             3.1.4-r6                apk             
-paragonie/constant_time_encoding    v2.6.3                  php-composer    
+paragonie/constant_time_encoding    v2.7.0                  php-composer    
 paragonie/random_compat             v9.99.100               php-composer    
 pcre                                8.45-r3                 apk             
 pcre2                               10.42-r2                apk             
@@ -195,7 +195,7 @@ php83-zip                           8.3.7-r0                apk
 phpmyadmin/sql-parser               5.9.0                   php-composer    
 phpoption/phpoption                 1.9.2                   php-composer    
 phpseclib/phpseclib                 3.0.37                  php-composer    
-phpstan/phpstan                     1.10.67                 php-composer    
+phpstan/phpstan                     1.11.1                  php-composer    
 phpunit/php-code-coverage           10.1.14                 php-composer    
 phpunit/php-file-iterator           4.1.0                   php-composer    
 phpunit/php-invoker                 4.0.0                   php-composer    
@@ -211,7 +211,7 @@ psr/clock                           1.0.0                   php-composer
 psr/container                       2.0.2                   php-composer    
 psr/event-dispatcher                1.0.0                   php-composer    
 psr/http-client                     1.0.3                   php-composer    
-psr/http-factory                    1.0.2                   php-composer    
+psr/http-factory                    1.1.0                   php-composer    
 psr/http-message                    2.0                     php-composer    
 psr/log                             3.0.0                   php-composer    
 psr/simple-cache                    3.0.0                   php-composer    
@@ -247,7 +247,7 @@ socialiteproviders/manager          v4.6.0                  php-composer
 socialiteproviders/microsoft-azure  5.2.0                   php-composer    
 socialiteproviders/okta             4.4.0                   php-composer    
 socialiteproviders/twitch           5.4.0                   php-composer    
-squizlabs/php_codesniffer           3.9.2                   php-composer    
+squizlabs/php_codesniffer           3.10.0                  php-composer    
 ssddanbrown/asserthtml              v3.0.0                  php-composer    
 ssddanbrown/htmldiff                v1.0.3                  php-composer    
 ssddanbrown/symfony-mailer          6.4.x-dev               php-composer    
