@@ -6,7 +6,6 @@ external_type: github_stable
 release_type: stable
 release_tag: latest
 ls_branch: master
-build_armhf: false
 repo_vars:
   - EXT_GIT_BRANCH = 'master'
   - EXT_USER = 'bookstackapp'
@@ -26,5 +25,5 @@ repo_vars:
   - CI_SSL = 'false'
   - CI_DELAY = '30'
   - CI_DOCKERENV='TEST_RUN=1'
-  - CI_AUTH = 'user:password'
+  - CI_AUTH = ''
   - CI_WEBPATH = ''
