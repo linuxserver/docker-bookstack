@@ -1,11 +1,8 @@
 ## Version 2024/05/27 - Changelog: https://github.com/linuxserver/docker-bookstack/commits/master/root/defaults/nginx/site-confs/default.conf.sample
 
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    listen 443 ssl default_server;
-    listen [::]:443 ssl default_server;
+    listen *:80 default_server;
+    listen *:443 ssl default_server;
 
     server_name _;
 
