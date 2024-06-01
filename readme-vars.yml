@@ -3,7 +3,7 @@
 # project information
 project_name: bookstack
 project_url: "https://github.com/BookStackApp/BookStack"
-project_logo: "https://s3-us-west-2.amazonaws.com/linuxserver-docs/images/bookstack-logo500x500.png"
+project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bookstack-logo.png"
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 project_blurb: |
   [{{ project_name|capitalize }}]({{ project_url }}) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
@@ -24,7 +24,6 @@ param_volumes:
   - { vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/config", desc: "Persistent config files" }
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London"}
   - { env_var: "APP_URL", env_value: "yourbaseurl", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
   - { env_var: "DB_HOST", env_value: "yourdbhost", desc: "for specifying the database host" }
   - { env_var: "DB_PORT", env_value: "yourdbport", desc: "for specifying the database port if not default 3306" }
@@ -42,7 +41,6 @@ opt_param_env_vars:
 
 custom_compose: |
   ---
-  version: "2"
   services:
     bookstack:
       image: lscr.io/linuxserver/bookstack
@@ -50,6 +48,7 @@ custom_compose: |
       environment:
         - PUID=1000
         - PGID=1000
+        - TZ=Europe/London
         - APP_URL=https://bookstack.example.com
         - DB_HOST=bookstack_db
         - DB_PORT=3306
@@ -57,25 +56,26 @@ custom_compose: |
         - DB_PASS=<yourdbpass>
         - DB_DATABASE=bookstackapp
       volumes:
-        - ./bookstack_app_data:/config
+        - /path/to/bookstack_app_data:/config
       ports:
         - 6875:80
       restart: unless-stopped
       depends_on:
         - bookstack_db
+
     bookstack_db:
       image: lscr.io/linuxserver/mariadb
       container_name: bookstack_db
       environment:
         - PUID=1000
         - PGID=1000
-        - MYSQL_ROOT_PASSWORD=<yourdbpass>
         - TZ=Europe/London
+        - MYSQL_ROOT_PASSWORD=<yourdbpass>
         - MYSQL_DATABASE=bookstackapp
         - MYSQL_USER=bookstack
         - MYSQL_PASSWORD=<yourdbpass>
       volumes:
-        - ./bookstack_db_data:/config
+        - /path/to/bookstack_db_data:/config
       restart: unless-stopped
 
 # application setup block
