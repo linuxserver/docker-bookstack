@@ -45,7 +45,7 @@ Powered by SQL and including a Markdown editor for those who prefer it, BookStac
 
 For more information on BookStack visit their website and check it out: https://www.bookstackapp.com
 
-[![bookstack](https://s3-us-west-2.amazonaws.com/linuxserver-docs/images/bookstack-logo500x500.png)](https://github.com/BookStackApp/BookStack)
+[![bookstack](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bookstack-logo.png)](https://github.com/BookStackApp/BookStack)
 
 ## Supported Architectures
 
@@ -99,7 +99,6 @@ To help you get started creating a container from this image you can either use 
 
 ```yaml
 ---
-version: "2"
 services:
   bookstack:
     image: lscr.io/linuxserver/bookstack
@@ -107,6 +106,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Europe/London
       - APP_URL=https://bookstack.example.com
       - DB_HOST=bookstack_db
       - DB_PORT=3306
@@ -114,25 +114,26 @@ services:
       - DB_PASS=<yourdbpass>
       - DB_DATABASE=bookstackapp
     volumes:
-      - ./bookstack_app_data:/config
+      - /path/to/bookstack_app_data:/config
     ports:
       - 6875:80
     restart: unless-stopped
     depends_on:
       - bookstack_db
+
   bookstack_db:
     image: lscr.io/linuxserver/mariadb
     container_name: bookstack_db
     environment:
       - PUID=1000
       - PGID=1000
-      - MYSQL_ROOT_PASSWORD=<yourdbpass>
       - TZ=Europe/London
+      - MYSQL_ROOT_PASSWORD=<yourdbpass>
       - MYSQL_DATABASE=bookstackapp
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=<yourdbpass>
     volumes:
-      - ./bookstack_db_data:/config
+      - /path/to/bookstack_db_data:/config
     restart: unless-stopped
 ```
 
