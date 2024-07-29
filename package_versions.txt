@@ -5,7 +5,7 @@ alpine-baselayout-data              3.6.5-r0                apk
 alpine-keys                         2.4-r1                  apk             
 alpine-release                      3.20.1-r0               apk             
 aom-libs                            3.9.0-r0                apk             
-apache2-utils                       2.4.61-r0               apk             
+apache2-utils                       2.4.62-r0               apk             
 apk-tools                           2.14.4-r0               apk             
 apr                                 1.7.4-r0                apk             
 apr-util                            1.6.3-r1                apk             
