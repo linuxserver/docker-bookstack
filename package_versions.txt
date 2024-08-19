@@ -150,7 +150,7 @@ netcat-openbsd                      1.226-r0                apk
 nette/schema                        v1.3.0                  php-composer    
 nette/utils                         v4.0.4                  php-composer    
 nghttp2-libs                        1.62.1-r0               apk             
-nginx                               1.26.1-r0               apk             
+nginx                               1.26.2-r0               apk             
 nikic/php-parser                    v5.1.0                  php-composer    
 nunomaduro/collision                v7.10.0                 php-composer    
 nunomaduro/termwind                 v1.15.1                 php-composer    
