@@ -23,7 +23,7 @@ ca-certificates                     20240705-r0             apk
 ca-certificates-bundle              20240705-r0             apk             
 carbonphp/carbon-doctrine-types     2.1.0                   php-composer    
 catatonit                           0.2.0-r0                apk             
-composer                            2.7.7                   binary          
+composer                            2.7.8                   binary          
 coreutils                           9.5-r1                  apk             
 coreutils-env                       9.5-r1                  apk             
 coreutils-fmt                       9.5-r1                  apk             
