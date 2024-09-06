@@ -18,6 +18,7 @@ RUN \
     mariadb-client \
     memcached \
     php83-dom \
+    php83-exif \
     php83-gd \
     php83-ldap \
     php83-mysqlnd \
