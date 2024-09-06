@@ -113,6 +113,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "06.09.24:", desc: "Add php-exif for reading image EXIF data."}
   - { date: "27.05.24:", desc: "Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings."}
   - { date: "25.01.24:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf." }
   - { date: "23.12.23:", desc: "Rebase to Alpine 3.19 with php 8.3."}
