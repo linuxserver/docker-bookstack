@@ -3,7 +3,7 @@ Hidden Input                        1, 0, 0, 0              dotnet
 alpine-baselayout                   3.6.5-r0                apk             
 alpine-baselayout-data              3.6.5-r0                apk             
 alpine-keys                         2.4-r1                  apk             
-alpine-release                      3.20.2-r0               apk             
+alpine-release                      3.20.3-r0               apk             
 aom-libs                            3.9.1-r0                apk             
 apache2-utils                       2.4.62-r0               apk             
 apk-tools                           2.14.4-r0               apk             
@@ -28,7 +28,7 @@ coreutils                           9.5-r1                  apk
 coreutils-env                       9.5-r1                  apk             
 coreutils-fmt                       9.5-r1                  apk             
 coreutils-sha512sum                 9.5-r1                  apk             
-curl                                8.9.1-r1                apk             
+curl                                8.10.0-r0               apk             
 dasprid/enum                        1.0.6                   php-composer    
 dbus-libs                           1.14.10-r1              apk             
 dflydev/dot-access-data             v3.0.3                  php-composer    
@@ -90,7 +90,7 @@ libblkid                            2.40.1-r1               apk
 libbsd                              0.12.2-r0               apk             
 libbz2                              1.0.8-r6                apk             
 libcrypto3                          3.3.2-r0                apk             
-libcurl                             8.9.1-r1                apk             
+libcurl                             8.10.0-r0               apk             
 libdav1d                            1.4.2-r0                apk             
 libeconf                            0.6.3-r0                apk             
 libedit                             20240517.3.1-r0         apk             
@@ -107,7 +107,7 @@ libldap                             2.6.7-r0                apk
 libmd                               1.1.0-r0                apk             
 libmemcached-libs                   1.1.4-r1                apk             
 libmount                            2.40.1-r1               apk             
-libncursesw                         6.4_p20240420-r0        apk             
+libncursesw                         6.4_p20240420-r1        apk             
 libpcre2-16                         10.43-r0                apk             
 libpng                              1.6.43-r0               apk             
 libproc2                            4.0.4-r0                apk             
@@ -144,7 +144,7 @@ musl                                1.2.5-r0                apk
 musl-utils                          1.2.5-r0                apk             
 myclabs/deep-copy                   1.12.0                  php-composer    
 nano                                8.0-r0                  apk             
-ncurses-terminfo-base               6.4_p20240420-r0        apk             
+ncurses-terminfo-base               6.4_p20240420-r1        apk             
 nesbot/carbon                       2.72.5                  php-composer    
 netcat-openbsd                      1.226-r0                apk             
 nette/schema                        v1.3.0                  php-composer    
@@ -285,7 +285,7 @@ symfony/uid                         v6.4.8                  php-composer
 symfony/var-dumper                  v6.4.10                 php-composer    
 theseer/tokenizer                   1.2.3                   php-composer    
 tijsverkoyen/css-to-inline-styles   v2.2.7                  php-composer    
-tzdata                              2024a-r1                apk             
+tzdata                              2024b-r0                apk             
 utmps-libs                          0.1.2.2-r1              apk             
 vlucas/phpdotenv                    v5.6.1                  php-composer    
 voku/portable-ascii                 2.0.1                   php-composer    
