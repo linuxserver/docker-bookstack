@@ -54,7 +54,7 @@ gdbm                                1.23-r1                 apk
 git                                 2.45.2-r0               apk             
 git-init-template                   2.45.2-r0               apk             
 git-perl                            2.45.2-r0               apk             
-glib                                2.80.4-r0               apk             
+glib                                2.80.5-r0               apk             
 graham-campbell/result-type         v1.1.3                  php-composer    
 guzzlehttp/guzzle                   7.9.2                   php-composer    
 guzzlehttp/promises                 2.0.3                   php-composer    
@@ -103,13 +103,13 @@ libice                              1.1.1-r6                apk
 libidn2                             2.3.7-r0                apk             
 libintl                             0.22.5-r0               apk             
 libjpeg-turbo                       3.0.3-r0                apk             
-libldap                             2.6.7-r0                apk             
+libldap                             2.6.8-r0                apk             
 libmd                               1.1.0-r0                apk             
 libmemcached-libs                   1.1.4-r1                apk             
 libmount                            2.40.1-r1               apk             
 libncursesw                         6.4_p20240420-r1        apk             
 libpcre2-16                         10.43-r0                apk             
-libpng                              1.6.43-r0               apk             
+libpng                              1.6.44-r0               apk             
 libproc2                            4.0.4-r0                apk             
 libpsl                              0.21.5-r1               apk             
 libsasl                             2.1.28-r6               apk             
