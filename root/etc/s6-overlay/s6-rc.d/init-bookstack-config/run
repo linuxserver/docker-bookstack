@@ -44,85 +44,12 @@ if [[ ! -L "/app/www/storage/logs" ]]; then
     ln -s "/config/log/bookstack" "/app/www/storage/logs"
 fi
 
-# Echo init finish for test runs
-if [ -n "${TEST_RUN}" ]; then
-    echo '[ls.io-init] done.'
-fi
-
-# Create API key if needed
-if [ ! -f "/config/BOOKSTACK_APP_KEY.txt" ]; then
-    echo "Generating BookStack app key for first run"
-    key=$(php /app/www/artisan key:generate --show)
-    echo "${key}" >/config/BOOKSTACK_APP_KEY.txt
-    echo "App Key set to ${key} you can modify the file to update /config/BOOKSTACK_APP_KEY.txt"
-elif [ -f "/config/BOOKSTACK_APP_KEY.txt" ]; then
-    echo "App Key found - setting variable for seds"
-    key=$(cat /config/BOOKSTACK_APP_KEY.txt)
-fi
-
-# .env file setup
-# check for the default app key or if it has been updated
-if ! grep -Fxq "APP_KEY=${key}" /config/www/.env; then
-    sed -i "s#^APP_KEY=.*#APP_KEY=${key}#" /config/www/.env
-fi
-
-# if DB_HOST contains a port and DB_HOST is not a IPv6 without brackets [..]
-# support ipv4:port, [ipv6]:port, and domain:port
-if [[ ${DB_HOST} =~ :[0-9]+$ ]] && ! [[ ${DB_HOST} =~ ^(:{0,2}[a-fA-F0-9]{1,4})+$ ]]; then
-    DB_HOST_PORT="${DB_HOST}"
-fi
-
-# if DB_HOST_PORT is set
-if [[ -n "${DB_HOST_PORT}" ]]; then
-    # if DB_PORT is set
-    if [[ -n "${DB_PORT}" ]]; then
-        echo "DB_PORT is not supported when using DB_HOST with port"
+# Check for app key
+if [[ -z ${APP_KEY} ]]; then
+    if ! grep -qE "APP_KEY=[0-9A-Za-z:+\/=]{1,}" /app/www/.env 2> /dev/null; then
+        echo "An application key is missing, halting init!"
+        echo "You can generate a key with: docker exec -it bookstack php /app/www/artisan key:generate --show"
         sleep infinity
-    fi
-    DB_HOST="${DB_HOST_PORT%:*}"
-    DB_PORT="${DB_HOST_PORT##*:}"
-fi
-
-# if DB_PORT is not set
-if [[ -z "${DB_PORT}" ]]; then
-    DB_PORT="3306"
-fi
-
-# check to see if DB_HOST is set, if it is then run seds and if not then leave them
-if [[ -n "${DB_HOST}" ]]; then
-    echo "Running config - DB_HOST set"
-
-    if ! grep -xqE "^[#]?DB_PORT=.*" /config/www/.env; then
-        # add DB_PORT line to /config/www/.env because current /app/www/.env.example doesn't have it
-        sed -i -E "/^[#]?DB_HOST=.*/a DB_PORT='${DB_PORT}'" /config/www/.env
-        echo "**** Insert DB_PORT='${DB_PORT}' into /config/www/.env ****"
-    fi
-
-    sed -i -E "s/^[#]?DB_HOST=.*/DB_HOST='${DB_HOST}'/g" /config/www/.env
-    sed -i -E "s/^[#]?DB_PORT=.*/DB_PORT='${DB_PORT}'/g" /config/www/.env
-    SED_DB_DATABASE=$(sed -e 's|[&\\/]|\\&|g; s|$|\\|; $s|\\$||' <<<"${DB_DATABASE}")
-    sed -i -E "s/^[#]?DB_DATABASE=.*/DB_DATABASE='${SED_DB_DATABASE}'/g" /config/www/.env
-    SED_DB_USER=$(sed -e 's|[&\\/]|\\&|g; s|$|\\|; $s|\\$||' <<<"${DB_USER}")
-    sed -i -E "s/^[#]?DB_USERNAME=.*/DB_USERNAME='${SED_DB_USER}'/g" /config/www/.env
-    SED_DB_PASS=$(sed -e 's|[&\\/]|\\&|g; s|$|\\|; $s|\\$||' <<<"${DB_PASS}")
-    sed -i -E "s/^[#]?DB_PASSWORD=.*/DB_PASSWORD='${SED_DB_PASS}'/g" /config/www/.env
-fi
-
-# set appurl
-if [ -z "${APP_URL}" ]; then
-    EXT_IP=$(curl -s https://icanhazip.com)
-    APP_URL="http://${EXT_IP}:6875"
-    echo "**** Docker env var APP_URL is not set, setting it to ${APP_URL} ****"
-fi
-OLD_URL=$(grep APP_URL /config/www/.env | sed 's|.*APP_URL=||g')
-if [ "${APP_URL}" != "${OLD_URL}" ]; then
-    sed -r "s,([#\s]*)?APP_URL=.*,APP_URL=${APP_URL},g" -i /config/www/.env
-    echo "**** APP_URL in /config/www/.env is being updated from ${OLD_URL} to ${APP_URL} ****"
-    if [ "${OLD_URL}" != "http://example.com" ]; then
-        echo "**** If this is an existing install, you should run the following line from your host terminal to update the database URL entries: ****"
-        echo "************************************************************************"
-        echo "docker exec -it bookstack php /app/www/artisan bookstack:update-url ${OLD_URL} ${APP_URL}"
-        echo "************************************************************************"
     fi
 fi
 
@@ -134,33 +61,30 @@ if ! grep -qx '^post_max_size.*$' /config/php/php-local.ini; then
     echo 'post_max_size = 100M' >>/config/php/php-local.ini
 fi
 
+# if DB_PORT is not set
+if [[ -z "${DB_PORT}" ]]; then
+    DB_PORT="3306"
+fi
+
 # check for the mysql endpoint
 echo "Waiting for DB to be available"
 END=$((SECONDS + 30))
 while [[ ${SECONDS} -lt ${END} ]] && [[ -n "${DB_HOST+x}" ]]; do
     if [[ $(/usr/bin/nc -w1 "${DB_HOST}" "${DB_PORT}" | tr -d '\0') ]]; then
-        if [[ -n "${RUN}" ]]; then
-            break
-        fi
-        RUN="RAN"
-        # we sleep here again due to first run init on DB containers
         if [[ ! -f /dbwait.lock ]]; then
             sleep 5
         fi
+        touch /dbwait.lock
+        break
     else
         sleep 1
     fi
 done
 
 # update database - will set up database if fresh, or, migrate existing
-if [ -z "${CI_RUN+x}" ]; then
-    php /app/www/artisan migrate --force
-fi
+php /app/www/artisan migrate --force
 
 # permissions
 lsiown -R abc:abc \
     /app/www/storage \
     /config
-
-# set lockfile to avoid DB waits for this specific container
-touch /dbwait.lock

@@ -37,7 +37,6 @@ Find us at:
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/bookstack.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/linuxserver/bookstack)
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/bookstack.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/linuxserver/bookstack)
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-bookstack%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-bookstack/job/master/)
-[![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fbookstack%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/bookstack/latest/index.html)
 
 [Bookstack](https://github.com/BookStackApp/BookStack) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
 
@@ -63,10 +62,9 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-The default username is admin@admin.com with the password of **password**, access the container at http://dockerhost:6875.
+The default username is admin@admin.com with the password of **password**, access the container at http://<host ip>:6875.
 
 This application is dependent on a MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
-
 
 If you intend to use this application behind a subfolder reverse proxy, such as our SWAG container or Traefik you will need to make sure that the `APP_URL` environment variable is set to your external domain, or it will not work.
 
@@ -79,8 +77,8 @@ Below is a mapping of container `/config` paths to those relative within a BookS
 
 - **/config container path** => **BookStack relative path**
 - `/config/www/.env` => `.env`
-- `/config/www/laravel.log` => `storage/logs/laravel.log`
-- `/config/www/backups/` => `storage/backups/`
+- `/config/log/bookstack/laravel.log` => `storage/logs/laravel.log`
+- `/config/backups/` => `storage/backups/`
 - `/config/www/files/` => `storage/uploads/files/`
 - `/config/www/images/` => `storage/uploads/images/`
 - `/config/www/themes/` => `themes/`
@@ -101,39 +99,23 @@ To help you get started creating a container from this image you can either use 
 ---
 services:
   bookstack:
-    image: lscr.io/linuxserver/bookstack
+    image: lscr.io/linuxserver/bookstack:latest
     container_name: bookstack
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
-      - APP_URL=https://bookstack.example.com
-      - DB_HOST=bookstack_db
-      - DB_PORT=3306
-      - DB_USER=bookstack
-      - DB_PASS=<yourdbpass>
+      - TZ=Etc/UTC
+      - APP_URL=yourbaseurl
+      - DB_HOST=yourdbhost
+      - DB_PORT=yourdbport
+      - DB_USERNAME=yourdbuser
+      - DB_PASSWORD=yourdbpass
       - DB_DATABASE=bookstackapp
+      - QUEUE_CONNECTION= #optional
     volumes:
-      - /path/to/bookstack_app_data:/config
+      - /path/to/bookstack/config:/config
     ports:
       - 6875:80
-    restart: unless-stopped
-    depends_on:
-      - bookstack_db
-
-  bookstack_db:
-    image: lscr.io/linuxserver/mariadb
-    container_name: bookstack_db
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - MYSQL_ROOT_PASSWORD=<yourdbpass>
-      - MYSQL_DATABASE=bookstackapp
-      - MYSQL_USER=bookstack
-      - MYSQL_PASSWORD=<yourdbpass>
-    volumes:
-      - /path/to/bookstack_db_data:/config
     restart: unless-stopped
 ```
 
@@ -148,8 +130,8 @@ docker run -d \
   -e APP_URL=yourbaseurl \
   -e DB_HOST=yourdbhost \
   -e DB_PORT=yourdbport \
-  -e DB_USER=yourdbuser \
-  -e DB_PASS=yourdbpass \
+  -e DB_USERNAME=yourdbuser \
+  -e DB_PASSWORD=yourdbpass \
   -e DB_DATABASE=bookstackapp \
   -e QUEUE_CONNECTION= `#optional` \
   -p 6875:80 \
@@ -171,8 +153,8 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e APP_URL=yourbaseurl` | for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
 | `-e DB_HOST=yourdbhost` | for specifying the database host |
 | `-e DB_PORT=yourdbport` | for specifying the database port if not default 3306 |
-| `-e DB_USER=yourdbuser` | for specifying the database user |
-| `-e DB_PASS=yourdbpass` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
+| `-e DB_USERNAME=yourdbuser` | for specifying the database user |
+| `-e DB_PASSWORD=yourdbpass` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
 | `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
 | `-e QUEUE_CONNECTION=` | Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling). |
 | `-v /config` | Persistent config files |
@@ -339,6 +321,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **11.10.24:** - Default to environment config over .env file config.
 * **06.09.24:** - Add php-exif for reading image EXIF data.
 * **27.05.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
 * **25.01.24:** - Existing users should update: site-confs/default.conf - Cleanup default site conf.
