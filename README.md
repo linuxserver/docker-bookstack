@@ -71,6 +71,7 @@ If you intend to use this application behind a subfolder reverse proxy, such as 
 Documentation for BookStack can be found at https://www.bookstackapp.com/docs/.
 
 ### BookStack File & Directory Paths
+
 This container ensures certain BookStack application files & folders, such as user file upload folders, are retained within the `/config` folder so that they are persistent & accessible when the `/config` container path is bound as a volume. There may be cases, when following the BookStack documentation, that you'll need to know how these files and folders are used relative to a non-container BookStack installation.
 
 Below is a mapping of container `/config` paths to those relative within a BookStack install directory:
@@ -85,6 +86,7 @@ Below is a mapping of container `/config` paths to those relative within a BookS
 - `/config/www/uploads/` => `public/uploads/`
 
 ### Advanced Users (full control over the .env file)
+
 If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
 
 When you create the container, do not set any arguments for any SQL settings. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
@@ -105,12 +107,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - APP_URL=yourbaseurl
-      - DB_HOST=yourdbhost
-      - DB_PORT=yourdbport
-      - DB_USERNAME=yourdbuser
-      - DB_PASSWORD=yourdbpass
-      - DB_DATABASE=bookstackapp
+      - APP_URL=
+      - DB_HOST=
+      - DB_PORT=3306
+      - DB_USERNAME=
+      - DB_PASSWORD=
+      - DB_DATABASE=
       - QUEUE_CONNECTION= #optional
     volumes:
       - /path/to/bookstack/config:/config
@@ -127,12 +129,12 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e APP_URL=yourbaseurl \
-  -e DB_HOST=yourdbhost \
-  -e DB_PORT=yourdbport \
-  -e DB_USERNAME=yourdbuser \
-  -e DB_PASSWORD=yourdbpass \
-  -e DB_DATABASE=bookstackapp \
+  -e APP_URL= \
+  -e DB_HOST= \
+  -e DB_PORT=3306 \
+  -e DB_USERNAME= \
+  -e DB_PASSWORD= \
+  -e DB_DATABASE= \
   -e QUEUE_CONNECTION= `#optional` \
   -p 6875:80 \
   -v /path/to/bookstack/config:/config \
@@ -150,12 +152,12 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `-e APP_URL=yourbaseurl` | for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
-| `-e DB_HOST=yourdbhost` | for specifying the database host |
-| `-e DB_PORT=yourdbport` | for specifying the database port if not default 3306 |
-| `-e DB_USERNAME=yourdbuser` | for specifying the database user |
-| `-e DB_PASSWORD=yourdbpass` | for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
-| `-e DB_DATABASE=bookstackapp` | for specifying the database to be used |
+| `-e APP_URL=` | The IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
+| `-e DB_HOST=` | The database instance hostname |
+| `-e DB_PORT=3306` | Database port (default `3306`) |
+| `-e DB_USERNAME=` | Database user |
+| `-e DB_PASSWORD=` | Database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.) |
+| `-e DB_DATABASE=` | Database name |
 | `-e QUEUE_CONNECTION=` | Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling). |
 | `-v /config` | Persistent config files |
 
