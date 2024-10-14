@@ -116,6 +116,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - APP_URL=
+      - APP_KEY=
       - DB_HOST=
       - DB_PORT=3306
       - DB_USERNAME=
@@ -138,6 +139,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -e APP_URL= \
+  -e APP_KEY= \
   -e DB_HOST= \
   -e DB_PORT=3306 \
   -e DB_USERNAME= \
@@ -161,6 +163,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-e APP_URL=` | The IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com` |
+| `-e APP_KEY=` | Session encryption key. Can be generated with `docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey` |
 | `-e DB_HOST=` | The database instance hostname |
 | `-e DB_PORT=3306` | Database port (default `3306`) |
 | `-e DB_USERNAME=` | Database user |
