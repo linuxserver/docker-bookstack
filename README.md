@@ -85,6 +85,14 @@ Below is a mapping of container `/config` paths to those relative within a BookS
 - `/config/www/themes/` => `themes/`
 - `/config/www/uploads/` => `public/uploads/`
 
+### Changing APP_URL
+
+If you change the APP_URL after initial install, you should run the following line from your host terminal to update the database URL entries:
+
+```shell
+docker exec -it bookstack php /app/www/artisan bookstack:update-url ${OLD_URL} ${NEW_URL}
+```
+
 ### Advanced Users (full control over the .env file)
 
 If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
