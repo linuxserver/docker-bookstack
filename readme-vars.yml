@@ -24,12 +24,12 @@ param_volumes:
   - { vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/config", desc: "Persistent config files" }
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "APP_URL", env_value: "yourbaseurl", desc: "for specifying the IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
-  - { env_var: "DB_HOST", env_value: "yourdbhost", desc: "for specifying the database host" }
-  - { env_var: "DB_PORT", env_value: "yourdbport", desc: "for specifying the database port if not default 3306" }
-  - { env_var: "DB_USER", env_value: "yourdbuser", desc: "for specifying the database user" }
-  - { env_var: "DB_PASS", env_value: "yourdbpass", desc: "for specifying the database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.)" }
-  - { env_var: "DB_DATABASE", env_value: "bookstackapp", desc: "for specifying the database to be used" }
+  - { env_var: "APP_URL", env_value: "", desc: "The IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
+  - { env_var: "DB_HOST", env_value: "", desc: "The database instance hostname" }
+  - { env_var: "DB_PORT", env_value: "3306", desc: "Database port (default `3306`)" }
+  - { env_var: "DB_USERNAME", env_value: "", desc: "Database user" }
+  - { env_var: "DB_PASSWORD", env_value: "", desc: "Database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.)" }
+  - { env_var: "DB_DATABASE", env_value: "", desc: "Database name" }
 
 param_usage_include_ports: true
 param_ports:
@@ -39,80 +39,50 @@ opt_param_usage_include_env: true
 opt_param_env_vars:
   - { env_var: "QUEUE_CONNECTION", env_value: "", desc: "Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling)." }
 
-custom_compose: |
-  ---
-  services:
-    bookstack:
-      image: lscr.io/linuxserver/bookstack
-      container_name: bookstack
-      environment:
-        - PUID=1000
-        - PGID=1000
-        - TZ=Europe/London
-        - APP_URL=https://bookstack.example.com
-        - DB_HOST=bookstack_db
-        - DB_PORT=3306
-        - DB_USER=bookstack
-        - DB_PASS=<yourdbpass>
-        - DB_DATABASE=bookstackapp
-      volumes:
-        - /path/to/bookstack_app_data:/config
-      ports:
-        - 6875:80
-      restart: unless-stopped
-      depends_on:
-        - bookstack_db
-
-    bookstack_db:
-      image: lscr.io/linuxserver/mariadb
-      container_name: bookstack_db
-      environment:
-        - PUID=1000
-        - PGID=1000
-        - TZ=Europe/London
-        - MYSQL_ROOT_PASSWORD=<yourdbpass>
-        - MYSQL_DATABASE=bookstackapp
-        - MYSQL_USER=bookstack
-        - MYSQL_PASSWORD=<yourdbpass>
-      volumes:
-        - /path/to/bookstack_db_data:/config
-      restart: unless-stopped
-
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
 
-  The default username is admin@admin.com with the password of **password**, access the container at http://dockerhost:6875.
+  The default username is admin@admin.com with the password of **password**, access the container at http://<host ip>:6875.
 
   This application is dependent on a MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
-
 
   If you intend to use this application behind a subfolder reverse proxy, such as our SWAG container or Traefik you will need to make sure that the `APP_URL` environment variable is set to your external domain, or it will not work.
 
   Documentation for BookStack can be found at https://www.bookstackapp.com/docs/.
 
   ### BookStack File & Directory Paths
+
   This container ensures certain BookStack application files & folders, such as user file upload folders, are retained within the `/config` folder so that they are persistent & accessible when the `/config` container path is bound as a volume. There may be cases, when following the BookStack documentation, that you'll need to know how these files and folders are used relative to a non-container BookStack installation.
 
   Below is a mapping of container `/config` paths to those relative within a BookStack install directory:
 
   - **/config container path** => **BookStack relative path**
   - `/config/www/.env` => `.env`
-  - `/config/www/laravel.log` => `storage/logs/laravel.log`
-  - `/config/www/backups/` => `storage/backups/`
+  - `/config/log/bookstack/laravel.log` => `storage/logs/laravel.log`
+  - `/config/backups/` => `storage/backups/`
   - `/config/www/files/` => `storage/uploads/files/`
   - `/config/www/images/` => `storage/uploads/images/`
   - `/config/www/themes/` => `themes/`
   - `/config/www/uploads/` => `public/uploads/`
 
+  ### Changing APP_URL
+
+  If you change the APP_URL after initial install, you should run the following line from your host terminal to update the database URL entries:
+
+  ```shell
+  docker exec -it bookstack php /app/www/artisan bookstack:update-url ${OLD_URL} ${NEW_URL}
+  ```
+
   ### Advanced Users (full control over the .env file)
+
   If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
 
   When you create the container, do not set any arguments for any SQL settings. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
 
-
 # changelog
 changelogs:
+  - { date: "11.10.24:", desc: "Default to environment config over .env file config."}
   - { date: "06.09.24:", desc: "Add php-exif for reading image EXIF data."}
   - { date: "27.05.24:", desc: "Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings."}
   - { date: "25.01.24:", desc: "Existing users should update: site-confs/default.conf - Cleanup default site conf." }

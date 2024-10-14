@@ -7,7 +7,7 @@ ARG BUILD_DATE
 ARG VERSION
 ARG BOOKSTACK_RELEASE
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="homerr"
+LABEL maintainer="thespad"
 
 ENV S6_STAGE2_HOOK="/init-hook"
 
