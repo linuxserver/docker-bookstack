@@ -185,7 +185,7 @@ php83-openssl                       8.3.12-r0               apk
 php83-pdo                           8.3.12-r0               apk             
 php83-pdo_mysql                     8.3.12-r0               apk             
 php83-pecl-igbinary                 3.2.15-r0               apk             
-php83-pecl-memcached                3.2.0-r0                apk             
+php83-pecl-memcached                3.3.0-r0                apk             
 php83-pecl-msgpack                  2.2.0-r2                apk             
 php83-phar                          8.3.12-r0               apk             
 php83-session                       8.3.12-r0               apk             
