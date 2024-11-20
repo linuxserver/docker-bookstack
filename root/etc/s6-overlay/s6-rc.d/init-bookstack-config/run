@@ -47,8 +47,9 @@ fi
 # Check for app key
 if [[ -z ${APP_KEY} ]]; then
     if ! grep -qE "APP_KEY=[0-9A-Za-z:+\/=]{1,}" /app/www/.env 2> /dev/null || grep -qE "APP_KEY=SomeRandomString" /app/www/.env 2> /dev/null; then
-        echo "An application key is missing, halting init!"
+        echo "The application key is missing, halting init!"
         echo "You can generate a key with: docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey"
+        echo "And apply it to the APP_KEY environment variable."
         sleep infinity
     fi
 fi

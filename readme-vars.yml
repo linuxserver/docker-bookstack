@@ -24,17 +24,17 @@ param_volumes:
   - { vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/config", desc: "Persistent config files" }
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "APP_URL", env_value: "", desc: "The IP:port or URL your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
-  - { env_var: "APP_KEY", env_value: "", desc: "Session encryption key. Can be generated with `docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey`"}
+  - { env_var: "APP_URL", env_value: "", desc: "The protocol, IP/URL, and port that your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`"}
+  - { env_var: "APP_KEY", env_value: "", desc: "Session encryption key. You will need to generate this with `docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey`"}
   - { env_var: "DB_HOST", env_value: "", desc: "The database instance hostname" }
-  - { env_var: "DB_PORT", env_value: "3306", desc: "Database port (default `3306`)" }
+  - { env_var: "DB_PORT", env_value: "3306", desc: "Database port" }
   - { env_var: "DB_USERNAME", env_value: "", desc: "Database user" }
   - { env_var: "DB_PASSWORD", env_value: "", desc: "Database password (minimum 4 characters & non-alphanumeric passwords must be properly escaped.)" }
   - { env_var: "DB_DATABASE", env_value: "", desc: "Database name" }
 
 param_usage_include_ports: true
 param_ports:
-  - { external_port: "6875", internal_port: "80", port_desc: "will map the container's port 80 to port 6875 on the host" }
+  - { external_port: "6875", internal_port: "80", port_desc: "http/s web interface." }
 
 opt_param_usage_include_env: true
 opt_param_env_vars:
@@ -46,7 +46,7 @@ app_setup_block: |
 
   The default username is admin@admin.com with the password of **password**, access the container at http://<host ip>:6875.
 
-  This application is dependent on a MySQL database be it one you already have or a new one. If you do not already have one, set up our MariaDB container here https://hub.docker.com/r/linuxserver/mariadb/.
+  This application is dependent on a MariaDB database, be it one you already have or a new one. If you do not already have one, we provide an image here https://github.com/linuxserver/docker-mariadb.
 
   If you intend to use this application behind a subfolder reverse proxy, such as our SWAG container or Traefik you will need to make sure that the `APP_URL` environment variable is set to your external domain, or it will not work.
 
@@ -77,9 +77,9 @@ app_setup_block: |
 
   ### Advanced Users (full control over the .env file)
 
-  If you wish to use the extra functionality of BookStack such as email, Memcache, LDAP and so on you will need to make your own .env file with guidance from the BookStack documentation.
+  If you wish to use the extra functionality of BookStack such as email, LDAP and so on you will need to set additional environment variables or make your own .env file with guidance from the BookStack documentation.
 
-  When you create the container, do not set any arguments for any SQL settings. The container will copy an exemplary .env file to /config/www/.env on your host system for you to edit.
+  The container will copy an exemplary .env file to /config/www/.env on your host system for you to use.
 
 # changelog
 changelogs:
