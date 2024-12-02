@@ -37,7 +37,7 @@ opt_param_env_vars:
   - {env_var: "QUEUE_CONNECTION", env_value: "", desc: "Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling)."}
 # application setup block
 app_setup_block_enabled: true
-app_setup_block: |2
+app_setup_block: |
   The default username is admin@admin.com with the password of **password**, access the container at http://<host ip>:6875.
 
   This application is dependent on a MariaDB database, be it one you already have or a new one. If you do not already have one, we provide an image here https://github.com/linuxserver/docker-mariadb.
