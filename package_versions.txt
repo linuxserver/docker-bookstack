@@ -6,7 +6,7 @@ alpine-keys                         2.4-r1                  apk
 alpine-release                      3.20.3-r0               apk             
 aom-libs                            3.9.1-r0                apk             
 apache2-utils                       2.4.62-r0               apk             
-apk-tools                           2.14.4-r0               apk             
+apk-tools                           2.14.4-r1               apk             
 apr                                 1.7.5-r0                apk             
 apr-util                            1.6.3-r1                apk             
 argon2-libs                         20190702-r5             apk             
@@ -23,12 +23,12 @@ ca-certificates                     20240705-r0             apk
 ca-certificates-bundle              20240705-r0             apk             
 carbonphp/carbon-doctrine-types     2.1.0                   php-composer    
 catatonit                           0.2.0-r0                apk             
-composer                            2.8.3                   binary          
+composer                            2.8.4                   binary          
 coreutils                           9.5-r1                  apk             
 coreutils-env                       9.5-r1                  apk             
 coreutils-fmt                       9.5-r1                  apk             
 coreutils-sha512sum                 9.5-r1                  apk             
-curl                                8.9.1-r2                apk             
+curl                                8.11.0-r2               apk             
 dasprid/enum                        1.0.6                   php-composer    
 dbus-libs                           1.14.10-r1              apk             
 dflydev/dot-access-data             v3.0.3                  php-composer    
@@ -92,7 +92,7 @@ libblkid                            2.40.1-r1               apk
 libbsd                              0.12.2-r0               apk             
 libbz2                              1.0.8-r6                apk             
 libcrypto3                          3.3.2-r1                apk             
-libcurl                             8.9.1-r2                apk             
+libcurl                             8.11.0-r2               apk             
 libdav1d                            1.4.2-r0                apk             
 libeconf                            0.6.3-r0                apk             
 libedit                             20240517.3.1-r0         apk             
@@ -109,7 +109,7 @@ libldap                             2.6.8-r0                apk
 libmd                               1.1.0-r0                apk             
 libmemcached-libs                   1.1.4-r1                apk             
 libmount                            2.40.1-r1               apk             
-libncursesw                         6.4_p20240420-r1        apk             
+libncursesw                         6.4_p20240420-r2        apk             
 libpcre2-16                         10.43-r0                apk             
 libpng                              1.6.44-r0               apk             
 libproc2                            4.0.4-r0                apk             
@@ -146,7 +146,7 @@ musl                                1.2.5-r0                apk
 musl-utils                          1.2.5-r0                apk             
 myclabs/deep-copy                   1.12.1                  php-composer    
 nano                                8.0-r0                  apk             
-ncurses-terminfo-base               6.4_p20240420-r1        apk             
+ncurses-terminfo-base               6.4_p20240420-r2        apk             
 nesbot/carbon                       2.72.5                  php-composer    
 netcat-openbsd                      1.226-r0                apk             
 nette/schema                        v1.3.2                  php-composer    
