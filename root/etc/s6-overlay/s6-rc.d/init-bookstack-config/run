@@ -4,49 +4,20 @@
 # create directory structure
 mkdir -p \
     /config/www/{uploads,files,images,themes} \
+    /config/www/framework/{cache,sessions,views} \
     /config/backups \
     /config/log/bookstack
+
+rm -rf /config/www/framework/{cache,sessions,views}/*
 
 # check for .env and copy default if needed
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
     cp /app/www/.env.example /config/www/.env
 fi
 
-# create symlinks
-symlinks=(
-    /app/www/themes
-    /app/www/storage/uploads/files
-    /app/www/storage/uploads/images
-    /app/www/public/uploads
-    /app/www/.env
-)
-
-for i in "${symlinks[@]}"; do
-    if [[ -e "${i}" && ! -L "${i}" ]]; then
-        rm -rf "${i}"
-    fi
-    if [[ ! -L "${i}" ]]; then
-        ln -s /config/www/"$(basename "${i}")" "${i}"
-    fi
-done
-
-if [[ -e "/app/www/storage/backups" && ! -L "/app/www/storage/backups" ]]; then
-    rm -rf "/app/www/storage/backups"
-fi
-if [[ ! -L "/app/www/storage/backups" ]]; then
-    ln -s "/config/backups" "/app/www/storage/backups"
-fi
-
-if [[ -e "/app/www/storage/logs" && ! -L "/app/www/storage/logs" ]]; then
-    rm -rf "/app/www/storage/logs"
-fi
-if [[ ! -L "/app/www/storage/logs" ]]; then
-    ln -s "/config/log/bookstack" "/app/www/storage/logs"
-fi
-
 # Check for app key
 if [[ -z ${APP_KEY} ]]; then
-    if ! grep -qE "APP_KEY=[0-9A-Za-z:+\/=]{1,}" /app/www/.env 2> /dev/null || grep -qE "APP_KEY=SomeRandomString" /app/www/.env 2> /dev/null; then
+    if ! grep -qE "APP_KEY=[0-9A-Za-z:+\/=]{1,}" /config/www/.env 2> /dev/null || grep -qE "APP_KEY=SomeRandomString" /config/www/.env 2> /dev/null; then
         echo "The application key is missing, halting init!"
         echo "You can generate a key with: docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey"
         echo "And apply it to the APP_KEY environment variable."
@@ -72,10 +43,10 @@ echo "Waiting for DB to be available"
 END=$((SECONDS + 30))
 while [[ ${SECONDS} -lt ${END} ]] && [[ -n "${DB_HOST+x}" ]]; do
     if [[ $(/usr/bin/nc -w1 "${DB_HOST}" "${DB_PORT}" | tr -d '\0') ]]; then
-        if [[ ! -f /dbwait.lock ]]; then
+        if [[ ! -f /run/dbwait.lock ]]; then
             sleep 5
         fi
-        touch /dbwait.lock
+        touch /run/dbwait.lock
         break
     else
         sleep 1
@@ -87,5 +58,4 @@ php /app/www/artisan migrate --force
 
 # permissions
 lsiown -R abc:abc \
-    /app/www/storage \
     /config
