@@ -35,6 +35,9 @@ param_ports:
 opt_param_usage_include_env: true
 opt_param_env_vars:
   - {env_var: "QUEUE_CONNECTION", env_value: "", desc: "Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling)."}
+readonly_supported: true
+readonly_message: |
+  * `/tmp` must be mounted to tmpfs
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
@@ -135,6 +138,7 @@ init_diagram: |
   "bookstack:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "17.12.24:", desc: "Rebase to Alpine 3.21."}
   - {date: "11.10.24:", desc: "Default to environment config over .env file config."}
   - {date: "06.09.24:", desc: "Add php-exif for reading image EXIF data."}
   - {date: "27.05.24:", desc: "Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings."}

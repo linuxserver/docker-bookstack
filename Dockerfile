@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine-nginx:3.20
+FROM ghcr.io/linuxserver/baseimage-alpine-nginx:3.21
 
 # set version label
 ARG BUILD_DATE
@@ -47,6 +47,11 @@ RUN \
   echo "**** install composer dependencies ****" && \
   composer install -d /app/www/ && \
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
+  echo "**** create symlinks ****" && \
+  /bin/bash -c \
+  'dst=(www/themes www/files www/images www/uploads backups www/framework/cache www/framework/sessions www/framework/views log/bookstack/laravel.log www/.env); \
+  src=(themes storage/uploads/files storage/uploads/images public/uploads storage/backup storage/framework/cache storage/framework/sessions storage/framework/views storage/logs/laravel.log .env); \
+  for i in "${!src[@]}"; do rm -rf /app/www/"${src[i]}" && ln -s /config/"${dst[i]}" /app/www/"${src[i]}"; done' && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/* \
