@@ -48,16 +48,10 @@ RUN \
   composer install -d /app/www/ && \
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** create symlinks ****" && \
-  rm -rf /app/www/themes && ln -s /config/www/themes /app/www/themes && \
-  rm -rf /app/www/storage/uploads/files && ln -s /config/www/files /app/www/storage/uploads/files && \
-  rm -rf /app/www/storage/uploads/images && ln -s /config/www/images /app/www/storage/uploads/images && \
-  rm -rf /app/www/public/uploads && ln -s /config/www/uploads /app/www/public/uploads && \
-  rm -rf /app/www/storage/backup && ln -s /config/backups /app/www/storage/backups && \
-  rm -rf /app/www/storage/framework/cache && ln -s /config/www/framework/cache /app/www/storage/framework/cache && \
-  rm -rf /app/www/storage/framework/sessions && ln -s /config/www/framework/sessions /app/www/storage/framework/sessions && \
-  rm -rf /app/www/storage/framework/views && ln -s /config/www/framework/views /app/www/storage/framework/views && \
-  rm -rf /app/www/storage/logs/laravel.log && ln -s /config/log/bookstack/laravel.log /app/www/storage/logs/laravel.log && \
-  rm -rf /app/www/.env && ln -s /config/www/.env /app/www/.env && \
+  /bin/bash -c \
+  'dst=(www/themes www/files www/images www/uploads backups www/framework/cache www/framework/sessions www/framework/views log/bookstack/laravel.log www/.env); \
+  src=(themes storage/uploads/files storage/uploads/images public/uploads storage/backup storage/framework/cache storage/framework/sessions storage/framework/views storage/logs/laravel.log .env); \
+  for i in "${!src[@]}"; do rm -rf /app/www/"${src[i]}" && ln -s /config/"${dst[i]}" /app/www/"${src[i]}"; done' && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/* \
