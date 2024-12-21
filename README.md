@@ -99,6 +99,14 @@ If you wish to use the extra functionality of BookStack such as email, LDAP and 
 
 The container will copy an exemplary .env file to /config/www/.env on your host system for you to use.
 
+## Read-Only Operation
+
+This image can be run with a read-only container filesystem. For details please [read the docs](https://docs.linuxserver.io/misc/read-only/).
+
+### Caveats
+
+* `/tmp` must be mounted to tmpfs
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -174,6 +182,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e DB_DATABASE=` | Database name |
 | `-e QUEUE_CONNECTION=` | Set to `database` to enable async actions like sending email or triggering webhooks. See [documentation](https://www.bookstackapp.com/docs/admin/email-webhooks/#async-action-handling). |
 | `-v /config` | Persistent config files |
+| `--read-only=true` | Run container with a read-only filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/). |
 
 ## Environment variables from files (Docker secrets)
 
@@ -337,6 +346,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **17.12.24:** - Rebase to Alpine 3.21.
 * **11.10.24:** - Default to environment config over .env file config.
 * **06.09.24:** - Add php-exif for reading image EXIF data.
 * **27.05.24:** - Rebase to Alpine 3.20. Existing users should update their nginx confs to avoid http2 deprecation warnings.
