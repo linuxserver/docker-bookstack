@@ -1,3 +1,9 @@
 #!/bin/bash
 
+mkdir -p \
+    /config/www/framework/{cache,sessions,views} \
+    /config/log/bookstack
+
+touch /config/log/bookstack/laravel.log
+
 php /app/www/artisan key:generate --show
