@@ -1,0 +1,30 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+if [[ -z ${LSIO_READ_ONLY_FS} ]] && [[ -z ${LSIO_NON_ROOT_USER} ]]; then
+    # permissions
+    lsiown -R abc:abc \
+        /var/lib/nginx
+
+    chmod -R 644 /etc/logrotate.d
+fi
+
+if [[ -z ${LSIO_NON_ROOT_USER} ]]; then
+    lsiown -R abc:abc \
+        /config/keys \
+        /config/log \
+        /config/nginx \
+        /config/php
+
+    lsiown abc:abc \
+        /config/www
+fi
+
+if [[ -f "/config/log/logrotate.status" ]]; then
+    chmod 600 /config/log/logrotate.status
+fi
+
+chmod -R g+w \
+    /config/nginx
+
+true
