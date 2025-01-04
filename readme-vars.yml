@@ -133,6 +133,7 @@ init_diagram: |
   "bookstack:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "04.01.25:", desc: "Adjust init-permissions to support qnap"}
   - {date: "17.12.24:", desc: "Rebase to Alpine 3.21."}
   - {date: "11.10.24:", desc: "Default to environment config over .env file config."}
   - {date: "06.09.24:", desc: "Add php-exif for reading image EXIF data."}
