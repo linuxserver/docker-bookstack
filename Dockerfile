@@ -22,6 +22,7 @@ RUN \
     php83-gd \
     php83-ldap \
     php83-mysqlnd \
+    php83-opcache \
     php83-pdo_mysql \
     php83-pecl-memcached \
     php83-tokenizer \
