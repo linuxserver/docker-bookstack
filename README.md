@@ -346,6 +346,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **04.01.25:** - Add php-opcache.
 * **17.12.24:** - Rebase to Alpine 3.21.
 * **11.10.24:** - Default to environment config over .env file config.
 * **06.09.24:** - Add php-exif for reading image EXIF data.
