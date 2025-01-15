@@ -8,7 +8,9 @@ mkdir -p \
     /config/backups \
     /config/log/bookstack
 
-rm -rf /config/www/framework/{cache,sessions,views}/*
+if [[ ! -f /tmp/dbwait.lock ]];then
+    rm -rf /config/www/framework/{cache,sessions,views}/*
+fi
 
 # check for .env and copy default if needed
 if [[ ! -f "/config/www/.env" ]] || [[ ! -s "/config/www/.env" ]]; then
