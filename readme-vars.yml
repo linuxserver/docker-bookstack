@@ -5,6 +5,7 @@ project_name: bookstack
 project_url: "https://github.com/BookStackApp/BookStack"
 project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bookstack-logo.png"
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+project_categories: "Content Management"
 project_blurb: |
   [{{ project_name|capitalize }}]({{ project_url }}) is a free and open source Wiki designed for creating beautiful documentation. Featuring a simple, but powerful WYSIWYG editor it allows for teams to create detailed and useful documentation with ease.
 
