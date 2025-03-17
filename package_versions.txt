@@ -95,7 +95,7 @@ libdav1d                            1.5.0-r0                apk
 libeconf                            0.6.3-r0                apk             
 libedit                             20240808.3.1-r0         apk             
 libevent                            2.1.12-r7               apk             
-libexpat                            2.6.4-r0                apk             
+libexpat                            2.7.0-r0                apk             
 libffi                              3.4.7-r0                apk             
 libfontenc                          1.1.8-r0                apk             
 libgcc                              14.2.0-r4               apk             
@@ -109,7 +109,7 @@ libmemcached-libs                   1.1.4-r1                apk
 libmount                            2.40.4-r0               apk             
 libncursesw                         6.5_p20241006-r3        apk             
 libpcre2-16                         10.43-r0                apk             
-libpng                              1.6.44-r0               apk             
+libpng                              1.6.47-r0               apk             
 libproc2                            4.0.4-r2                apk             
 libpsl                              0.21.5-r3               apk             
 libsasl                             2.1.28-r8               apk             
@@ -150,7 +150,7 @@ netcat-openbsd                      1.226.1.1-r0            apk
 nette/schema                        v1.3.2                  php-composer    
 nette/utils                         v4.0.5                  php-composer    
 nghttp2-libs                        1.64.0-r0               apk             
-nginx                               1.26.2-r4               apk             
+nginx                               1.26.3-r0               apk             
 nikic/php-parser                    v5.4.0                  php-composer    
 nunomaduro/collision                v8.7.0                  php-composer    
 nunomaduro/termwind                 v2.3.0                  php-composer    
