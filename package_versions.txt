@@ -23,7 +23,7 @@ ca-certificates                     20241121-r1             apk
 ca-certificates-bundle              20241121-r1             apk             
 carbonphp/carbon-doctrine-types     3.2.0                   php-composer    
 catatonit                           0.2.0-r0                apk             
-composer                            2.8.6                   binary          
+composer                            2.8.7                   binary          
 coreutils                           9.5-r2                  apk             
 coreutils-env                       9.5-r2                  apk             
 coreutils-fmt                       9.5-r2                  apk             
@@ -279,7 +279,7 @@ symfony/uid                         v7.2.0                  php-composer
 symfony/var-dumper                  v7.2.3                  php-composer    
 theseer/tokenizer                   1.2.3                   php-composer    
 tijsverkoyen/css-to-inline-styles   v2.3.0                  php-composer    
-tzdata                              2025a-r0                apk             
+tzdata                              2025b-r0                apk             
 utmps-libs                          0.1.2.3-r2              apk             
 vlucas/phpdotenv                    v5.6.1                  php-composer    
 voku/portable-ascii                 2.0.3                   php-composer    
