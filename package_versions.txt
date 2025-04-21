@@ -85,7 +85,7 @@ league/uri                          7.5.1                   php-composer
 league/uri-interfaces               7.5.0                   php-composer    
 libattr                             2.5.2-r2                apk             
 libavif                             1.0.4-r0                apk             
-libblkid                            2.40.4-r0               apk             
+libblkid                            2.40.4-r1               apk             
 libbsd                              0.12.2-r0               apk             
 libbz2                              1.0.8-r6                apk             
 libcrypto3                          3.3.3-r0                apk             
@@ -105,7 +105,7 @@ libjpeg-turbo                       3.0.4-r0                apk
 libldap                             2.6.8-r0                apk             
 libmd                               1.1.0-r0                apk             
 libmemcached-libs                   1.1.4-r1                apk             
-libmount                            2.40.4-r0               apk             
+libmount                            2.40.4-r1               apk             
 libncursesw                         6.5_p20241006-r3        apk             
 libpcre2-16                         10.43-r0                apk             
 libpng                              1.6.47-r0               apk             
@@ -118,7 +118,7 @@ libsm                               1.2.4-r4                apk
 libssl3                             3.3.3-r0                apk             
 libstdc++                           14.2.0-r4               apk             
 libunistring                        1.2-r0                  apk             
-libuuid                             2.40.4-r0               apk             
+libuuid                             2.40.4-r1               apk             
 libwebp                             1.4.0-r0                apk             
 libx11                              1.8.10-r0               apk             
 libxau                              1.0.11-r4               apk             
