@@ -11,7 +11,7 @@ apr                                 1.7.5-r0                apk
 apr-util                            1.6.3-r1                apk             
 argon2-libs                         20190702-r5             apk             
 aws/aws-crt-php                     v1.2.7                  php-composer    
-aws/aws-sdk-php                     3.343.3                 php-composer    
+aws/aws-sdk-php                     3.343.6                 php-composer    
 bacon/bacon-qr-code                 v3.0.1                  php-composer    
 bash                                5.2.37-r0               apk             
 brick/math                          0.12.3                  php-composer    
@@ -152,7 +152,7 @@ nghttp2-libs                        1.64.0-r0               apk
 nginx                               1.26.3-r0               apk             
 nikic/php-parser                    v5.4.0                  php-composer    
 nunomaduro/collision                v8.8.0                  php-composer    
-nunomaduro/termwind                 v2.3.0                  php-composer    
+nunomaduro/termwind                 v2.3.1                  php-composer    
 onelogin/php-saml                   4.2.0                   php-composer    
 oniguruma                           6.9.9-r0                apk             
 openssl                             3.3.3-r0                apk             
