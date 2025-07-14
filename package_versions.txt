@@ -24,7 +24,7 @@ ca-certificates                     20241121-r1             apk
 ca-certificates-bundle              20241121-r1             apk             
 carbonphp/carbon-doctrine-types     3.2.0                   php-composer    
 catatonit                           0.2.0-r0                apk             
-composer                            2.8.9                   binary          
+composer                            2.8.10                  binary          
 coreutils                           9.5-r2                  apk             
 coreutils-env                       9.5-r2                  apk             
 coreutils-fmt                       9.5-r2                  apk             
@@ -50,8 +50,8 @@ fontconfig                          2.15.0-r1               apk
 freetype                            2.13.3-r0               apk             
 fruitcake/php-cors                  v1.3.0                  php-composer    
 gdbm                                1.24-r0                 apk             
-git                                 2.47.2-r0               apk             
-git-init-template                   2.47.2-r0               apk             
+git                                 2.47.3-r0               apk             
+git-init-template                   2.47.3-r0               apk             
 glib                                2.82.5-r0               apk             
 graham-campbell/result-type         v1.1.3                  php-composer    
 guzzlehttp/guzzle                   7.9.3                   php-composer    
@@ -60,8 +60,8 @@ guzzlehttp/psr7                     2.7.1                   php-composer
 guzzlehttp/uri-template             v1.0.4                  php-composer    
 hamcrest/hamcrest-php               v2.1.1                  php-composer    
 iamcal/sql-parser                   v0.6                    php-composer    
-icu-data-full                       74.2-r0                 apk             
-icu-libs                            74.2-r0                 apk             
+icu-data-full                       74.2-r1                 apk             
+icu-libs                            74.2-r1                 apk             
 intervention/gif                    4.2.2                   php-composer    
 intervention/image                  3.11.3                  php-composer    
 itsgoingd/clockwork                 v5.3.4                  php-composer    
@@ -89,7 +89,7 @@ libavif                             1.0.4-r0                apk
 libblkid                            2.40.4-r1               apk             
 libbsd                              0.12.2-r0               apk             
 libbz2                              1.0.8-r6                apk             
-libcrypto3                          3.3.3-r0                apk             
+libcrypto3                          3.3.4-r0                apk             
 libcurl                             8.12.1-r1               apk             
 libdav1d                            1.5.0-r0                apk             
 libeconf                            0.6.3-r0                apk             
@@ -116,7 +116,7 @@ libsasl                             2.1.28-r8               apk
 libseccomp                          2.5.5-r1                apk             
 libsharpyuv                         1.4.0-r0                apk             
 libsm                               1.2.4-r4                apk             
-libssl3                             3.3.3-r0                apk             
+libssl3                             3.3.4-r0                apk             
 libstdc++                           14.2.0-r4               apk             
 libunistring                        1.2-r0                  apk             
 libuuid                             2.40.4-r1               apk             
@@ -156,7 +156,7 @@ nunomaduro/collision                v8.8.2                  php-composer
 nunomaduro/termwind                 v2.3.1                  php-composer    
 onelogin/php-saml                   4.3.0                   php-composer    
 oniguruma                           6.9.9-r0                apk             
-openssl                             3.3.3-r0                apk             
+openssl                             3.3.4-r0                apk             
 paragonie/constant_time_encoding    v3.0.0                  php-composer    
 paragonie/random_compat             v9.99.100               php-composer    
 pcre                                8.45-r3                 apk             
