@@ -12,7 +12,7 @@ apr                                 1.7.5-r0                apk
 apr-util                            1.6.3-r1                apk             
 argon2-libs                         20190702-r5             apk             
 aws/aws-crt-php                     v1.2.7                  php-composer    
-aws/aws-sdk-php                     3.349.2                 php-composer    
+aws/aws-sdk-php                     3.351.7                 php-composer    
 bacon/bacon-qr-code                 v3.0.1                  php-composer    
 bash                                5.2.37-r0               apk             
 brick/math                          0.12.3                  php-composer    
@@ -67,13 +67,13 @@ intervention/image                  3.11.3                  php-composer
 itsgoingd/clockwork                 v5.3.4                  php-composer    
 jq                                  1.8.0-r0                apk             
 knplabs/knp-snappy                  v1.5.1                  php-composer    
-larastan/larastan                   v3.5.0                  php-composer    
+larastan/larastan                   v3.6.0                  php-composer    
 laravel/framework                   v11.45.1                php-composer    
-laravel/prompts                     v0.3.5                  php-composer    
+laravel/prompts                     v0.3.6                  php-composer    
 laravel/serializable-closure        v2.0.4                  php-composer    
-laravel/socialite                   v5.21.0                 php-composer    
+laravel/socialite                   v5.23.0                 php-composer    
 laravel/tinker                      v2.10.1                 php-composer    
-league/commonmark                   2.7.0                   php-composer    
+league/commonmark                   2.7.1                   php-composer    
 league/config                       v1.2.0                  php-composer    
 league/flysystem                    3.30.0                  php-composer    
 league/flysystem-aws-s3-v3          3.29.0                  php-composer    
@@ -136,7 +136,7 @@ linux-pam                           1.7.0-r4                apk
 logrotate                           3.21.0-r1               apk             
 mariadb-client                      11.4.5-r2               apk             
 mariadb-common                      11.4.5-r2               apk             
-masterminds/html5                   2.9.0                   php-composer    
+masterminds/html5                   2.10.0                  php-composer    
 memcached                           1.6.32-r0               apk             
 mkfontscale                         1.2.3-r1                apk             
 mockery/mockery                     1.6.12                  php-composer    
@@ -194,13 +194,13 @@ php84-xmlwriter                     8.4.10-r0               apk
 php84-zip                           8.4.10-r0               apk             
 phpoption/phpoption                 1.9.3                   php-composer    
 phpseclib/phpseclib                 3.0.46                  php-composer    
-phpstan/phpstan                     2.1.17                  php-composer    
+phpstan/phpstan                     2.1.20                  php-composer    
 phpunit/php-code-coverage           11.0.10                 php-composer    
 phpunit/php-file-iterator           5.1.0                   php-composer    
 phpunit/php-invoker                 5.0.1                   php-composer    
 phpunit/php-text-template           4.0.1                   php-composer    
 phpunit/php-timer                   7.0.1                   php-composer    
-phpunit/phpunit                     11.5.26                 php-composer    
+phpunit/phpunit                     11.5.27                 php-composer    
 popt                                1.19-r4                 apk             
 pragmarx/google2fa                  v8.0.3                  php-composer    
 predis/predis                       v2.4.0                  php-composer    
@@ -220,7 +220,7 @@ ramsey/collection                   2.1.1                   php-composer
 ramsey/uuid                         4.9.0                   php-composer    
 readline                            8.2.13-r1               apk             
 robrichards/xmlseclibs              3.1.3                   php-composer    
-sabberworm/php-css-parser           v8.8.0                  php-composer    
+sabberworm/php-css-parser           v8.9.0                  php-composer    
 scanelf                             1.3.8-r1                apk             
 sebastian/cli-parser                3.0.2                   php-composer    
 sebastian/code-unit                 3.0.3                   php-composer    
@@ -248,7 +248,6 @@ socialiteproviders/twitch           5.4.0                   php-composer
 squizlabs/php_codesniffer           3.13.2                  php-composer    
 ssddanbrown/asserthtml              v3.1.0                  php-composer    
 ssddanbrown/htmldiff                v2.0.0                  php-composer    
-ssddanbrown/symfony-mailer          7.2.x-dev               php-composer    
 ssl_client                          1.37.0-r18              apk             
 staabm/side-effects-detector        1.0.5                   php-composer    
 symfony/clock                       v7.3.0                  php-composer    
@@ -262,6 +261,7 @@ symfony/event-dispatcher-contracts  v3.6.0                  php-composer
 symfony/finder                      v7.3.0                  php-composer    
 symfony/http-foundation             v7.3.1                  php-composer    
 symfony/http-kernel                 v7.3.1                  php-composer    
+symfony/mailer                      v7.3.1                  php-composer    
 symfony/mime                        v7.3.0                  php-composer    
 symfony/polyfill-ctype              v1.32.0                 php-composer    
 symfony/polyfill-intl-grapheme      v1.32.0                 php-composer    
