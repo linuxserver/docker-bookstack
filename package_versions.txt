@@ -20,8 +20,8 @@ brotli-libs                         1.1.0-r2                apk
 busybox                             1.37.0-r19              apk             
 busybox-binsh                       1.37.0-r19              apk             
 c-ares                              1.34.5-r0               apk             
-ca-certificates                     20250619-r0             apk             
-ca-certificates-bundle              20250619-r0             apk             
+ca-certificates                     20250911-r0             apk             
+ca-certificates-bundle              20250911-r0             apk             
 carbonphp/carbon-doctrine-types     3.2.0                   php-composer    
 catatonit                           0.2.1-r0                apk             
 composer                            2.8.12                  binary          
@@ -29,7 +29,7 @@ coreutils                           9.7-r1                  apk
 coreutils-env                       9.7-r1                  apk             
 coreutils-fmt                       9.7-r1                  apk             
 coreutils-sha512sum                 9.7-r1                  apk             
-curl                                8.14.1-r1               apk             
+curl                                8.14.1-r2               apk             
 dasprid/enum                        1.0.7                   php-composer    
 dbus-libs                           1.16.2-r1               apk             
 dflydev/dot-access-data             v3.0.3                  php-composer    
@@ -91,7 +91,7 @@ libblkid                            2.41-r9                 apk
 libbsd                              0.12.2-r0               apk             
 libbz2                              1.0.8-r6                apk             
 libcrypto3                          3.5.4-r0                apk             
-libcurl                             8.14.1-r1               apk             
+libcurl                             8.14.1-r2               apk             
 libdav1d                            1.5.1-r0                apk             
 libeconf                            0.6.3-r0                apk             
 libedit                             20250104.3.1-r1         apk             
@@ -127,7 +127,7 @@ libxau                              1.0.12-r0               apk
 libxcb                              1.17.0-r0               apk             
 libxdmcp                            1.1.5-r1                apk             
 libxext                             1.3.6-r2                apk             
-libxml2                             2.13.8-r0               apk             
+libxml2                             2.13.9-r0               apk             
 libxpm                              3.5.17-r0               apk             
 libxt                               1.3.1-r0                apk             
 libyuv                              0.0.1887.20251502-r1    apk             
