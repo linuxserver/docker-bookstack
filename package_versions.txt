@@ -4,7 +4,7 @@ acl-libs                            2.3.2-r1                apk
 alpine-baselayout                   3.7.0-r0                apk             
 alpine-baselayout-data              3.7.0-r0                apk             
 alpine-keys                         2.5-r0                  apk             
-alpine-release                      3.22.1-r0               apk             
+alpine-release                      3.22.2-r0               apk             
 aom-libs                            3.12.1-r0               apk             
 apache2-utils                       2.4.65-r0               apk             
 apk-tools                           2.14.9-r3               apk             
@@ -109,7 +109,7 @@ libmd                               1.1.0-r0                apk
 libmemcached-libs                   1.1.4-r1                apk             
 libmount                            2.41-r9                 apk             
 libncursesw                         6.5_p20250503-r0        apk             
-libpcre2-16                         10.43-r1                apk             
+libpcre2-16                         10.46-r0                apk             
 libpng                              1.6.47-r0               apk             
 libproc2                            4.0.4-r3                apk             
 libpsl                              0.21.5-r3               apk             
