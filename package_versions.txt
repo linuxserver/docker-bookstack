@@ -12,9 +12,8 @@ apr                                 1.7.5-r0                apk
 apr-util                            1.6.3-r1                apk             
 argon2-libs                         20190702-r5             apk             
 aws/aws-crt-php                     v1.2.7                  php-composer    
-aws/aws-sdk-php                     3.360.0                 php-composer    
-bacon/bacon-qr-code                 v3.0.2                  php-composer    
-baconqrcode                         UNKNOWN                 npm             
+aws/aws-sdk-php                     3.362.1                 php-composer    
+bacon/bacon-qr-code                 v3.0.3                  php-composer    
 bash                                5.2.37-r0               apk             
 brick/math                          0.14.0                  php-composer    
 brotli-libs                         1.1.0-r2                apk             
@@ -25,7 +24,7 @@ ca-certificates                     20250911-r0             apk
 ca-certificates-bundle              20250911-r0             apk             
 carbonphp/carbon-doctrine-types     3.2.0                   php-composer    
 catatonit                           0.2.1-r0                apk             
-composer                            2.9.1                   binary          
+composer                            2.9.2                   binary          
 coreutils                           9.7-r1                  apk             
 coreutils-env                       9.7-r1                  apk             
 coreutils-fmt                       9.7-r1                  apk             
@@ -155,8 +154,8 @@ nette/utils                         v4.0.8                  php-composer
 nghttp2-libs                        1.65.0-r0               apk             
 nginx                               1.28.0-r3               apk             
 nikic/php-parser                    v5.6.2                  php-composer    
-nunomaduro/collision                v8.8.2                  php-composer    
-nunomaduro/termwind                 v2.3.2                  php-composer    
+nunomaduro/collision                v8.8.3                  php-composer    
+nunomaduro/termwind                 v2.3.3                  php-composer    
 onelogin/php-saml                   4.3.0                   php-composer    
 oniguruma                           6.9.10-r0               apk             
 openssl                             3.5.4-r0                apk             
