@@ -22,7 +22,6 @@ RUN \
     php85-gd \
     php85-ldap \
     php85-mysqlnd \
-    php85-opcache \
     php85-pdo_mysql \
     php85-pecl-memcached \
     php85-tokenizer \
