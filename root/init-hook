@@ -2,7 +2,7 @@
 # shellcheck shell=bash
 
 if [[ -n "${QUEUE_CONNECTION}" ]]; then
-  touch /etc/s6-overlay/s6-rc.d/user/contents.d/svc-queue-worker
+    touch /etc/s6-overlay/s6-rc.d/user/contents.d/svc-queue-worker
 fi
 
 exec \
