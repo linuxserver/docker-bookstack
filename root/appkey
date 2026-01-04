@@ -6,4 +6,4 @@ mkdir -p \
 
 touch /config/log/bookstack/laravel.log
 
-php /app/www/artisan key:generate --show
+php /app/www/artisan key:generate --show --no-ansi
