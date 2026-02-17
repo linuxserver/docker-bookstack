@@ -49,8 +49,8 @@ RUN \
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** create symlinks ****" && \
   /bin/bash -c \
-  'dst=(www/themes www/files www/images www/uploads backups www/framework/cache www/framework/sessions www/framework/views log/bookstack/laravel.log www/.env); \
-  src=(themes storage/uploads/files storage/uploads/images public/uploads storage/backups storage/framework/cache storage/framework/sessions storage/framework/views storage/logs/laravel.log .env); \
+  'dst=(www/themes www/files www/images www/uploads backups www/framework/cache www/framework/sessions www/framework/views www/framework/purifier log/bookstack/laravel.log www/.env); \
+  src=(themes storage/uploads/files storage/uploads/images public/uploads storage/backups storage/framework/cache storage/framework/sessions storage/framework/views storage/framework/purifier storage/logs/laravel.log .env); \
   for i in "${!src[@]}"; do rm -rf /app/www/"${src[i]}" && ln -s /config/"${dst[i]}" /app/www/"${src[i]}"; done' && \
   echo "**** cleanup ****" && \
   rm -rf \

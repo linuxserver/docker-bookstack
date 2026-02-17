@@ -4,12 +4,12 @@
 # create directory structure
 mkdir -p \
     /config/www/{uploads,files,images,themes} \
-    /config/www/framework/{cache,sessions,views} \
+    /config/www/framework/{cache,sessions,views,purifier} \
     /config/backups \
     /config/log/bookstack
 
 if [[ ! -f /tmp/dbwait.lock ]];then
-    rm -rf /config/www/framework/{cache,sessions,views}/*
+    rm -rf /config/www/framework/{cache,sessions,views,purifier}/*
 fi
 
 # check for .env and copy default if needed
