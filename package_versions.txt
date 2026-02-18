@@ -12,7 +12,7 @@ apr                                 1.7.6-r0                apk
 apr-util                            1.6.3-r2                apk             
 argon2-libs                         20190702-r5             apk             
 aws/aws-crt-php                     v1.2.7                  php-composer    
-aws/aws-sdk-php                     3.369.35                php-composer    
+aws/aws-sdk-php                     3.369.36                php-composer    
 bacon/bacon-qr-code                 v3.0.3                  php-composer    
 bash                                5.3.3-r1                apk             
 brick/math                          0.14.8                  php-composer    
@@ -69,7 +69,7 @@ itsgoingd/clockwork                 v5.3.5                  php-composer
 jq                                  1.8.1-r0                apk             
 knplabs/knp-snappy                  v1.6.0                  php-composer    
 larastan/larastan                   v3.9.2                  php-composer    
-laravel/framework                   v12.51.0                php-composer    
+laravel/framework                   v12.52.0                php-composer    
 laravel/prompts                     v0.3.13                 php-composer    
 laravel/serializable-closure        v2.0.9                  php-composer    
 laravel/socialite                   v5.24.2                 php-composer    
@@ -156,7 +156,7 @@ nghttp2-libs                        1.68.0-r0               apk
 nghttp3                             1.13.1-r0               apk             
 nginx                               1.28.2-r0               apk             
 nikic/php-parser                    v5.7.0                  php-composer    
-nunomaduro/collision                v8.9.0                  php-composer    
+nunomaduro/collision                v8.9.1                  php-composer    
 nunomaduro/termwind                 v2.4.0                  php-composer    
 onelogin/php-saml                   4.3.1                   php-composer    
 oniguruma                           6.9.10-r0               apk             
@@ -201,7 +201,7 @@ phpunit/php-file-iterator           5.1.1                   php-composer
 phpunit/php-invoker                 5.0.1                   php-composer    
 phpunit/php-text-template           4.0.1                   php-composer    
 phpunit/php-timer                   7.0.1                   php-composer    
-phpunit/phpunit                     11.5.53                 php-composer    
+phpunit/phpunit                     11.5.55                 php-composer    
 popt                                1.19-r4                 apk             
 pragmarx/google2fa                  v9.0.0                  php-composer    
 predis/predis                       v3.4.0                  php-composer    
