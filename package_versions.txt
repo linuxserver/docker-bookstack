@@ -12,7 +12,7 @@ apr                                 1.7.6-r0                apk
 apr-util                            1.6.3-r2                apk             
 argon2-libs                         20190702-r5             apk             
 aws/aws-crt-php                     v1.2.7                  php-composer    
-aws/aws-sdk-php                     3.373.0                 php-composer    
+aws/aws-sdk-php                     3.373.2                 php-composer    
 bacon/bacon-qr-code                 v3.0.3                  php-composer    
 bash                                5.3.3-r1                apk             
 brick/math                          0.14.8                  php-composer    
@@ -220,7 +220,7 @@ ralouphie/getallheaders             3.0.3                   php-composer
 ramsey/collection                   2.1.1                   php-composer    
 ramsey/uuid                         4.9.2                   php-composer    
 readline                            8.3.1-r0                apk             
-robrichards/xmlseclibs              3.1.4                   php-composer    
+robrichards/xmlseclibs              3.1.5                   php-composer    
 sabberworm/php-css-parser           v9.3.0                  php-composer    
 scanelf                             1.3.8-r2                apk             
 sebastian/cli-parser                3.0.2                   php-composer    
