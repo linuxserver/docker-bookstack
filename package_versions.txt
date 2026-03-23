@@ -12,7 +12,7 @@ apr                                 1.7.6-r0                apk
 apr-util                            1.6.3-r2                apk             
 argon2-libs                         20190702-r5             apk             
 aws/aws-crt-php                     v1.2.7                  php-composer    
-aws/aws-sdk-php                     3.373.3                 php-composer    
+aws/aws-sdk-php                     3.373.7                 php-composer    
 bacon/bacon-qr-code                 v3.0.4                  php-composer    
 bash                                5.3.3-r1                apk             
 brick/math                          0.14.8                  php-composer    
@@ -69,12 +69,12 @@ itsgoingd/clockwork                 v5.3.5                  php-composer
 jq                                  1.8.1-r0                apk             
 knplabs/knp-snappy                  v1.6.0                  php-composer    
 larastan/larastan                   v3.9.3                  php-composer    
-laravel/framework                   v12.54.1                php-composer    
-laravel/prompts                     v0.3.14                 php-composer    
+laravel/framework                   v12.55.1                php-composer    
+laravel/prompts                     v0.3.15                 php-composer    
 laravel/serializable-closure        v2.0.10                 php-composer    
 laravel/socialite                   v5.25.0                 php-composer    
 laravel/tinker                      v2.11.1                 php-composer    
-league/commonmark                   2.8.1                   php-composer    
+league/commonmark                   2.8.2                   php-composer    
 league/config                       v1.2.0                  php-composer    
 league/flysystem                    3.32.0                  php-composer    
 league/flysystem-aws-s3-v3          3.32.0                  php-composer    
@@ -97,7 +97,7 @@ libdav1d                            1.5.2-r0                apk
 libeconf                            0.8.3-r0                apk             
 libedit                             20251016.3.1-r0         apk             
 libevent                            2.1.12-r8               apk             
-libexpat                            2.7.4-r0                apk             
+libexpat                            2.7.5-r0                apk             
 libffi                              3.5.2-r0                apk             
 libfontenc                          1.1.8-r0                apk             
 libgcc                              15.2.0-r2               apk             
@@ -194,8 +194,8 @@ php85-xml                           8.5.3-r0                apk
 php85-xmlwriter                     8.5.3-r0                apk             
 php85-zip                           8.5.3-r0                apk             
 phpoption/phpoption                 1.9.5                   php-composer    
-phpseclib/phpseclib                 3.0.49                  php-composer    
-phpstan/phpstan                     2.1.41                  php-composer    
+phpseclib/phpseclib                 3.0.50                  php-composer    
+phpstan/phpstan                     2.1.42                  php-composer    
 phpunit/php-code-coverage           11.0.12                 php-composer    
 phpunit/php-file-iterator           5.1.1                   php-composer    
 phpunit/php-invoker                 5.0.1                   php-composer    
@@ -242,7 +242,7 @@ shadow                              4.18.0-r0               apk
 skalibs-libs                        2.14.4.0-r0             apk             
 socialiteproviders/discord          4.2.0                   php-composer    
 socialiteproviders/gitlab           4.1.0                   php-composer    
-socialiteproviders/manager          v4.8.1                  php-composer    
+socialiteproviders/manager          4.9.2                   php-composer    
 socialiteproviders/microsoft-azure  5.2.0                   php-composer    
 socialiteproviders/okta             4.5.0                   php-composer    
 socialiteproviders/twitch           5.4.0                   php-composer    
