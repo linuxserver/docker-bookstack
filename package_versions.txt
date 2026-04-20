@@ -24,7 +24,7 @@ ca-certificates                     20251003-r0             apk
 ca-certificates-bundle              20251003-r0             apk             
 carbonphp/carbon-doctrine-types     3.2.0                   php-composer    
 catatonit                           0.2.1-r0                apk             
-composer                            2.9.5                   binary          
+composer                            2.9.7                   binary          
 coreutils                           9.8-r1                  apk             
 coreutils-env                       9.8-r1                  apk             
 coreutils-fmt                       9.8-r1                  apk             
@@ -135,8 +135,8 @@ libyuv                              0.0.1887.20251502-r1    apk
 libzip                              1.11.4-r1               apk             
 linux-pam                           1.7.1-r2                apk             
 logrotate                           3.22.0-r0               apk             
-mariadb-client                      11.4.9-r0               apk             
-mariadb-common                      11.4.9-r0               apk             
+mariadb-client                      11.4.10-r0              apk             
+mariadb-common                      11.4.10-r0              apk             
 masterminds/html5                   2.10.0                  php-composer    
 memcached                           1.6.39-r0               apk             
 mkfontscale                         1.2.3-r1                apk             
