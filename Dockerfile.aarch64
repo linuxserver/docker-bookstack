@@ -34,13 +34,13 @@ RUN \
   echo "**** fetch bookstack ****" && \
   mkdir -p\
     /app/www && \
-  if [ -z ${BOOKSTACK_RELEASE+x} ]; then \
-    BOOKSTACK_RELEASE=$(curl -sX GET "https://api.github.com/repos/bookstackapp/bookstack/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
+  if [ -z "${BOOKSTACK_RELEASE+x}" ]; then \
+    BOOKSTACK_RELEASE=$(curl -sL "https://codeberg.org/bookstack/bookstack/releases.rss" \
+      | awk '/<entry>|<item>/ {found=1} found && /<link>https:\/\/codeberg.org\/bookstack\/bookstack\/releases\/tag\// { gsub(/.*<link>https:\/\/codeberg.org\/bookstack\/bookstack\/releases\/tag\//,"", $0); gsub(/<\/link>.*/,"", $0); print $0; exit }'); \
   fi && \
   curl -o \
     /tmp/bookstack.tar.gz -L \
-    "https://github.com/BookStackApp/BookStack/archive/${BOOKSTACK_RELEASE}.tar.gz" && \
+    "https://source.bookstackapp.com/bookstack/snapshot/bookstack-${BOOKSTACK_RELEASE}.tar.gz" && \
   tar xf \
     /tmp/bookstack.tar.gz -C \
     /app/www/ --strip-components=1 && \

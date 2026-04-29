@@ -2,7 +2,7 @@
 
 # jenkins variables
 project_name: docker-bookstack
-external_type: github_stable
+external_type: codeberg_rss
 release_type: stable
 release_tag: latest
 ls_branch: master
