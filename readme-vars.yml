@@ -136,7 +136,7 @@ init_diagram: |
   "bookstack:latest" <- Base Images
 # changelog
 changelogs:
-  - {date: "29.04.26:", desc: "Update upstream BookStack source as project moved from github to codeberg."}
+  - {date: "30.04.26:", desc: "Update upstream BookStack source as project moved from github to codeberg."}
   - {date: "28.12.25:", desc: "Rebase to Alpine 3.23."}
   - {date: "05.07.25:", desc: "Rebase to Alpine 3.22."}
   - {date: "04.01.25:", desc: "Add php-opcache."}

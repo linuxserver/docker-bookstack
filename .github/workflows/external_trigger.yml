@@ -16,6 +16,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         env:
           SKIP_EXTERNAL_TRIGGER: ${{ vars.SKIP_EXTERNAL_TRIGGER }}
+          RSS_DELAY_MINUTES: ${{ vars.RSS_DELAY_MINUTES }}
         run: |
           printf "# External trigger for docker-bookstack\n\n" >> $GITHUB_STEP_SUMMARY
           if grep -q "^bookstack_master_" <<< "${SKIP_EXTERNAL_TRIGGER}"; then
@@ -29,8 +30,32 @@ jobs:
           echo "> [!NOTE]" >> $GITHUB_STEP_SUMMARY
           echo "> External trigger running off of master branch. To disable this trigger, add \`bookstack_master\` into the Github organizational variable \`SKIP_EXTERNAL_TRIGGER\`." >> $GITHUB_STEP_SUMMARY
           printf "\n## Retrieving external version\n\n" >> $GITHUB_STEP_SUMMARY
-          EXT_RELEASE=$(curl -sL "https://codeberg.org/bookstack/bookstack/releases.rss" \
+          RSS_FEED=$(curl -sL "https://codeberg.org/bookstack/bookstack/releases.rss")
+          EXT_RELEASE=$(printf '%s' "${RSS_FEED}" \
             | awk '/<entry>|<item>/ {found=1} found && /<link>https:\/\/codeberg.org\/bookstack\/bookstack\/releases\/tag\// { gsub(/.*<link>https:\/\/codeberg.org\/bookstack\/bookstack\/releases\/tag\//,"", $0); gsub(/<\/link>.*/,"", $0); print $0; exit }')
+          RSS_PUBDATE=$(printf '%s' "${RSS_FEED}" \
+            | awk '/<item>|<entry>/ {found=1} found && /<pubDate>/ { gsub(/.*<pubDate>/, "", $0); gsub(/<\/pubDate>.*/, "", $0); print; exit }')
+          if [ -z "${RSS_PUBDATE}" ]; then
+            RSS_PUBDATE=$(printf '%s' "${RSS_FEED}" \
+              | awk '/<pubDate>/ { gsub(/.*<pubDate>/, "", $0); gsub(/<\/pubDate>.*/, "", $0); print; exit }')
+          fi
+          DELAY_MIN=${RSS_DELAY_MINUTES:-6}
+          if [ -n "${RSS_PUBDATE}" ]; then
+            RSS_EPOCH=$(date -d "${RSS_PUBDATE}" +%s 2>/dev/null || true)
+            if [ -n "${RSS_EPOCH}" ]; then
+              NOW_EPOCH=$(date -u +%s)
+              AGE_SEC=$((NOW_EPOCH - RSS_EPOCH))
+              DELAY_SEC=$((DELAY_MIN * 60))
+              if [ "${AGE_SEC}" -lt "${DELAY_SEC}" ]; then
+                echo "> [!NOTE]" >> $GITHUB_STEP_SUMMARY
+                echo "> Codeberg RSS was updated ${AGE_SEC} seconds ago; skipping this run as newest entry has to be older than ${DELAY_MIN} minutes. (Based on RSS pubDate)" >> $GITHUB_STEP_SUMMARY
+                exit 0
+              fi
+            fi
+          else
+            echo "> [!NOTE]" >> $GITHUB_STEP_SUMMARY
+            echo "> Could not parse RSS pubDate; proceeding without additional delay." >> $GITHUB_STEP_SUMMARY
+          fi
           echo "Type is \`codeberg_rss\`" >> $GITHUB_STEP_SUMMARY
           if grep -q "^bookstack_master_${EXT_RELEASE}" <<< "${SKIP_EXTERNAL_TRIGGER}"; then
             echo "> [!WARNING]" >> $GITHUB_STEP_SUMMARY
