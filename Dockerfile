@@ -35,12 +35,12 @@ RUN \
   mkdir -p\
     /app/www && \
   if [ -z ${BOOKSTACK_RELEASE+x} ]; then \
-    BOOKSTACK_RELEASE=$(curl -sX GET "https://api.github.com/repos/bookstackapp/bookstack/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
+    BOOKSTACK_RELEASE=$(curl -sX GET "https://codeberg.org/api/v1/repos/bookstack/bookstack/releases/latest" \
+    | jq -r '.tag_name'); \
   fi && \
   curl -o \
     /tmp/bookstack.tar.gz -L \
-    "https://github.com/BookStackApp/BookStack/archive/${BOOKSTACK_RELEASE}.tar.gz" && \
+    "https://codeberg.org/bookstack/bookstack/archive/${BOOKSTACK_RELEASE}.tar.gz" && \
   tar xf \
     /tmp/bookstack.tar.gz -C \
     /app/www/ --strip-components=1 && \

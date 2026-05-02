@@ -2,7 +2,7 @@
 
 # project information
 project_name: bookstack
-project_url: "https://github.com/BookStackApp/BookStack"
+project_url: "https://codeberg.org/bookstack/bookstack"
 project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bookstack-logo.png"
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 project_categories: "Content Management"
@@ -136,6 +136,7 @@ init_diagram: |
   "bookstack:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "29.04.26:", desc: "Switch to pulling releases from [Codeberg](https://codeberg.org/bookstack/bookstack)."}
   - {date: "28.12.25:", desc: "Rebase to Alpine 3.23."}
   - {date: "05.07.25:", desc: "Rebase to Alpine 3.22."}
   - {date: "04.01.25:", desc: "Add php-opcache."}

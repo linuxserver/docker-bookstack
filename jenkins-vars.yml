@@ -2,14 +2,12 @@
 
 # jenkins variables
 project_name: docker-bookstack
-external_type: github_stable
+external_type: na
+custom_version_command: "curl -sX GET 'https://codeberg.org/api/v1/repos/bookstack/bookstack/releases/latest' | jq -r '.tag_name'"
 release_type: stable
 release_tag: latest
 ls_branch: master
 repo_vars:
-  - EXT_GIT_BRANCH = 'master'
-  - EXT_USER = 'bookstackapp'
-  - EXT_REPO = 'bookstack'
   - BUILD_VERSION_ARG = 'BOOKSTACK_RELEASE'
   - LS_USER = 'linuxserver'
   - LS_REPO = 'docker-bookstack'
@@ -27,3 +25,5 @@ repo_vars:
   - CI_DOCKERENV=''
   - CI_AUTH = ''
   - CI_WEBPATH = ''
+sponsor_links:
+  - { name: "Bookstack", url: "https://www.bookstackapp.com/donate/" }
