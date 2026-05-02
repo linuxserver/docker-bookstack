@@ -343,7 +343,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
-* **29.04.26:** - Switch to pulling release from [Codeberg](https://codeberg.org/bookstack/bookstack).
+* **29.04.26:** - Switch to pulling releases from [Codeberg](https://codeberg.org/bookstack/bookstack).
 * **28.12.25:** - Rebase to Alpine 3.23.
 * **05.07.25:** - Rebase to Alpine 3.22.
 * **04.01.25:** - Add php-opcache.
