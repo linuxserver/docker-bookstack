@@ -5,7 +5,7 @@ alpine-baselayout                   3.7.2-r0                apk
 alpine-baselayout-data              3.7.2-r0                apk             
 alpine-keys                         2.6-r0                  apk             
 alpine-release                      3.23.4-r0               apk             
-aom-libs                            3.13.1-r1               apk             
+aom-libs                            3.14.1-r0               apk             
 apache2-utils                       2.4.67-r0               apk             
 apk-tools                           3.0.6-r0                apk             
 apr                                 1.7.6-r0                apk             
@@ -24,7 +24,7 @@ ca-certificates                     20260413-r0             apk
 ca-certificates-bundle              20260413-r0             apk             
 carbonphp/carbon-doctrine-types     3.2.0                   php-composer    
 catatonit                           0.2.1-r0                apk             
-composer                            2.9.8                   binary          
+composer                            2.10.0                  binary          
 coreutils                           9.8-r1                  apk             
 coreutils-env                       9.8-r1                  apk             
 coreutils-fmt                       9.8-r1                  apk             
@@ -135,8 +135,8 @@ libyuv                              0.0.1887.20251502-r1    apk
 libzip                              1.11.4-r1               apk             
 linux-pam                           1.7.1-r2                apk             
 logrotate                           3.22.0-r0               apk             
-mariadb-client                      11.4.11-r0              apk             
-mariadb-common                      11.4.11-r0              apk             
+mariadb-client                      11.4.12-r0              apk             
+mariadb-common                      11.4.12-r0              apk             
 masterminds/html5                   2.10.0                  php-composer    
 memcached                           1.6.42-r0               apk             
 mkfontscale                         1.2.3-r1                apk             
