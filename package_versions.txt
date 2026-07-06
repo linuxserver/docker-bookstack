@@ -24,7 +24,7 @@ ca-certificates                     20260611-r0             apk
 ca-certificates-bundle              20260611-r0             apk             
 carbonphp/carbon-doctrine-types     3.2.0                   php-composer    
 catatonit                           0.2.1-r0                apk             
-composer                            2.10.1                  binary          
+composer                            2.10.2                  binary          
 coreutils                           9.8-r1                  apk             
 coreutils-env                       9.8-r1                  apk             
 coreutils-fmt                       9.8-r1                  apk             
@@ -97,7 +97,7 @@ libdav1d                            1.5.2-r0                apk
 libeconf                            0.8.3-r0                apk             
 libedit                             20251016.3.1-r0         apk             
 libevent                            2.1.13-r0               apk             
-libexpat                            2.8.1-r0                apk             
+libexpat                            2.8.2-r0                apk             
 libffi                              3.5.2-r0                apk             
 libfontenc                          1.1.8-r0                apk             
 libgcc                              15.2.0-r2               apk             
