@@ -131,7 +131,7 @@ init_diagram: |
     svc-queue-worker -> legacy-services
   }
   Base Images: {
-    "baseimage-alpine-nginx:3.23" <- "baseimage-alpine:3.23"
+    "baseimage-alpine-nginx:3.24" <- "baseimage-alpine:3.24"
   }
   "bookstack:latest" <- Base Images
 # changelog
