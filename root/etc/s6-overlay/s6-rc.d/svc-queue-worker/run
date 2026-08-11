@@ -3,4 +3,4 @@
 
 echo "*** Starting Async Action Queue ***"
 
-exec /usr/bin/php /app/www/artisan queue:work --sleep=3 --tries=1 --max-time=3600
+exec /usr/bin/s6-setuidgid abc /usr/bin/php /app/www/artisan queue:work --sleep=3 --tries=1 --max-time=3600
