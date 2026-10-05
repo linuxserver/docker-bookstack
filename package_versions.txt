@@ -114,12 +114,12 @@ libmd                               1.2.0-r0                apk
 libmemcached-libs                   1.1.4-r1                apk                           
 libmount                            2.42.3-r1               apk                           
 libncursesw                         6.6_p20260516-r0        apk                           
-libpcre2-16                         10.48-r0                apk                           
+libpcre2-16                         10.49-r0                apk                           
 libpng                              1.6.59-r0               apk                           
 libproc2                            4.0.6-r0                apk                           
 libpsl                              0.21.5-r3               apk                           
 libsasl                             2.1.28-r9               apk                           
-libseccomp                          2.6.0-r2                apk                           
+libseccomp                          2.6.1-r0                apk                           
 libsharpyuv                         1.6.0-r0                apk                           
 libsm                               1.2.6-r0                apk                           
 libssl3                             3.5.8-r0                apk                           
