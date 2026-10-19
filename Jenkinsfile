@@ -1230,7 +1230,7 @@ pipeline {
                   "type": "commit",\
                   "tagger": {"name": "LinuxServer-CI","email": "ci@linuxserver.io","date": "'${GITHUB_DATE}'"}}'
               echo "Pushing New release for Tag"
-              echo "Updating to ${EXT_RELEASE_CLEAN}" > releasebody.json
+              curl -s https://codeberg.org/api/v1/repos/bookstack/bookstack/releases/tags/${EXT_RELEASE} | jq -r '. |.body' > releasebody.json
               jq -n \
                 --arg tag_name "$META_TAG" \
                 --arg target_commitish "master" \

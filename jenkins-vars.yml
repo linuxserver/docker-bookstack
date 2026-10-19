@@ -4,6 +4,8 @@
 project_name: docker-bookstack
 external_type: na
 custom_version_command: "curl -sX GET 'https://codeberg.org/api/v1/repos/bookstack/bookstack/releases/latest' | jq -r '.tag_name'"
+custom_release_notes_command: |-
+  curl -s https://codeberg.org/api/v1/repos/bookstack/bookstack/releases/tags/${EXT_RELEASE} | jq -r '. |.body' > releasebody.json
 release_type: stable
 release_tag: latest
 ls_branch: master
