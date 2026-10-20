@@ -139,8 +139,8 @@ libyuv                              0.0.1928-r0             apk
 libzip                              1.11.4-r2               apk                           
 linux-pam                           1.7.1-r2                apk                           
 logrotate                           3.22.0-r0               apk                           
-mariadb-client                      11.8.8-r0               apk                           
-mariadb-common                      11.8.8-r0               apk                           
+mariadb-client                      11.8.9-r0               apk                           
+mariadb-common                      11.8.9-r0               apk                           
 masterminds/html5                   2.11.0                  php-composer                  
 memcached                           1.6.42-r0               apk                           
 mkfontscale                         1.2.4-r0                apk                           
