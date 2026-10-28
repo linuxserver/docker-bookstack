@@ -52,7 +52,7 @@ RUN \
     unzip -d /app/www/ /tmp/bookstack-vendor.zip; \
   else \
     echo "Vendor zip checksum did not match, falling back to composer."; \
-    composer install -d /app/www/ --nodev; \
+    composer install -d /app/www/ --no-dev; \
   fi && \
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** create symlinks ****" && \
