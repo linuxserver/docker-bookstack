@@ -44,8 +44,16 @@ RUN \
   tar xf \
     /tmp/bookstack.tar.gz -C \
     /app/www/ --strip-components=1 && \
-  echo "**** install composer dependencies ****" && \
-  composer install -d /app/www/ && \
+  echo "**** install php dependencies ****" && \
+  curl -o \
+    /tmp/bookstack-vendor.zip -L \
+    "https://files.bookstackapp.com/vendor/${BOOKSTACK_RELEASE}.zip" && \
+  if [ "$(sha256sum /tmp/bookstack-vendor.zip | awk -F ' ' '{print $1}')" == "$(cat /app/www/dev/checksums/vendor)" ]; then \
+    unzip -d /app/www/ /tmp/bookstack-vendor.zip; \
+  else \
+    echo "Vendor zip checksum did not match, falling back to composer."; \
+    composer install -d /app/www/ --no-dev; \
+  fi && \
   printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** create symlinks ****" && \
   /bin/bash -c \
