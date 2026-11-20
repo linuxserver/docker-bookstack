@@ -12,13 +12,17 @@ LABEL maintainer="thespad"
 ENV S6_STAGE2_HOOK="/init-hook"
 
 RUN \
+  echo "**** upgrade php runtime packages ****" && \
+  apk upgrade --no-cache 'php85*' && \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
     fontconfig \
     mariadb-client \
     memcached \
+    'php85>=8.5.13' \
     php85-dom \
     php85-exif \
+    'php85-fpm>=8.5.13' \
     php85-gd \
     php85-ldap \
     php85-mysqlnd \
@@ -27,6 +31,10 @@ RUN \
     php85-tokenizer \
     qt5-qtbase \
     ttf-freefont && \
+  echo "**** verify patched php runtime ****" && \
+  php -r 'exit(version_compare(PHP_VERSION, "8.5.13", "<") ? 1 : 0);' && \
+  php -r 'foreach (["simplexml", "memcached", "pdo_mysql"] as $ext) { if (!extension_loaded($ext)) { throw new RuntimeException("Missing extension: " . $ext); } }' && \
+  php-fpm85 -v && \
   echo "**** configure php-fpm to pass env vars ****" && \
   sed -E -i 's/^;?clear_env ?=.*$/clear_env = no/g' /etc/php85/php-fpm.d/www.conf && \
   if ! grep -qxF 'clear_env = no' /etc/php85/php-fpm.d/www.conf; then echo 'clear_env = no' >> /etc/php85/php-fpm.d/www.conf; fi && \
@@ -38,9 +46,14 @@ RUN \
     BOOKSTACK_RELEASE=$(curl -sX GET "https://codeberg.org/api/v1/repos/bookstack/bookstack/releases/latest" \
     | jq -r '.tag_name'); \
   fi && \
-  curl -o \
-    /tmp/bookstack.tar.gz -L \
-    "https://codeberg.org/bookstack/bookstack/archive/${BOOKSTACK_RELEASE}.tar.gz" && \
+  if ! curl -fLsS --connect-timeout 10 --max-time 60 \
+    -o /tmp/bookstack.tar.gz \
+    "https://codeberg.org/bookstack/bookstack/archive/${BOOKSTACK_RELEASE}.tar.gz"; then \
+    echo "Codeberg archive unavailable, using the official BookStack GitHub mirror."; \
+    curl -fLsS --retry 3 --connect-timeout 10 --max-time 120 \
+      -o /tmp/bookstack.tar.gz \
+      "https://github.com/BookStackApp/BookStack/archive/refs/tags/${BOOKSTACK_RELEASE}.tar.gz"; \
+  fi && \
   tar xf \
     /tmp/bookstack.tar.gz -C \
     /app/www/ --strip-components=1 && \
