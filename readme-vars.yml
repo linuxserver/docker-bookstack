@@ -42,6 +42,65 @@ readonly_message: |
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
+  ### b4u-mw PHP security build
+
+  This fork publishes as `ghcr.io/b4u-mw/docker-bookstack`.
+  It upgrades all installed `php85*` packages during the build and requires
+  PHP CLI and FPM 8.5.13 or later. The BookStack application and the
+  LinuxServer base image, entrypoint and `/config` layout remain unchanged.
+  If the Codeberg source archive fails or times out, the build downloads the
+  same release tag from the official BookStack GitHub mirror. For v26.09.3,
+  both hosts resolve to commit `bf680915b6dbaf93eee5234ec72dc33bc5abafbf`.
+
+  Build the reviewed application release with the standard Docker commands:
+
+  ```shell
+  chmod -R a+rX root
+  docker build --no-cache --pull \
+    --build-arg BOOKSTACK_RELEASE=v26.09.3 \
+    --build-arg VERSION=26.09.3-php8.5.13-b4u1 \
+    --build-arg BUILD_DATE=2026-11-20 \
+    --label org.opencontainers.image.source=https://github.com/b4u-mw/docker-bookstack \
+    -t ghcr.io/b4u-mw/docker-bookstack:26.09.3-php8.5.13-b4u1-amd64 .
+  docker build --no-cache --pull --platform linux/arm64 -f Dockerfile.aarch64 \
+    --build-arg BOOKSTACK_RELEASE=v26.09.3 \
+    --build-arg VERSION=26.09.3-php8.5.13-b4u1 \
+    --build-arg BUILD_DATE=2026-11-20 \
+    --label org.opencontainers.image.source=https://github.com/b4u-mw/docker-bookstack \
+    -t ghcr.io/b4u-mw/docker-bookstack:26.09.3-php8.5.13-b4u1-arm64v8 .
+  docker push ghcr.io/b4u-mw/docker-bookstack:26.09.3-php8.5.13-b4u1-amd64
+  docker push ghcr.io/b4u-mw/docker-bookstack:26.09.3-php8.5.13-b4u1-arm64v8
+  docker buildx imagetools create \
+    --tag ghcr.io/b4u-mw/docker-bookstack:26.09.3-php8.5.13-b4u1 \
+    ghcr.io/b4u-mw/docker-bookstack:26.09.3-php8.5.13-b4u1-amd64 \
+    ghcr.io/b4u-mw/docker-bookstack:26.09.3-php8.5.13-b4u1-arm64v8
+  ```
+
+  Use `--platform linux/arm64 -f Dockerfile.aarch64` and an `-arm64v8`
+  tag suffix for a separate ARM64 build. Do not overwrite an AMD64 tag with
+  an ARM64 manifest; combine the tested architecture tags with the standard
+  `docker buildx imagetools create` command for a multi-platform tag.
+  Run the image and verify a restart with the same database and `/config`
+  before publishing. Use the recorded registry digest when referencing the
+  image, not a mutable tag.
+  Existing `/config/php` settings can override PHP defaults; review them
+  separately when upgrading an existing installation.
+
+  Validation on 2026-11-20 passed for linux/amd64 and linux/arm64:
+  PHP CLI/FPM 8.5.13, SimpleXML GC regression reproducer, required extensions,
+  startup with local MariaDB 11.4, HTTP form login, book read, and restart with
+  the same database and `/config`. The book was created through HTTP on AMD64
+  and read on both architectures. OIDC and production-database migration were
+  not tested; no production
+  deployment was changed.
+
+  Published release `26.09.3-php8.5.13-b4u1` (also `latest`) supports
+  linux/amd64 and linux/arm64. Verified multi-platform digest:
+  `sha256:ca95053e4092c318d6648b1c9ffe8096debacc9eb9497b90ff587e5a75737a53`.
+
+  GHCR packages are private by default. Set this package to public in GitHub
+  if anonymous pulls are required, otherwise configure registry credentials.
+
   The default username is admin@admin.com with the password of **password**, access the container at http://<host ip>:6875.
 
   This application is dependent on a MariaDB database, be it one you already have or a new one. If you do not already have one, we provide an image here https://github.com/linuxserver/docker-mariadb.
@@ -136,6 +195,7 @@ init_diagram: |
   "bookstack:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "20.11.26:", desc: "Upgrade PHP runtime to at least 8.5.13, verify runtime extensions and fall back to the official GitHub source mirror if Codeberg is unavailable."}
   - {date: "28.10.26:", desc: "Use vendor zip from upstream instead of composer for php deps, with fallback to composer if it fails."}
   - {date: "05.08.26:", desc: "Run the async queue worker as the PUID/PGID-managed abc user."}
   - {date: "05.07.26:", desc: "Rebase to Alpine 3.24."}
