@@ -51,7 +51,7 @@ fruitcake/php-cors                  v1.4.0                  php-composer
 gdbm                                1.26-r0                 apk             
 git                                 2.54.1-r0               apk             
 git-init-template                   2.54.1-r0               apk             
-glib                                2.88.1-r1               apk             
+glib                                2.88.4-r0               apk             
 graham-campbell/result-type         v1.2.0                  php-composer    
 guzzlehttp/guzzle                   7.16.1                  php-composer    
 guzzlehttp/promises                 2.6.0                   php-composer    
@@ -92,7 +92,7 @@ libeconf                            0.8.3-r0                apk
 libedit                             20260508.3.1-r1         apk             
 libevent                            2.1.13-r0               apk             
 libexpat                            2.10.0-r0               apk             
-libffi                              3.5.2-r1                apk             
+libffi                              3.8.1-r0                apk             
 libfontenc                          1.1.10-r0               apk             
 libgcc                              15.2.0-r5               apk             
 libice                              1.1.2-r0                apk             
