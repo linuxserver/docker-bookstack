@@ -136,6 +136,7 @@ init_diagram: |
   "bookstack:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "27.11.26:", desc: "Fix framework directory cleanup when a large number of files is present."}
   - {date: "28.10.26:", desc: "Use vendor zip from upstream instead of composer for php deps, with fallback to composer if it fails."}
   - {date: "05.08.26:", desc: "Run the async queue worker as the PUID/PGID-managed abc user."}
   - {date: "05.07.26:", desc: "Rebase to Alpine 3.24."}
