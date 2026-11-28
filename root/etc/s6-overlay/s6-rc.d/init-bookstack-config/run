@@ -9,7 +9,8 @@ mkdir -p \
     /config/log/bookstack
 
 if [[ ! -f /tmp/dbwait.lock ]];then
-    rm -rf /config/www/framework/{cache,sessions,views,purifier}/*
+    find -H /config/www/framework/{cache,sessions,views,purifier} \
+        -mindepth 1 -maxdepth 1 ! -name '.*' -exec rm -rf {} +
 fi
 
 # check for .env and copy default if needed
